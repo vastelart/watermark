@@ -9,7 +9,9 @@ var spritesmith = require('gulp.spritesmith');
 
 var paths = {
 	scss: 'app/markup/_templates/main.scss',
-	jade: 'app/markup/pages/*.jade'
+	jade: 'app/markup/pages/*.jade',
+	jadeToWatch: 'app/markup/**/*.jade',
+	scssToWatch: 'app/markup/**/*.scss'
 };
 
 gulp.task('serve', function() {
@@ -38,6 +40,6 @@ gulp.task('jade', function() {
 });
 
 gulp.task('watch', function(){
-	gulp.watch(paths.jade, ['jade']);
-	gulp.watch(paths.scss, ['scss']);
+	gulp.watch(paths.jadeToWatch, ['jade']);
+	gulp.watch(paths.scssToWatch, ['scss']);
 });
