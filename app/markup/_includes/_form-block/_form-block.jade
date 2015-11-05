@@ -1,2 +1,37 @@
 .watermark-right.right
-	h2 Настройки
+	.settings
+		h2.settings__title Настройки
+
+	.form-input
+		.form-input-box
+			h3.form__title Исходное изображение
+			.form-input__origin.form-input-style
+				input(name="" type="file"  id="").form-input__origin-file
+				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
+				.form-input__origin-icon
+		.form-input-box
+			h3.form__title Водяной знак
+			.form-input__origin.form-input-style
+				input(name="" type="file"  id="").form-input__origin-file
+				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
+				.form-input__origin-icon
+
+	.form-position
+		h3.form__title Положение
+		.position__adjust
+			.position__adjust-radio.left
+
+			.position__adjust-sett.right
+				.position__adjust-sett__x
+				.position__adjust-sett__y
+	.form-opacity
+		h3.form__title Прозрачность
+
+	.buttons
+		.button__left.left
+			input(name="" type="reset" id="").button__left-submit
+		.button__right.right
+			input(name="" type="submit" id="").button__right-submit
+
+
+

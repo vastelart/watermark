@@ -4,7 +4,8 @@ html {
 
 body {
   margin: 0 0 50px;
-  /* bottom = footer height */ }
+  /* bottom = footer height */
+  background: url(../img/bg-site.png) center center no-repeat; }
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -29,11 +30,131 @@ body {
   width: 960px;
   margin: 0 auto; }
 
+.watermark-wrapper__window {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 80px;
+  overflow: auto; }
+
+.watermark-wrapper__window:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  vertical-align: middle; }
+
 .watermark-left {
-  width: 702px; }
+  width: 702px;
+  background: #605c60;
+  padding: 25px;
+  box-sizing: border-box;
+  margin: 50px 0; }
+
+.image-block__title {
+  margin-bottom: 60px; }
+
+h1 {
+  font-size: 36px;
+  line-height: 38px;
+  color: #fff;
+  font-weight: light;
+  vertical-align: top;
+  margin: 0; }
+
+.image-block__img {
+  width: 100%;
+  height: 535px;
+  background: #fff; }
 
 .watermark-right {
-  width: 257px; }
+  width: 257px;
+  background: #f1f1f5;
+  padding: 30px 20px 25px 20px;
+  box-sizing: border-box;
+  margin: 50px 0; }
+
+.settings {
+  text-align: center;
+  margin-bottom: 40px; }
+
+.settings__title {
+  font-size: 26px;
+  font-weight: light;
+  line-height: 28px;
+  display: inline-block;
+  margin: 0;
+  color: #2e3641; }
+
+.form-input-box {
+  margin-bottom: 27px; }
+
+.form__title {
+  font-size: 14px;
+  color: #3b424d;
+  margin: 0 0 10px 0; }
+
+.form-input-style {
+  width: 220px;
+  height: 26px;
+  box-sizing: border-box;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  line-height: 14px;
+  overflow: hidden; }
+
+.form-input__origin {
+  position: relative;
+  cursor: pointer;
+  background: #f1f1f5;
+  vertical-align: center; }
+
+.form-input__origin-file {
+  position: absolute;
+  top: 0;
+  left: -9999px; }
+
+.form-input__fake {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  left: 1px;
+  right: 52px;
+  padding: 5px;
+  cursor: pointer;
+  background: #f1f1f5;
+  border: 1px solid #9eb2c0;
+  vertical-align: middle; }
+
+.form-input__origin-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 178px;
+  overflow: hidden;
+  background: url("../img/input-file.png") center center no-repeat; }
+
+::-webkit-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px; }
+
+::-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px; }
+
+/* Firefox 19+ */
+:-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px; }
+
+/* Firefox 18- */
+:-ms-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px; }
 
 .footer {
   text-align: center;
@@ -43,3 +164,5 @@ body {
   left: 0;
   bottom: 0;
   width: 100%; }
+
+/* --------- common colors --------- */

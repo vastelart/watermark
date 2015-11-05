@@ -1,1 +1,94 @@
-.watermark-right {width: 257px;}
+.watermark-right {
+  width: 257px;
+  background: #f1f1f5;
+  padding: 30px 20px 25px 20px;
+  box-sizing: border-box;
+  margin: 50px 0;
+}
+.settings {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.settings__title {
+  font-size: 26px;
+  font-weight: light;
+  line-height: 28px;
+  display: inline-block;
+  margin: 0;
+  color: #2e3641;
+}
+.form-input-box {
+  margin-bottom: 27px;
+}
+.form__title {
+  font-size: 14px;
+  color: #3b424d;
+  margin: 0 0 10px 0;
+}
+.form-input-style {
+  width: 220px;
+  height: 26px;
+  box-sizing: border-box;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  line-height: 14px;
+  overflow: hidden;
+}
+.form-input__origin {
+  position: relative;
+  cursor: pointer;
+  background: #f1f1f5;
+  vertical-align: center;
+}
+.form-input__origin-file {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+}
+.form-input__fake {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  left: 1px;
+  right: 52px;
+  padding: 5px;
+  cursor: pointer;
+  background: #f1f1f5;
+  border: 1px solid #9eb2c0;
+  vertical-align: middle;
+}
+.form-input__origin-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 178px;
+  overflow: hidden;
+  background: url("../img/input-file.png") center center no-repeat;
+}
+
+
+
+::-webkit-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+
+::-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+/* Firefox 19+ */
+
+:-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+/* Firefox 18- */
+
+:-ms-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}

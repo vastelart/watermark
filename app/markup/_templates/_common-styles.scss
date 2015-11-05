@@ -4,6 +4,7 @@ html {
 }
 body {
     margin: 0 0 50px; /* bottom = footer height */
+    background: url(../img/bg-site.png) center center no-repeat;
 }
 
 body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
@@ -19,3 +20,19 @@ body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
     clear: both;
 }
 .watermark-wrapper {width: 960px; margin: 0 auto;}
+
+.watermark-wrapper__window {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 80px;
+    overflow: auto;
+}
+.watermark-wrapper__window:after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+}
