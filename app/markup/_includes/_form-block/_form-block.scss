@@ -5,18 +5,20 @@
   box-sizing: border-box;
   margin: 50px 0;
 }
+/*------------title-right-------*/
 .settings {
   text-align: center;
   margin-bottom: 40px;
 }
 .settings__title {
   font-size: 26px;
-  font-weight: light;
   line-height: 28px;
   display: inline-block;
   margin: 0;
   color: #2e3641;
 }
+
+/*---------разделитель ---------*/
 .delimiter {
   padding: 0 20px;
   box-sizing: border-box;
@@ -36,6 +38,8 @@
   border-top: 10px solid #f1f1f5;
   bottom: -19px;
 }
+
+/*------------input-file--------*/
 .form-input-box {
   margin-bottom: 27px;
 }
@@ -58,7 +62,7 @@
   position: relative;
   cursor: pointer;
   background: #f1f1f5;
-  vertical-align: center;
+  vertical-align: middle;
 }
 .form-input__origin-file {
   position: absolute;
@@ -89,6 +93,60 @@
 }
 
 
+/*------------position--------*/
+
+.form-position .form__title {
+  margin-bottom: 27px;
+}
+.position__adjust {
+  height: 102px;
+  margin-bottom: 36px;
+}
+.position__adjust-radio{
+  width: 102px;
+  height: 102px;
+  box-sizing: border-box;
+}
+.label-position {
+  margin-left: -5px;
+  margin-bottom: -5px;
+  box-sizing: border-box;
+  padding: 0;
+  display: inline-block;
+  height: 34px;
+  width: 34px;
+  position: relative;
+  background: #dbe1e8;
+  border: 1px solid #9eb2c0;
+}
+ .label-position:hover, .label-position:active, .label-position:focus,  {
+  background: #f97e76;
+}
+.label-position_first {
+  border-top-left-radius: 4px;
+}
+.label-position_third {
+  border-top-right-radius: 4px;
+}
+.label-position_seventh {
+  border-bottom-left-radius: 4px;
+}
+.label-position_ninth {
+  border-bottom-right-radius: 4px;
+}
+.radio-position {
+  position: absolute;
+  left: -9999px;
+}
+
+/*--------------opacity----------*/
+
+
+
+
+
+
+/*---------placeholder---------*/
 
 ::-webkit-input-placeholder {
   color: #9eb2c0;

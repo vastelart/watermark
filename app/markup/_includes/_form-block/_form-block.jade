@@ -20,13 +20,17 @@
 		h3.form__title Положение
 		.position__adjust
 			.position__adjust-radio.left
+				- var items = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+				each item in items
+					label(for="", class="label-position label-position_" + item )
+						input(type="radio").radio-position
 
 			.position__adjust-sett.right
 				.position__adjust-sett__x
 				.position__adjust-sett__y
 	.form-opacity.delimiter
 		h3.form__title Прозрачность
-
+			.opacity-line
 	.buttons
 		.button__left.left
 			input(name="" type="reset" id="").button__left-submit
