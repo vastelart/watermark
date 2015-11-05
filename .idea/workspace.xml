@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="163ef1bc-f605-4db5-91be-f4d1f1f55eee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="$PROJECT_DIR$/.bowerrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_templates/_common-styles.scss" afterPath="$PROJECT_DIR$/app/markup/_templates/_common-styles.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_includes/_footer/_footer.jade" afterPath="$PROJECT_DIR$/app/markup/_includes/_footer/_footer.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade" afterPath="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss" afterPath="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_includes/_image-block/_image-block.jade" afterPath="$PROJECT_DIR$/app/markup/_includes/_image-block/_image-block.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_includes/_image-block/_image-block.scss" afterPath="$PROJECT_DIR$/app/markup/_includes/_image-block/_image-block.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_templates/_main.jade" afterPath="$PROJECT_DIR$/app/markup/_templates/_main.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/pages/index.jade" afterPath="$PROJECT_DIR$/app/markup/pages/index.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/main.css" afterPath="$PROJECT_DIR$/app/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/markup/_templates/main.scss" afterPath="$PROJECT_DIR$/app/markup/_templates/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="watermark.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_form-block.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_form-block.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7513812">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state vertical-scroll-proportion="-8.814815">
+              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form-block.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_form-block.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231">
-              <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.56198347">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -137,8 +123,8 @@
         <option value="$PROJECT_DIR$/app/markup/_templates/_common-styles.scss" />
         <option value="$PROJECT_DIR$/app/markup/pages/index.jade" />
         <option value="$PROJECT_DIR$/app/markup/_includes/_image-block/_image-block.scss" />
-        <option value="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss" />
         <option value="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade" />
+        <option value="$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss" />
       </list>
     </option>
   </component>
@@ -523,18 +509,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss">
+    <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+        <state vertical-scroll-proportion="-8.814815">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.jade">
+    <entry file="file://$PROJECT_DIR$/app/markup/_includes/_form-block/_form-block.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7513812">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.56198347">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding />
         </state>
       </provider>
