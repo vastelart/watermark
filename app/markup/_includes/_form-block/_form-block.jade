@@ -1,2 +1,51 @@
 .watermark-right.right
-	h2 Настройки
+	.settings
+		h2.settings__title Настройки
+
+	.form-input.delimiter
+		.form-input-box
+			label.form__title Исходное изображение
+			.form-input__origin.form-input-style
+				input(name="" type="file"  id="").form-input__origin-file
+				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
+				.form-input__origin-icon
+		.form-input-box
+			label.form__title Водяной знак
+			.form-input__origin.form-input-style
+				input(name="" type="file"  id="").form-input__origin-file
+				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
+				.form-input__origin-icon
+
+	.form-position.delimiter
+		label.form__title Положение
+		.position__adjust
+			.position__adjust-radio.left
+				- var items = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+				each item in items
+					label(for="", id="", class="label-position label-position_" + item )
+						input(type="radio" id="").radio-position
+
+			.position__adjust-sett.right
+				.position__adjust__sett-x
+					label(for="", id="").label-x X
+					input(type="" value="0" id="").sett-x.left
+					.sett-x__box.right
+						button(id="").sett-up
+						button(id="").sett-down
+				.position__adjust__sett-y
+					label(for="", id="").label-y Y
+					input(type="" value="0" id="").sett-y.left
+					.sett-y__box.right
+						button(id="").sett-up
+						button(id="").sett-down
+	.form-opacity.delimiter
+		label(for="", id="").form__title Прозрачность
+			.opacity-line
+	.buttons
+		.button__left.left
+			input(name="" type="reset" value="Сброс" id="").button__reset
+		.button__right.right
+			input(name="" type="submit" value="Скачать" id="").button__submit
+
+
+
