@@ -22,24 +22,24 @@
 			.position__adjust-radio.left
 				- var items = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
 				each item in items
-					label(for="", class="label-position label-position_" + item )
-						input(type="radio").radio-position
+					label(for="", id="", class="label-position label-position_" + item )
+						input(type="radio" id="").radio-position
 
 			.position__adjust-sett.right
 				.position__adjust__sett-x
-					label(for="").label-x X
+					label(for="", id="").label-x X
 					input(type="" value="0" id="").sett-x.left
 					.sett-x__box.right
-						button.sett-up
-						button.sett-down
+						button(id="").sett-up
+						button(id="").sett-down
 				.position__adjust__sett-y
-					label(for="").label-y Y
+					label(for="", id="").label-y Y
 					input(type="" value="0" id="").sett-y.left
 					.sett-y__box.right
-						button.sett-up
-						button.sett-down
+						button(id="").sett-up
+						button(id="").sett-down
 	.form-opacity.delimiter
-		label.form__title Прозрачность
+		label(for="", id="").form__title Прозрачность
 			.opacity-line
 	.buttons
 		.button__left.left
