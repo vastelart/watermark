@@ -22,6 +22,8 @@
   "dependencies": {
     "jquery": "1.11.3",
     "modernizr": "2.8",
-    "normalize-css": "~3.0.3"
+    "normalize-css": "~3.0.3",
+    "qtip2": "~2.2.1",
+    "blueimp-file-upload": "jquery-file-upload#~9.11.2"
   }
 }
