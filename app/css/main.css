@@ -256,6 +256,59 @@ h1 {
   top: 115px; }
 
 /*--------------opacity----------*/
+.form-opacity {
+  margin-bottom: 56px; }
+
+/*-------buttons---------------*/
+.button__left {
+  margin-left: 10px; }
+
+.button__right {
+  margin-right: 10px; }
+
+.button__reset, .button__submit {
+  width: 100px;
+  height: 42px;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  border: none;
+  color: #f1f1f5;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: normal; }
+
+.button__reset {
+  background: #c1cfd9; }
+
+.button__submit {
+  background: #f97e76; }
+
+.button__reset:hover {
+  border: 1px solid #a4b2bb;
+  border-top: 2px solid #a4b2bb;
+  background: #b0bdc6;
+  background: -moz-linear-gradient(top, #b0bdc6 0%, #c0ced8 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b0bdc6), color-stop(100%, #c0ced8));
+  background: -webkit-linear-gradient(top, #b0bdc6 0%, #c0ced8 100%);
+  background: -o-linear-gradient(top, #b0bdc6 0%, #c0ced8 100%);
+  background: -ms-linear-gradient(top, #b0bdc6 0%, #c0ced8 100%);
+  background: linear-gradient(to bottom, #b0bdc6 0%, #c0ced8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0bdc6', endColorstr='#c0ced8',GradientType=0 ); }
+
+.button__submit:hover {
+  border: 1px solid #e3736c;
+  border-top: 2px solid #e3736c;
+  background: #e3736c;
+  background: -moz-linear-gradient(top, #e3736c 0%, #f97e76 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e3736c), color-stop(100%, #f97e76));
+  background: -webkit-linear-gradient(top, #e3736c 0%, #f97e76 100%);
+  background: -o-linear-gradient(top, #e3736c 0%, #f97e76 100%);
+  background: -ms-linear-gradient(top, #e3736c 0%, #f97e76 100%);
+  background: linear-gradient(to bottom, #e3736c 0%, #f97e76 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3736c', endColorstr='#f97e76',GradientType=0 ); }
+
 /*---------placeholder---------*/
 ::-webkit-input-placeholder {
   color: #9eb2c0;
@@ -277,7 +330,8 @@ h1 {
 
 .footer {
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
+  color: #f1f1f5;
   height: 50px;
   position: absolute;
   left: 0;
