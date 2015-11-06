@@ -1,0 +1,18 @@
+.watermark-right.right
+	h2 Настройки
+		ul.position__box
+			- for (var i = 0; i < 3; i++)
+				li.position__box-item
+				- for (var j = 0; j < 3; j++)		
+					label.position__box-label
+						input(name="location" type="radio").position__box-input
+		.input__block-y				
+			label.number__input-label
+				input.number__input-y
+			button.button__up-y Вверх
+			button.button__down-y Вниз
+		.input__block-x
+			label.number__input-label
+				input.number__input-x
+			button.button__up-x Влево
+			button.button__down-x Вправо
