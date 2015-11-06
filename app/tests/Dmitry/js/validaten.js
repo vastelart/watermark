@@ -10,6 +10,7 @@ var valadationFileUpload = (function () {
 	var _setUpListners = function () {
 		$('form').on('keydown', '.error', _removeError);
 		$('form').on('reset', _clearForm);
+
 	};
 
 	var _removeError = function () {

@@ -1,1 +1,23 @@
-.watermark-left {width: 702px;}
+.watermark-left {
+  width: 702px;
+  background: #605c60;
+  padding: 25px;
+  box-sizing: border-box;
+  margin: 50px 0;
+}
+.image-block__title{
+  margin-bottom: 60px;
+}
+h1 {
+  font-size: 36px;
+  line-height: 38px;
+  color: #fff;
+  font-weight: 300;
+  vertical-align: top;
+  margin: 0;
+}
+.image-block__img {
+  width: 100%;
+  height: 535px;
+  background: #fff;
+}

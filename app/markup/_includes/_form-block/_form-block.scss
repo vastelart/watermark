@@ -1,1 +1,273 @@
-.watermark-right {width: 257px;}
+.watermark-right {
+  width: 257px;
+  background: #f1f1f5;
+  padding: 30px 0 25px 0;
+  box-sizing: border-box;
+  margin: 50px 0;
+}
+/*------------title-right-------*/
+.settings {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.settings__title {
+  font-size: 26px;
+  line-height: 28px;
+  font-weight: 300;
+  display: inline-block;
+  margin: 0;
+  color: #2e3641;
+}
+
+/*---------разделитель ---------*/
+.delimiter {
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f97e76;
+  position: relative;
+  margin-bottom: 17px;
+}
+.delimiter:before, .delimiter:after {
+  content: '';
+  position: absolute;
+  left: 120px;
+  bottom: -20px;
+  border: 10px solid transparent;
+  border-top: 10px solid #f97e76;
+}
+.delimiter:after {
+  border-top: 10px solid #f1f1f5;
+  bottom: -19px;
+}
+
+/*------------input-file--------*/
+.form-input-box {
+  margin-bottom: 27px;
+}
+.form__title {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #3b424d;
+  display: block;
+  margin: 0 0 10px 0;
+}
+.form-input-style {
+  width: 220px;
+  height: 26px;
+  box-sizing: border-box;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  line-height: 14px;
+  overflow: hidden;
+}
+.form-input__origin {
+  position: relative;
+  cursor: pointer;
+  background: #f1f1f5;
+  vertical-align: middle;
+}
+.form-input__origin-file {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+}
+.form-input__fake {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  left: 1px;
+  right: 52px;
+  padding: 5px;
+  cursor: pointer;
+  background: #f1f1f5;
+  border: 1px solid #9eb2c0;
+  vertical-align: middle;
+}
+.form-input__origin-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 175px;
+  overflow: hidden;
+  background: url("../img/input-file.png") center center no-repeat;
+}
+
+
+/*------------position--------*/
+
+.form-position .form__title {
+  margin-bottom: 27px;
+}
+.position__adjust {
+  height: 102px;
+  margin-bottom: 36px;
+}
+.position__adjust-radio{
+  width: 102px;
+  height: 102px;
+  box-sizing: border-box;
+}
+.position__adjust-sett {
+  max-width: 100px;
+}
+.label-position {
+  margin-left: -5px;
+  margin-bottom: -5px;
+  box-sizing: border-box;
+  padding: 0;
+  display: inline-block;
+  height: 34px;
+  width: 34px;
+  position: relative;
+  background: #dbe1e8;
+  border: 1px solid #9eb2c0;
+}
+ .label-position:hover, .label-position:active, .label-position:focus,  {
+  background: #f97e76;
+}
+.label-position_first {
+  border-top-left-radius: 4px;
+}
+.label-position_third {
+  border-top-right-radius: 4px;
+}
+.label-position_seventh {
+  border-bottom-left-radius: 4px;
+}
+.label-position_ninth {
+  border-bottom-right-radius: 4px;
+}
+.radio-position {
+  position: absolute;
+  left: -9999px;
+}
+
+.position__adjust__sett-x {
+  height: 45px;
+  margin-bottom: 12px;
+}
+.sett-x__box, .sett-y__box {
+  height: 45px;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+.sett-x, .sett-y  {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #9eb2c0;
+  border-radius: 4px;
+  background: #f1f1f5;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 24px;
+  color: #444a53;
+}
+.sett-up,  .sett-down, {
+  display: block;
+  height: 21px;
+  border: none;
+  margin-left: 6px;
+}
+.sett-up {
+  background: url(../img/up.png) no-repeat top;
+}
+.sett-down {
+  background: url(../img/down.png) no-repeat bottom;
+}
+.label-x, .label-y {
+  display: inline-block;
+  position: absolute;
+  left: 155px;
+}
+.label-x {
+  position: absolute;
+  top: 57px;
+}
+.label-y {
+  position: absolute;
+  top: 115px;
+}
+/*--------------opacity----------*/
+
+.form-opacity {
+  margin-bottom: 56px;
+}
+
+/*-------buttons---------------*/
+.button__left {
+  margin-left: 10px;
+}
+.button__right {
+  margin-right: 10px;
+}
+.button__reset, .button__submit {
+  width: 100px;
+  height: 42px;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  border: none;
+  color: #f1f1f5;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.button__reset {
+  background:#c1cfd9;
+}
+.button__submit {
+  background: #f97e76;
+}
+.button__reset:hover {
+  border: 1px solid #a4b2bb;
+  border-top: 2px solid #a4b2bb;
+  background: rgb(176,189,198);
+  background: -moz-linear-gradient(top, rgba(176,189,198,1) 0%, rgba(192,206,216,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,189,198,1)), color-stop(100%,rgba(192,206,216,1)));
+  background: -webkit-linear-gradient(top, rgba(176,189,198,1) 0%,rgba(192,206,216,1) 100%);
+  background: -o-linear-gradient(top, rgba(176,189,198,1) 0%,rgba(192,206,216,1) 100%);
+  background: -ms-linear-gradient(top, rgba(176,189,198,1) 0%,rgba(192,206,216,1) 100%);
+  background: linear-gradient(to bottom, rgba(176,189,198,1) 0%,rgba(192,206,216,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0bdc6', endColorstr='#c0ced8',GradientType=0 );
+}
+.button__submit:hover {
+  border: 1px solid #e3736c;
+  border-top: 2px solid #e3736c;
+  background: rgb(227,115,108);
+  background: -moz-linear-gradient(top, rgba(227,115,108,1) 0%, rgba(249,126,118,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(227,115,108,1)), color-stop(100%,rgba(249,126,118,1)));
+  background: -webkit-linear-gradient(top, rgba(227,115,108,1) 0%,rgba(249,126,118,1) 100%);
+  background: -o-linear-gradient(top, rgba(227,115,108,1) 0%,rgba(249,126,118,1) 100%);
+  background: -ms-linear-gradient(top, rgba(227,115,108,1) 0%,rgba(249,126,118,1) 100%);
+  background: linear-gradient(to bottom, rgba(227,115,108,1) 0%,rgba(249,126,118,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3736c', endColorstr='#f97e76',GradientType=0 );
+}
+
+/*---------placeholder---------*/
+
+::-webkit-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+
+::-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+/* Firefox 19+ */
+
+:-moz-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
+/* Firefox 18- */
+
+:-ms-input-placeholder {
+  color: #9eb2c0;
+  font-size: 12px;
+}
