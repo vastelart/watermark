@@ -1,5 +1,6 @@
 /app/tests/Sergey/File-Upload
 /examples
+.idea
 node_modules
 bower_components
 app/bower
