@@ -6,4 +6,4 @@ app/bower
 .gulp-scss-cache
 .sass-cache
 dist
-.idea
+/.idea
