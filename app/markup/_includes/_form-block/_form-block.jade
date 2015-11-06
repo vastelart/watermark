@@ -1,2 +1,8 @@
 .watermark-right.right
 	h2 Настройки
+
+	ul.position__box
+		- for (var i = 0; i < 9; i++)
+			li.position__box-item
+				label.position__box-label
+					input(name="location" type="radio").position__box-input
