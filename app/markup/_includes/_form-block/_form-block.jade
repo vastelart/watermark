@@ -4,40 +4,45 @@
 
 	.form-input.delimiter
 		.form-input-box
-			label.form__title Исходное изображение
+			label(for="").form__title Исходное изображение
 			.form-input__origin.form-input-style
-				input(name="" type="file"  id="").form-input__origin-file
-				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
-				.form-input__origin-icon
+				input(name="baseImg" type="file"  id="baseImg" value="Выберите файл").form-input__origin-file
+				.form-input__fake
+				label(for="baseImg").form-input__origin-icon
 		.form-input-box
-			label.form__title Водяной знак
+			label(for="").form__title Водяной знак
 			.form-input__origin.form-input-style
-				input(name="" type="file"  id="").form-input__origin-file
-				input(name="" type="" placeholder="Image.jpg" id="").form-input__fake
-				.form-input__origin-icon
+				input(name="watermark" type="file"  id="watermark" value="Выберите файл").form-input__origin-file
+				.form-input__fake
+				label(for="watermark").form-input__origin-icon
 
 	.form-position.delimiter
 		label.form__title Положение
 		.position__adjust
 			.position__adjust-radio.left
-				- var items = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+				- var items = ["topLeft", "topCenter", "topRight", "centerLeft", "centerCenter", "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]
 				each item in items
 					label(for="", id="", class="label-position label-position_" + item )
-						input(type="radio" id="").radio-position
+						span.out #{item}
+						input(type="radio" name="position" value="#{item}" id="").radio-position
 
 			.position__adjust-sett.right
 				.position__adjust__sett-x
-					label(for="", id="").label-x X
-					input(type="" value="0" id="").sett-x.left
+					label(for="inputX", id="").label-x X
+					input(type="" value="0" id="inputX").sett-x.left
 					.sett-x__box.right
-						button(id="").sett-up
-						button(id="").sett-down
+						button(id="" value="Вверх").sett-up
+							span.out Вверх
+						button(id="" value="Вниз").sett-down
+							span.out Вниз
 				.position__adjust__sett-y
-					label(for="", id="").label-y Y
-					input(type="" value="0" id="").sett-y.left
+					label(for="inputY", id="").label-y Y
+					input(type="" value="0" id="inputY").sett-y.left
 					.sett-y__box.right
-						button(id="").sett-up
-						button(id="").sett-down
+						button(id="" value="Вверх").sett-up
+							span.out Вверх
+						button(id="" value="Вниз").sett-down
+							span.out Вниз
 	.form-opacity.delimiter
 		label(for="", id="").form__title Прозрачность
 			.opacity-line
