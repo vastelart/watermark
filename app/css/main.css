@@ -42,7 +42,7 @@ body {
 .image-block__title {
   margin-bottom: 60px; }
 
-h1 {
+.image-block__title-text {
   font-size: 36px;
   line-height: 38px;
   color: #fff;
@@ -56,7 +56,16 @@ h1 {
   background: #fff; }
 
 .main-image-insert {
-  max-width: 100%; }
+  max-width: 100%;
+  overflow: hidden;
+  position: relative; }
+
+.watermark-insert {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0;
+  cursor: move; }
 
 .watermark-right {
   width: 257px;
@@ -335,16 +344,16 @@ h1 {
   bottom: 0;
   width: 100%; }
 
+/*------language buttons-------*/
 .languages {
   position: fixed;
   left: 0;
   top: 102px; }
 
-.languages__list {
+.languages__list, .like__list, .like__socials__list {
   list-style: none;
   margin: 0;
-  padding: 0;
-  text-decoration: none; }
+  padding: 0; }
 
 .languages__item {
   width: 43px;
@@ -366,3 +375,51 @@ h1 {
 
 .languages__link:hover {
   opacity: 1; }
+
+/*------like socials-------*/
+.like {
+  width: 88px;
+  position: fixed;
+  left: -44px;
+  top: 190px;
+  transition: .3s; }
+
+.like__item, .like__socials__item {
+  width: 44px;
+  height: 41px;
+  background: #f1f1f5;
+  opacity: .7; }
+
+.like:hover {
+  left: 0;
+  transition: .3s; }
+
+.like__link {
+  display: block;
+  width: 44px;
+  height: 41px;
+  text-indent: -9999px; }
+
+.like__link__like {
+  background: url(../img/like.png) center center no-repeat; }
+
+.like__link__like:hover {
+  background: url(../img/like-hover.png) center center no-repeat; }
+
+.like__link__fb {
+  background: url(../img/fb.png) center center no-repeat; }
+
+.like__link__fb:hover {
+  background: url(../img/fb-hover.png) center center no-repeat; }
+
+.like__link__tw {
+  background: url(../img/tw.png) center center no-repeat; }
+
+.like__link__tw:hover {
+  background: url(../img/tw-hover.png) center center no-repeat; }
+
+.like__link__vk {
+  background: url(../img/vk.png) center center no-repeat; }
+
+.like__link__vk:hover {
+  background: url(../img/vk-hover.png) center center no-repeat; }

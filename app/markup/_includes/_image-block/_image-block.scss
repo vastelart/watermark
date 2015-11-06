@@ -8,7 +8,7 @@
 .image-block__title{
   margin-bottom: 60px;
 }
-h1 {
+.image-block__title-text {
   font-size: 36px;
   line-height: 38px;
   color: #fff;
@@ -23,4 +23,13 @@ h1 {
 }
 .main-image-insert {
   max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.watermark-insert {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0;
+  cursor: move;
 }
