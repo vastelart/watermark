@@ -16,8 +16,16 @@ unset($_SESSION['message']);
     <input type="file" class="load-input" data-upload-type="watermark" name="watermark">
     <input type="file" class="load-input" data-upload-type="image" name="image">
     <input type="submit"/>
-</form>
+    <?php if($message): ?>
+        <div class="alert alert-info">
+            <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
 
+</form>
+<!--<script src="http://code.jquery.com/jquery-1.8.3.js"></script>-->
+<!--<script src="File-Upload/js/jquery.fileupload.js"></script>-->
+<!--<script src="upload.js"></script>-->
 
 </body>
 </html>
