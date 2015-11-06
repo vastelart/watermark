@@ -8,21 +8,26 @@ var myModale = (function () {
 
 	// Прослушивает события
 	var _setUpListners = function () {
-		$('#FileUpload').on('change', _changeFileUpload); // Добавление файла
-
+		$('#fileUpload').fileupload('change', _changeFileUpload); // Добавление файла
 	};
 
 
-//   $(function () {
-//     $('#fileupload').fileupload({
-//         dataType: 'json',
-//         done: function (e, data) {
-//             $.each(data.result.files, function (index, file) {
-//                 $('<p/>').text(file.name).appendTo(document.body);
-//             });
-//         }
-//     });
-// });
+    $('#fileupload').fileupload({
+        url: 'main_server/php/',
+				add: function(e, data) {
+            data('submit');
+				},
+
+				done: function(e, data) {
+
+          var img = $('<img></img>'),
+              uploadImg = data.result.files[0];
+
+          img.attr('src', uploadImg.url);
+          img.appendTo('.uploadfile-img');
+				}
+    });
+
 
 
   // Изменяем файл аплоад
@@ -55,7 +60,6 @@ var myModale = (function () {
 
     if (defObj) {
       defObj.done(function(ans) {
-        console.log(ans);
         var successBox = form.find('.success-mes'),
           errorBox = form.find('.error-mes');
 
