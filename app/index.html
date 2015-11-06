@@ -28,19 +28,19 @@
 					</div>
 					<div class="form-input delimiter">
 						<div class="form-input-box">
-							<label class="form__title">Исходное изображение</label>
+							<label for="" class="form__title">Исходное изображение</label>
 							<div class="form-input__origin form-input-style">
-								<input name="" type="file" id="" class="form-input__origin-file">
-								<input name="" type="" placeholder="Image.jpg" id="" class="form-input__fake">
-								<div class="form-input__origin-icon"></div>
+								<input name="baseImg" type="file" id="baseImg" value="Выберите файл" class="form-input__origin-file">
+								<div class="form-input__fake"></div>
+								<label for="baseImg" class="form-input__origin-icon"></label>
 							</div>
 						</div>
 						<div class="form-input-box">
-							<label class="form__title">Водяной знак</label>
+							<label for="" class="form__title">Водяной знак</label>
 							<div class="form-input__origin form-input-style">
-								<input name="" type="file" id="" class="form-input__origin-file">
-								<input name="" type="" placeholder="Image.jpg" id="" class="form-input__fake">
-								<div class="form-input__origin-icon"></div>
+								<input name="watermark" type="file" id="watermark" value="Выберите файл" class="form-input__origin-file">
+								<div class="form-input__fake"></div>
+								<label for="watermark" class="form-input__origin-icon"></label>
 							</div>
 						</div>
 					</div>
@@ -48,49 +48,49 @@
 						<label class="form__title">Положение</label>
 						<div class="position__adjust">
 							<div class="position__adjust-radio left">
-								<label for="" id="" class="label-position label-position_first">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_topLeft"><span class="out">topLeft </span>
+									<input type="radio" name="position" value="topLeft" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_second">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_topCenter"><span class="out">topCenter </span>
+									<input type="radio" name="position" value="topCenter" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_third">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_topRight"><span class="out">topRight </span>
+									<input type="radio" name="position" value="topRight" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_fourth">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_centerLeft"><span class="out">centerLeft </span>
+									<input type="radio" name="position" value="centerLeft" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_fifth">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_centerCenter"><span class="out">centerCenter </span>
+									<input type="radio" name="position" value="centerCenter" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_sixth">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_centerRight"><span class="out">centerRight </span>
+									<input type="radio" name="position" value="centerRight" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_seventh">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_bottomLeft"><span class="out">bottomLeft </span>
+									<input type="radio" name="position" value="bottomLeft" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_eighth">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_bottomCenter"><span class="out">bottomCenter </span>
+									<input type="radio" name="position" value="bottomCenter" id="" class="radio-position">
 								</label>
-								<label for="" id="" class="label-position label-position_ninth">
-									<input type="radio" id="" class="radio-position">
+								<label for="" id="" class="label-position label-position_bottomRight"><span class="out">bottomRight </span>
+									<input type="radio" name="position" value="bottomRight" id="" class="radio-position">
 								</label>
 							</div>
 							<div class="position__adjust-sett right">
 								<div class="position__adjust__sett-x">
-									<label for="" id="" class="label-x">X</label>
-									<input type="" value="0" id="" class="sett-x left">
+									<label for="inputX" id="" class="label-x">X</label>
+									<input type="" value="0" id="inputX" class="sett-x left">
 									<div class="sett-x__box right">
-										<button id="" class="sett-up"></button>
-										<button id="" class="sett-down"></button>
+										<button id="" value="Вверх" class="sett-up"><span class="out">Вверх</span></button>
+										<button id="" value="Вниз" class="sett-down"><span class="out">Вниз</span></button>
 									</div>
 								</div>
 								<div class="position__adjust__sett-y">
-									<label for="" id="" class="label-y">Y</label>
-									<input type="" value="0" id="" class="sett-y left">
+									<label for="inputY" id="" class="label-y">Y</label>
+									<input type="" value="0" id="inputY" class="sett-y left">
 									<div class="sett-y__box right">
-										<button id="" class="sett-up"></button>
-										<button id="" class="sett-down"></button>
+										<button id="" value="Вверх" class="sett-up"><span class="out">Вверх</span></button>
+										<button id="" value="Вниз" class="sett-down"><span class="out">Вниз</span></button>
 									</div>
 								</div>
 							</div>
