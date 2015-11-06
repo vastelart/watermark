@@ -1,0 +1,30 @@
+.watermark-right {width: 257px;}
+.position__box{
+	list-style: none;
+
+
+	.position__box-item{
+		
+	}
+
+
+	.position__box-label{
+		background: #dbe1e8;
+		display: inline-block;
+		vertical-align:middle;
+		height: 20px;
+		width: 20px;
+
+	}
+
+	.position__box-input{
+		position: absolute;
+		left:-9999px;
+	}
+}
+.input__block-y{
+	display: inline-block;
+}
+.input__block-x{
+	display: inline-block;
+}
