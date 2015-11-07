@@ -4,3 +4,4 @@ app/bower
 .gulp-scss-cache
 .sass-cache
 dist
+.DS_Store
