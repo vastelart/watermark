@@ -56,9 +56,7 @@ var myModale = (function () {
             url: "/upload.php",
             add: function (e, data) {
 
-                var inputFake = $(this)
-                    .closest('.form__upload')
-                    .find('.form-input__fake');
+                var inputFake = $(this).closest('.form__upload').find('.form-input__fake');
 
                 inputFake.val(data.files[0].name);
 

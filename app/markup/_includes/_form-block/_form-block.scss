@@ -1,22 +1,21 @@
 .watermark-right {
-  width: 257px;
+  width: 258px;
   background: #f1f1f5;
   padding: 30px 0 25px 0;
   box-sizing: border-box;
   margin: 50px 0;
 }
 /*------------title-right-------*/
-.settings {
-  text-align: center;
-  margin-bottom: 40px;
-}
+
 .settings__title {
+  text-align: center;
   font-size: 26px;
   line-height: 28px;
   font-weight: 300;
-  display: inline-block;
   margin: 0;
+  padding: 0;
   color: #2e3641;
+  margin-bottom: 40px;
 }
 
 /*---------разделитель ---------*/
@@ -74,6 +73,7 @@
   left: -9999px;
 }
 .form-input__fake {
+  width: 200px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -85,6 +85,9 @@
   background: #f1f1f5;
   border: 1px solid #9eb2c0;
   vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .form-input__origin-icon {
   position: absolute;
@@ -93,14 +96,15 @@
   top: 0;
   left: 175px;
   overflow: hidden;
+  cursor: pointer;
   background: url("../img/input-file.png") center center no-repeat;
 }
 
 
 /*------------position--------*/
 
-.form-position .form__title {
-  margin-bottom: 27px;
+.form-position .form__title, .form__title-opacity {
+  margin-bottom: 30px;
 }
 .position__adjust {
   height: 102px;
@@ -110,6 +114,7 @@
   width: 102px;
   height: 102px;
   box-sizing: border-box;
+  margin-left: 5px;
 }
 .position__adjust-sett {
   max-width: 100px;
@@ -146,13 +151,17 @@
   left: -9999px;
 }
 
-.position__adjust__sett-x {
+.position__adjust__sett-x, .position__adjust__sett-y {
   height: 45px;
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 20px;
+}
+.position__adjust__sett-x {
   margin-bottom: 12px;
 }
 .sett-x__box, .sett-y__box {
   height: 45px;
-  padding: 4px 0;
   box-sizing: border-box;
 }
 .sett-x, .sett-y  {
@@ -165,10 +174,13 @@
   vertical-align: middle;
   font-size: 24px;
   color: #444a53;
+  box-sizing: border-box;
 }
 .sett-up,  .sett-down, {
   display: block;
   height: 21px;
+  width: 21px;
+  cursor: pointer;
   border: none;
   margin-left: 6px;
 }
@@ -178,18 +190,16 @@
 .sett-down {
   background: url(../img/down.png) no-repeat bottom;
 }
+
 .label-x, .label-y {
   display: inline-block;
   position: absolute;
-  left: 155px;
+  top: 16px;
+  left: 0;
 }
-.label-x {
+.out {
   position: absolute;
-  top: 57px;
-}
-.label-y {
-  position: absolute;
-  top: 115px;
+  left: -9999px;
 }
 /*--------------opacity----------*/
 
@@ -198,6 +208,7 @@
 }
 
 /*-------buttons---------------*/
+.buttons {margin-bottom: 4px;}
 .button__left {
   margin-left: 10px;
 }
@@ -270,4 +281,31 @@
 :-ms-input-placeholder {
   color: #9eb2c0;
   font-size: 12px;
+}
+
+/*-------- additions ---------*/
+
+.slider
+{
+  width:200px;
+  background:#9eb2c0;
+  height: 3px;
+  margin-bottom: 30px;
+}
+.ui-slider-handle.ui-state-default {
+  cursor: pointer;
+  height: 23px;
+  width: 23px;
+  margin-left: -10px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 1px 0 1px rgba(50,50,50,.1);
+  background: transparent url(../img/slider-handler.png) no-repeat center center;
+}
+
+.ui-slider-handle.ui-state-default:hover {background: transparent url(../img/slider-handler-hover.png) no-repeat center center;}
+
+.ui-widget-header {
+  background:#dbe1e8;
 }
