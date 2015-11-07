@@ -6,15 +6,14 @@
 				label(for="").form__title Исходное изображение
 				.form-input__origin.form-input-style
 					input(name="baseImg" type="file"  id="baseImg" value="Выберите файл").form-input__origin-file
-					.form-input__fake
+					.form-input__fake(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="baseImg").form-input__origin-icon
 			.form-input-box
 				label(for="").form__title Водяной знак
 				.form-input__origin.form-input-style
 					input(name="watermark" type="file"  id="watermark" value="Выберите файл").form-input__origin-file
-					.form-input__fake
+					.form-input__fake(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="watermark").form-input__origin-icon
-
 		.form-position.delimiter
 			label.form__title Положение
 			.position__adjust
@@ -24,7 +23,6 @@
 						label(for="", id="", class="label-position label-position_" + item )
 							span.out #{item}
 							input(type="radio" name="position" value="#{item}" id="").radio-position
-
 				.position__adjust-sett.right
 					.position__adjust__sett-x
 						label(for="inputX", id="").label-x X
