@@ -13,7 +13,7 @@ var opacityModule = (function () {
 	                if(value === 1) {value = 0;}
 	                else if(value === 99) {value = 100;}
 	                
-	                $(".watermark-left").css({ opacity: value / 100 });
+	                $("#watermarkInsert").css({ opacity: value / 100 });
 	                $('#slider').attr('data-value', value);
 				}
 			}).slider('value', 100);//startup value

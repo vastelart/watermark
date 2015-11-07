@@ -26,13 +26,16 @@
             <i class="glyphicon glyphicon-plus"></i>
             <span>Select files...</span>
             <!-- The file input field used as target for the file upload widget -->
-            <input id="mainImg" type="file" name="files">
-            <input id="waterMark" type="file" name="files">
+            <input id="mainImg" type="file" name="files[]">
+            <input id="waterMark" type="file" name="files[]" disabled>
         </span>
+
+        <div class="mainImgInsert"></div>
+        <div class="watermarkInsert"></div>
     </div>
     
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/vendor.js"></script>
-<script src="js/main.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+<script src="js/vendor.js" defer></script>
+<script src="js/send.js" defer></script>
 </body>
 </html>

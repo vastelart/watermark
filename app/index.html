@@ -5,7 +5,7 @@
 		<title>WATERMARK</title>
 		<meta name="viewport" content="width=980, initial-scale=1.0">
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="bower/normalize-css/normalize.css">
 		<link rel="stylesheet" href="bower/jquery-ui/themes/base/slider.css">
 		<link rel="stylesheet" href="css/main.css">
@@ -21,9 +21,10 @@
 					<div class="image-block__title">
 						<h1 class="image-block__title-text">Генератор водяных знаков</h1>
 					</div>
-					<div id="mainImageInsert" class="main-image-insert">
-						<div class="image-block__img">Изображение</div>
-						<div id="watermarkInsert" class="watermark-insert"></div>
+					<div class="image-block__img">
+						<div id="mainImageInsert" class="main-image-insert">
+							<div id="watermarkInsert" class="watermark-insert"></div>
+						</div>
 					</div>
 				</div>
 				<div class="watermark-right right">
@@ -33,16 +34,16 @@
 							<div class="form-input-box">
 								<label for="" class="form__title">Исходное изображение</label>
 								<div class="form-input__origin form-input-style">
-									<input name="baseImg" type="file" id="baseImg" value="Выберите файл" class="form-input__origin-file">
-									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
+									<input name="files[]" type="file" id="baseImg" class="form-input__origin-file">
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-base-img"></div>
 									<label for="baseImg" class="form-input__origin-icon"></label>
 								</div>
 							</div>
 							<div class="form-input-box">
 								<label for="" class="form__title">Водяной знак</label>
 								<div class="form-input__origin form-input-style">
-									<input name="watermark" type="file" id="watermark" value="Выберите файл" class="form-input__origin-file">
-									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
+									<input name="files[]" type="file" id="watermark" disabled class="form-input__origin-file">
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark"></div>
 									<label for="watermark" class="form-input__origin-icon"></label>
 								</div>
 							</div>
@@ -137,10 +138,10 @@
 		<script src="bower/jquery/dist/jquery.min.js" defer></script>
 		<script src="bower/jquery-ui/jquery-ui.min.js" defer></script>
 		<script src="bower/qtip2/jquery.qtip.min.js" defer></script>
-		<script src="bower/blueimp-file-upload/js/vendor/jquery.ui.widget.js" defer></script>
-		<script src="bower/blueimp-file-upload/js/cors/jquery.xdr-transport.js" defer></script>
+		<script src="bower/blueimp-file-upload/js/jquery.iframe-transport.js" defer></script>
 		<script src="bower/blueimp-file-upload/js/jquery.fileupload.js" defer></script>
-		<script src="tests/Dmitry/test_upload/js/main.js" defer></script>
+		<!--script(src="js/vendor.js", defer)-->
+		<script src="js/send.js" defer></script>
 		<script src="js/opacity.js" defer></script>
 	</body>
 </html>

@@ -12,19 +12,26 @@
   font-size: 36px;
   line-height: 38px;
   color: #fff;
-  font-weight: 300;
+  font-weight: 100;
   vertical-align: top;
   margin: 0;
 }
 .image-block__img {
-  width: 100%;
+  width: 652px;
   height: 535px;
   background: #fff;
+  overflow: hidden;
 }
 .main-image-insert {
-  max-width: 100%;
-  overflow: hidden;
+  width: 652px;
+  height: 535px;
   position: relative;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 .watermark-insert {
   position: absolute;

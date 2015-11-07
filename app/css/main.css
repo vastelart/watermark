@@ -46,19 +46,24 @@ body {
   font-size: 36px;
   line-height: 38px;
   color: #fff;
-  font-weight: 300;
+  font-weight: 100;
   vertical-align: top;
   margin: 0; }
 
 .image-block__img {
-  width: 100%;
+  width: 652px;
   height: 535px;
-  background: #fff; }
+  background: #fff;
+  overflow: hidden; }
 
 .main-image-insert {
-  max-width: 100%;
-  overflow: hidden;
-  position: relative; }
+  width: 652px;
+  height: 535px;
+  position: relative;
+  overflow: hidden; }
+  .main-image-insert img {
+    max-width: 100%;
+    max-height: 100%; }
 
 .watermark-insert {
   position: absolute;
@@ -147,13 +152,14 @@ body {
   left: 1px;
   right: 52px;
   padding: 5px;
-  cursor: pointer;
   background: #f1f1f5;
   border: 1px solid #9eb2c0;
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  color: #9eb2c0;
+  font-size: 12px; }
 
 .form-input__origin-icon {
   position: absolute;

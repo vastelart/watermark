@@ -3,34 +3,9 @@ $(function () {
     'use strict';
 
     // Initialize the jQuery File Upload widget:
-    $('#filename, #waterMark', '.btn').fileupload({
-     
-        url: 'main_server/php/',
-				add: function(e, data) {
-            		data('submit');
-				},
-
-				done: function(e, data) {
-
-          var img = $('<img></img>'),
-              uploadImg = data.result.files[0];
-
-          img.attr('src', uploadImg.url);
-          img.appendTo('.image-block__img');// добовление картинки в блок на страничке
-		}
+    $('#mainImg, #waterMark', '.btn').fileupload({  
+        url: '/php/'
     });
-
-
-    
-    // $('#fileUpload_1').fileupload({
-    // 	dataType: 'fson',
-    // 	add: function (e, data) {
-    // 		var imgType = data.files[0].type,
-    // 			imgSize = data.files[0].syze;
-    		
-    // 	}
-    // });
-
 
 });
 
