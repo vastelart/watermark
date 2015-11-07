@@ -7,6 +7,7 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="bower/normalize-css/normalize.css">
+		<link rel="stylesheet" href="bower/qtip2/jquery.qtip.min.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="bower/modernizr/modernizr.js"></script>
 	</head>
@@ -25,7 +26,10 @@
 						<div id="watermarkInsert" class="watermark-insert"></div>
 					</div>
 				</div>
-				<div class="watermark-right right">
+				<div class="image-block__img">Изображение</div>
+			</div>
+			<form class="watermark-right right">
+			
 					<div class="settings">
 						<h2 class="settings__title">Настройки</h2>
 					</div>
@@ -100,20 +104,24 @@
 						</div>
 					</div>
 					<div class="form-opacity delimiter">
-						<label for="" id="" class="form__title">Прозрачность
+						<label for="" id="" class="form__title">
+							Прозрачность
 							<div class="opacity-line"></div>
 						</label>
 					</div>
 					<div class="buttons">
 						<div class="button__left left">
-							<input name="" type="reset" value="Сброс" id="" class="button__reset">
-						</div>
+							<input name="" type="reset" value="Сброс" id="filename" class="button__reset"></div>
 						<div class="button__right right">
-							<input name="" type="submit" value="Скачать" id="" class="button__submit">
-						</div>
+							<input name="" type="submit" value="Скачать" id="filename" class="button__submit"></div>
 					</div>
-				</div>
-			</div>
+				
+			</form>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="copyright">
+			&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.
 		</div>
 		<footer class="footer">
 			<div class="copyright">&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.</div>
