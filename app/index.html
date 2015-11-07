@@ -8,7 +8,6 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="bower/normalize-css/normalize.css">
 		<link rel="stylesheet" href="bower/jquery-ui/themes/base/slider.css">
-		<link rel="stylesheet" href="bower/qtip2/jquery.qtip.min.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="bower/modernizr/modernizr.js"></script>
 	</head>
@@ -35,7 +34,7 @@
 								<label for="" class="form__title">Исходное изображение</label>
 								<div class="form-input__origin form-input-style">
 									<input name="baseImg" type="file" id="baseImg" value="Выберите файл" class="form-input__origin-file">
-									<div class="form-input__fake"></div>
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
 									<label for="baseImg" class="form-input__origin-icon"></label>
 								</div>
 							</div>
@@ -43,7 +42,7 @@
 								<label for="" class="form__title">Водяной знак</label>
 								<div class="form-input__origin form-input-style">
 									<input name="watermark" type="file" id="watermark" value="Выберите файл" class="form-input__origin-file">
-									<div class="form-input__fake"></div>
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
 									<label for="watermark" class="form-input__origin-icon"></label>
 								</div>
 							</div>
@@ -137,6 +136,11 @@
 		</footer>
 		<script src="bower/jquery/dist/jquery.min.js" defer></script>
 		<script src="bower/jquery-ui/jquery-ui.min.js" defer></script>
+		<script src="bower/qtip2/jquery.qtip.min.js" defer></script>
+		<script src="bower/blueimp-file-upload/js/vendor/jquery.ui.widget.js" defer></script>
+		<script src="bower/blueimp-file-upload/js/cors/jquery.xdr-transport.js" defer></script>
+		<script src="bower/blueimp-file-upload/js/jquery.fileupload.js" defer></script>
+		<script src="tests/Dmitry/test_upload/js/main.js" defer></script>
 		<script src="js/opacity.js" defer></script>
 	</body>
 </html>
