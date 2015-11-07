@@ -35,10 +35,18 @@ body {
 .watermark__container {
   width: 653px;
   height: 535px;
-  background: #cccccc; }
+  background: #cccccc;
+  position: relative; }
 
 .watermark {
   display: block; }
+
+.center__top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto; }
 
 .watermark-right {
   width: 257px; }
