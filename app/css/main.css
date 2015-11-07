@@ -6,7 +6,7 @@ html {
 body {
   margin: 0 0 50px;
   /* bottom = footer height */
-  background: url(../img/bg-site.png) center fixed no-repeat;
+  background: url(../img/bg-site.jpg) center fixed no-repeat;
   background-size: cover; }
 
 body {
@@ -68,24 +68,22 @@ body {
   cursor: move; }
 
 .watermark-right {
-  width: 257px;
+  width: 258px;
   background: #f1f1f5;
   padding: 30px 0 25px 0;
   box-sizing: border-box;
   margin: 50px 0; }
 
 /*------------title-right-------*/
-.settings {
-  text-align: center;
-  margin-bottom: 40px; }
-
 .settings__title {
+  text-align: center;
   font-size: 26px;
   line-height: 28px;
   font-weight: 300;
-  display: inline-block;
   margin: 0;
-  color: #2e3641; }
+  padding: 0;
+  color: #2e3641;
+  margin-bottom: 40px; }
 
 /*---------╤А╨░╨╖╨┤╨╡╨╗╨╕╤В╨╡╨╗╤М ---------*/
 .delimiter {
@@ -168,8 +166,8 @@ body {
   background: url("../img/input-file.png") center center no-repeat; }
 
 /*------------position--------*/
-.form-position .form__title {
-  margin-bottom: 27px; }
+.form-position .form__title, .form__title-opacity {
+  margin-bottom: 30px; }
 
 .position__adjust {
   height: 102px;
@@ -178,7 +176,8 @@ body {
 .position__adjust-radio {
   width: 102px;
   height: 102px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-left: 5px; }
 
 .position__adjust-sett {
   max-width: 100px; }
@@ -225,7 +224,6 @@ body {
 
 .sett-x__box, .sett-y__box {
   height: 45px;
-  padding: 4px 0;
   box-sizing: border-box; }
 
 .sett-x, .sett-y {
@@ -237,11 +235,14 @@ body {
   text-align: center;
   vertical-align: middle;
   font-size: 24px;
-  color: #444a53; }
+  color: #444a53;
+  box-sizing: border-box; }
 
 .sett-up, .sett-down {
   display: block;
   height: 21px;
+  width: 21px;
+  cursor: pointer;
   border: none;
   margin-left: 6px; }
 
@@ -266,6 +267,9 @@ body {
   margin-bottom: 56px; }
 
 /*-------buttons---------------*/
+.buttons {
+  margin-bottom: 4px; }
+
 .button__left {
   margin-left: 10px; }
 
@@ -333,6 +337,30 @@ body {
 :-ms-input-placeholder {
   color: #9eb2c0;
   font-size: 12px; }
+
+/*-------- additions ---------*/
+.slider {
+  width: 200px;
+  background: #9eb2c0;
+  height: 3px;
+  margin-bottom: 30px; }
+
+.ui-slider-handle.ui-state-default {
+  cursor: pointer;
+  height: 23px;
+  width: 23px;
+  margin-left: -10px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 1px 0 1px rgba(50, 50, 50, 0.1);
+  background: transparent url(../img/slider-handler.png) no-repeat center center; }
+
+.ui-slider-handle.ui-state-default:hover {
+  background: transparent url(../img/slider-handler-hover.png) no-repeat center center; }
+
+.ui-widget-header {
+  background: #dbe1e8; }
 
 .footer {
   text-align: center;
