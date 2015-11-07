@@ -50,7 +50,7 @@ var myModale = (function () {
 
   //Добовляет проект
   var _addForm = function(ev) {
-    // console.log('добавление проекта');
+    console.log('добавление проекта');
     ev.preventDefault();
 
     //Объявляем переменные

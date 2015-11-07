@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-	<head>
-		<meta charset="utf-8">
-		<title>WATERMARK</title>
-		<meta name="viewport" content="width=980, initial-scale=1.0">
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="bower/normalize-css/normalize.css">
-		<link rel="stylesheet" href="css/main.css">
-		<script src="bower/modernizr/modernizr.js"></script>
-	</head>
-	<body>
-		<!--[if lt IE 8]>
-		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
-		<![endif]-->
-		<div class="main-wrapper">
-			<div class="watermark-wrapper clearfix">
-				<div class="watermark-left left">
-					<div class="image-block__title">
-						<h1>Генератор водяных знаков</h1>
-					</div>
-					<div class="image-block__img">Изображение</div>
+<head>
+	<meta charset="utf-8">
+	<title>WATERMARK</title>
+	<meta name="viewport" content="width=980, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+	<!-- vendor - css -->
+
+	<link rel="stylesheet" href="bower/qtip2/jquery.qtip.min.css">
+
+	<!-- main - css -->
+
+	<link rel="stylesheet" href="bower/normalize-css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="bower/modernizr/modernizr.js"></script>
+</head>
+<body>
+	<!--[if lt IE 8]>
+	<p class="chromeframe">
+		Похоже, что ты используешь устаревший браузер, друг. Пожалуйста,
+		<a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a>
+		или
+		<a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a>
+	</p>
+	<![endif]-->
+	<div class="main-wrapper">
+		<div class="watermark-wrapper clearfix">
+			<div class="watermark-left left">
+				<div class="image-block__title">
+					<h1>Генератор водяных знаков</h1>
 				</div>
-				<div class="watermark-right right">
+				<div class="image-block__img">Изображение</div>
+			</div>
+			<form class="watermark-right right">
+			
 					<div class="settings">
 						<h2 class="settings__title">Настройки</h2>
 					</div>
 					<div class="form-input delimiter">
-						<div class="form-input-box">
+
+						<div class="form-input-box form__upload">
 							<label class="form__title">Исходное изображение</label>
 							<div class="form-input__origin form-input-style">
-								<input name="" type="file" id="" class="form-input__origin-file">
-								<input name="" type="" placeholder="Image.jpg" id="" class="form-input__fake">
+								<input name="" type="file" id="filename" class="form-input__origin-file">
+								<input name="files" type="text" placeholder="Image.jpg" id="filename_1" class="form-input__fake" qtip-content="Вы не выбрали изображение" qtip-position="left">
 								<div class="form-input__origin-icon"></div>
 							</div>
 						</div>
-						<div class="form-input-box">
+						<div class="form-input-box form__upload_watermark">
 							<label class="form__title">Водяной знак</label>
-							<div class="form-input__origin form-input-style">
-								<input name="" type="file" id="" class="form-input__origin-file">
-								<input name="" type="" placeholder="Image.jpg" id="" class="form-input__fake">
+							<div class="form-input__origin form-input-style form__upload_watermark ">
+								<input name="" type="file" id="filename" class="form-input__origin-file">
+								<input name="" type="text" placeholder="Image.jpg" id="filename_watermark" class="form-input__fake" qtip-content="Вы не выбрали изображение" qtip-position="left" disabled="disabled">
 								<div class="form-input__origin-icon"></div>
 							</div>
 						</div>
@@ -49,32 +63,23 @@
 						<div class="position__adjust">
 							<div class="position__adjust-radio left">
 								<label for="" id="" class="label-position label-position_first">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_second">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_third">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_fourth">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_fifth">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_sixth">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_seventh">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_eighth">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 								<label for="" id="" class="label-position label-position_ninth">
-									<input type="radio" id="" class="radio-position">
-								</label>
+									<input type="radio" id="" class="radio-position"></label>
 							</div>
 							<div class="position__adjust-sett right">
 								<div class="position__adjust__sett-x">
@@ -97,23 +102,42 @@
 						</div>
 					</div>
 					<div class="form-opacity delimiter">
-						<label for="" id="" class="form__title">Прозрачность
+						<label for="" id="" class="form__title">
+							Прозрачность
 							<div class="opacity-line"></div>
 						</label>
 					</div>
 					<div class="buttons">
 						<div class="button__left left">
-							<input name="" type="reset" value="Сброс" id="" class="button__reset">
-						</div>
+							<input name="" type="reset" value="Сброс" id="filename" class="button__reset"></div>
 						<div class="button__right right">
-							<input name="" type="submit" value="Скачать" id="" class="button__submit">
-						</div>
+							<input name="" type="submit" value="Скачать" id="filename" class="button__submit"></div>
 					</div>
-				</div>
-			</div>
+				
+			</form>
 		</div>
-		<footer class="footer">
-			<div class="copyright">&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.</div>
-		</footer>
-	</body>
+	</div>
+	<footer class="footer">
+		<div class="copyright">
+			&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.
+		</div>
+	</footer>
+
+	<!-- vendor - js -->
+
+	<script src="bower/jquery/dist/jquery.min.js"></script>
+	<script src="bower/qtip2/jquery.qtip.min.js"></script>
+
+	<script src="bower/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+	<script src="bower/blueimp-file-upload/js/cors/jquery.xdr-transport.js"></script>
+	<script src="bower/blueimp-file-upload/js/jquery.fileupload.js"></script>
+
+	<!-- main - js -->
+
+	<!-- <script src="tests/Dmitry/js/fileUpload.js"></script>
+	<script src="tests/Dmitry/js/validaten.js"></script> -->
+
+	<script src="tests/Dmitry/test_upload/js/main.js"></script>
+
+</body>
 </html>
