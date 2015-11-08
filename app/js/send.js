@@ -48,10 +48,11 @@ var uploadModule = (function () {
 		    				console.log(bigDataUrl);
 
 		    				//Очищаем контейнер перед вставкой изображения
-		    				insert.html('');
+		    				var imgs = insert.find('img');
+		    				imgs.remove();
 
 		    				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
-		    				insert.append('<img src="' + bigDataUrl + '">');
+		    				insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
 	    				});
 	    			}
 	    		});

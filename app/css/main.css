@@ -53,13 +53,18 @@ body {
 .image-block__img {
   width: 652px;
   height: 535px;
+  max-height: 535px;
   background: #fff;
   overflow: hidden; }
 
 .main-image-insert {
-  display: inline-block;
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  max-width: 652px;
+  max-height: 535px; }
+  .main-image-insert img {
+    max-width: 100%;
+    max-height: 100%; }
 
 .watermark-insert {
   position: absolute;
@@ -430,18 +435,11 @@ body {
     position: absolute; }
   .form-position_view-1 .position__adjust .position__adjust-radio .linePosition-vertical {
     top: 41px;
-    width: 100px;
+    left: -5px;
+    width: 99px;
     height: 18px;
     background: #f97e76;
     position: absolute; }
-
-/*=====================CLEARFIX===========================*/
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table; }
-
-.clearfix:after {
-  clear: both; }
 
 .footer {
   text-align: center;

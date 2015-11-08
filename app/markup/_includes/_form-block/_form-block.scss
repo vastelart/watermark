@@ -401,21 +401,12 @@
         }
         .linePosition-vertical{
            top: 41px;
-           width: 100px;
+           left: -5px;
+           width: 99px;
            height: 18px;
            background: #f97e76;
            position:absolute;
         }
       }
     }
-}
-/*=====================CLEARFIX===========================*/
-
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table;
-}
-
-.clearfix:after {
-  clear: both;
 }
