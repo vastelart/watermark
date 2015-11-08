@@ -14,8 +14,15 @@
 					input(name="files[]" type="file" id="watermark" disabled).form-input__origin-file
 					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="watermark").form-input__origin-icon
-		.form-position.delimiter
-			label.form__title.position Положение
+		#form-position.form-position.delimiter.form-position_view-1
+			label.form__title Положение
+			//- блок для изменения видов
+			.form-block
+				ul.form__view
+					li.form__view-item.form__view-item--1
+						a(href="#").form__view-link
+					li.form__view-item.form__view-item--2
+						a(href="#").form__view-link
 			.position__adjust
 				.position__adjust-radio.left
 					- var items = ["topLeft", "topCenter", "topRight", "centerLeft", "centerCenter", "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]
@@ -23,6 +30,8 @@
 						label(for="", id="", class="label-position label-position_" + item )
 							span.out #{item}
 							input(type="radio" name="position" value="#{item}" id="").radio-position
+					.linePosition-gorizont
+					.linePosition-vertical
 				.position__adjust-sett.right
 					.position__adjust__sett-x
 						label(for="inputX", id="").label-x X

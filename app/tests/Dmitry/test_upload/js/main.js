@@ -2,27 +2,9 @@
 $(function () {
     'use strict';
 
-<<<<<<< HEAD
     // Initialize the jQuery File Upload widget:
     $('#mainImg, #waterMark', '.btn').fileupload({  
         url: '/php/'
-=======
-    $('#baseImg, #waterMark', '.btn').fileupload({
-
-        url: 'main_server/php/',
-				add: function(e, data) {
-            		data('submit');
-				},
-
-				done: function(e, data) {
-
-          var img = $('<img></img>'),
-              uploadImg = data.result.files[0];
-
-          img.attr('src', uploadImg.url);
-          img.appendTo('.image-block__img');// добовление картинки в блок на страничке
-		}
->>>>>>> 0e27660abcbcf1541ecaec7000c7a618cb816eff
     });
 });
 
