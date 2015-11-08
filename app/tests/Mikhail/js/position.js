@@ -14,6 +14,7 @@ var position = (function () {
 	}
 
 	 //слушатели событий
+
 	function _setUpListners () {
 		_watermark.on('mouseover', _Drag);
 		_watermark.on('dragMove', _getCoordinates );
@@ -21,6 +22,7 @@ var position = (function () {
 		_bottom.on('click', _changePositionYdown );
 		_left.on('click', _changePositionXup );
 		_right.on('click', _changePositionXdown );
+<<<<<<< HEAD
 		$(document).ready(_Drag);
 	}
 	//инициализация драг метода и передача координат в инпуты
@@ -186,7 +188,6 @@ var position = (function () {
 				})
 			}
 		});
-
 	
 	return {
 		init: init

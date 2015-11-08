@@ -6,7 +6,6 @@ $(function () {
     $('#mainImg, #waterMark', '.btn').fileupload({  
         url: '/php/'
     });
-
 });
 
 
