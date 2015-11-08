@@ -44,4 +44,4 @@ gulp.task('watch', function(){
 	gulp.watch(paths.scssToWatch, ['scss']);
 });
 
-
+gulp.task('default', ['jade', 'scss', 'serve', 'watch']);

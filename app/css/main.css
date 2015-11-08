@@ -362,6 +362,85 @@ body {
 .ui-widget-header {
   background: #dbe1e8; }
 
+.form-block {
+  float: right; }
+
+.form__view {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .form__view .form__view-item {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px; }
+  .form__view .form__view-item--1 .form__view-link {
+    background-image: url(../../../img/spritesheet-block.png);
+    background-repeat: no-repeat;
+    display: block;
+    width: 19px;
+    height: 19px;
+    background-position: -20px -257px; }
+    .form__view .form__view-item--1 .form__view-link:active {
+      width: 19px;
+      height: 19px;
+      background-position: -20px -316px; }
+  .form__view .form__view-item--2 .form__view-link {
+    background-image: url(../../../img/spritesheet-block.png);
+    background-repeat: no-repeat;
+    display: block;
+    width: 19px;
+    height: 19px;
+    background-position: -20px -139px; }
+    .form__view .form__view-item--2 .form__view-link:active {
+      width: 19px;
+      height: 19px;
+      background-position: -20px -198px; }
+
+.form-position_view-1 .label-x {
+  background-image: url(../../../img/spritesheet-block.png);
+  background-repeat: no-repeat;
+  display: block;
+  width: 11px;
+  height: 30px;
+  background-position: -20px -20px;
+  left: 7px;
+  top: 7px; }
+.form-position_view-1 .label-y {
+  background-image: url(../../../img/spritesheet-block.png);
+  background-repeat: no-repeat;
+  display: block;
+  width: 29px;
+  height: 9px;
+  background-position: -20px -90px;
+  left: -12px; }
+.form-position_view-1 .position__adjust .position__adjust-radio {
+  position: relative;
+  z-index: 1; }
+  .form-position_view-1 .position__adjust .position__adjust-radio .linePosition-gorizont {
+    z-index: 222;
+    top: 0px;
+    left: 35px;
+    width: 18px;
+    height: 100px;
+    background: #f97e76;
+    position: absolute; }
+  .form-position_view-1 .position__adjust .position__adjust-radio .linePosition-vertical {
+    top: 41px;
+    width: 100px;
+    height: 18px;
+    background: #f97e76;
+    position: absolute; }
+
+/*=====================CLEARFIX===========================*/
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
 .footer {
   text-align: center;
   font-size: 12px;
