@@ -2,37 +2,66 @@
 $(function () {
     'use strict';
 
+<<<<<<< HEAD
     // Initialize the jQuery File Upload widget:
     $('#mainImg, #waterMark', '.btn').fileupload({  
         url: '/php/'
+=======
+    $('#baseImg, #waterMark', '.btn').fileupload({
+
+        url: 'main_server/php/',
+				add: function(e, data) {
+            		data('submit');
+				},
+
+				done: function(e, data) {
+
+          var img = $('<img></img>'),
+              uploadImg = data.result.files[0];
+
+          img.attr('src', uploadImg.url);
+          img.appendTo('.image-block__img');// добовление картинки в блок на страничке
+		}
+>>>>>>> 0e27660abcbcf1541ecaec7000c7a618cb816eff
     });
 });
 
+//====== Объявление модуля(добавление файла(передача названия файла в фейковый инпут),отправка формы на сервер, откл disabled) =====//
 
-//===========================================================Объявление модуля================================================
 var myModale = (function () {
 
 	// Инициализирует наш модуль
 	var init = function () {
 		_setUpListners();
+		// _changefileUpload
 	};
 
 	// Прослушивает события
 	var _setUpListners = function () {
-		$('#filename').on('change', _changeFileUpload); // Добавление файла
-		_uploadSrcImg();
+		$('#baseImg').on('change', _changeFileUpload); // Добавление файла (передача названия файла диву)
+		$('.form').on('submit', _addForm); // добавление формы
+		_uploadSrcImg(); //fileupload
 	};
 
-
+	var targetImg = null;
+    var scalingVal = null;
+    var preview = $('.workspace__preview--wrap');
+    var previewHeight = preview.height();
+    var previewWidth = preview.width();
 
 	var _uploadSrcImg = function () {
+
+		var srcImg = $('.workspace__src-img');
+    	var waterMarkImg = $('.workspace__watermark-img');
+
+    		/*=====================================*/
 		   $('.form-input__origin-file').fileupload({
             url: "/upload.php",
             add: function (e, data) {
 
                 var inputFake = $(this)
-                    .closest('.form__upload')
-                    .find('.form-input__fake');
+                	.closest('.form__upload')
+                	.find('.form-input__fake');
 
                 inputFake.val(data.files[0].name);
 
@@ -70,31 +99,67 @@ var myModale = (function () {
         });
 	};
 
-	var srcImg = $('.workspace__src-img');
-    var srcImgHeight = srcImg.height();
-    var srcImgWidth = srcImg.width();
+	 var _resizeBgImg = function(){
+        var target = $(targetImg);
+        target.removeAttr('width')
+            .removeAttr('height')
+            .css({width: '', height: ''});
 
-    var ratio = srcImgWidth/srcImgHeight;
-    // console.log(ratio);
+        target.show();
+        var srcImgHeight = target.height();
+        var srcImgWidth = target.width();
 
-    var previewWrap = $('.workspace__preview--wrap');
-    var previewWrapHeight = previewWrap.height();
-    var previewWrapWidth = previewWrap.width();
+        var ratioSrc = srcImgWidth / srcImgHeight;
+        var ratioPreview = previewWidth / previewHeight;
 
 
-  // Изменяем файл аплоад
+
+        if (srcImgHeight > previewHeight || srcImgWidth > previewWidth) {
+
+            scalingVal = previewWidth / srcImgWidth;
+
+            if (ratioSrc > ratioPreview || ratioSrc == ratioPreview) {
+                target.removeClass('large-height');
+                target.addClass('large-width');
+            } else  if (ratioSrc < ratioPreview || ratioSrc == 1) {
+                target.removeClass('large-width');
+                target.addClass('large-height');
+            }
+        } else {
+            target.removeClass('large-height');
+            target.removeClass('large-width');
+        }
+    };
+
+    var _resizeWatermarkImg = function(){
+        var target = $(targetImg);
+        target.removeAttr('width')
+            .removeAttr('height')
+            .css({width: '', height: ''});
+
+        target.show();
+        var watermarkWidth = target.width();
+        console.log(watermarkWidth);
+
+        target.width(watermarkWidth * scalingVal);
+
+        positionLeshiple.init(scalingVal);
+    };
+
+
+  // =================Изменяем файл аплоад================== //
   var _changeFileUpload = function() {
     var    input = $(this), // type="file"
         filename = input.val(); // имя загруженного элемента
         filename = getNameFromPath(filename); // Передаем функции значения input
 
-        // Получаем названия файла из пути
+         /*Получаем названия файла из пути*/
         function getNameFromPath () {
           return filename.replace(/\\/g, '/').replace(/.*\//, ''); // Получаем названия файла из пути
         }
 
         $('#filename')
-          .val(filename)
+          .text(filename)
           .trigger('hideTooltip')
           .removeClass('error');
 
@@ -176,7 +241,6 @@ var valadationFileUpload = (function () {
 	var _setUpListners = function () {
 		$('form').on('keydown', '.error', _removeError);
 		$('form').on('reset', _clearForm);
-
 	};
 
 	var _removeError = function () {
@@ -185,9 +249,8 @@ var valadationFileUpload = (function () {
 
 		var _clearForm = function (form) {
 			var form = $(this);
-			form.find('input, textarea, .input').trigger('hideTooltip');
+			form.find('input,.form-input__fake').trigger('hideTooltip');
 			form.find('.error').removeClass('error');
-
 		};
 
 
@@ -195,14 +258,14 @@ var valadationFileUpload = (function () {
 // =================== Создает тултипы ===================== //
 
 	var _createQtip = function (element, position) {
-
+		console.log('я работаю');
 			//позиция тултипа
 			if(position === 'right'){
 				position = {
 					my: 'left center',
 					at: 'right center'
 				};
-			}else{
+			}else {
 				position = {
 					my: 'right center',
 					at: 'left center'
@@ -218,10 +281,10 @@ var valadationFileUpload = (function () {
 						}
 					},
 					show: {
-						event: 'show'
+						event: 'show hideTooltip'
 					},
 					hide: {
-						event: 'keydown hideTooltip'
+						event: 'keydown'
 					},
 					position: position,
 					style: {
@@ -234,12 +297,12 @@ var valadationFileUpload = (function () {
 				}).trigger('show');
 	};
 
-// ====================== Универсальня функция ======================= //
+// ====================== Универсальня функция ВАЛИДАЦИЯ======================= //
 
 var validateForm = function (form) {
 
 
-var elements = form.find('input').not('input[type="submit"],input[type="reset"],input[type="hidden"]'),
+var elements = form.find('input, .form-input__fake').not('input[type="submit"],input[type="reset"],input[type="hidden"]'),
 	valid = true;
 
 	// Пройдемся по всем элементам формы
@@ -268,8 +331,10 @@ var elements = form.find('input').not('input[type="submit"],input[type="reset"],
 	return valid;
 },
 			// ========= ПРОВЕРЯЕМ ЧТО ФАЙЛ КАРТИНКА ========== //
+
 				_isImg = function (filename) {
 			return /\.(jpeg|jpg|png|gif)$/i.test(filename);
+
 		};
 
 

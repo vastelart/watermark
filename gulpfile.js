@@ -43,5 +43,3 @@ gulp.task('watch', function(){
 	gulp.watch(paths.jadeToWatch, ['jade']);
 	gulp.watch(paths.scssToWatch, ['scss']);
 });
-
-
