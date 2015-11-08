@@ -4,6 +4,7 @@ var myModale = (function () {
 	// Инициализирует наш модуль
 	var init = function () {
 		_setUpListners();
+    _changeFileUpload();
 	};
 
 	// Прослушивает события
