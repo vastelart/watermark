@@ -1,27 +1,150 @@
 
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<title>jQuery File Upload Example</title>
-</head>
-<body>
-
-<input id="fileupload" type="file" name="files[]" data-url="main_server/php/"  disabled="disabled" multiple>
-<input id="fileupload2" type="file" name="files[]" data-url="main_server/php/" multiple>
-
-<img src="">
-
-<script>
-
-</script>
-
-<script src="../../bower/jquery/dist/jquery.min.js"></script>
-<script src="../../bower/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-<script src="../../bower/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-<script src="../../bower/blueimp-file-upload/js/jquery.fileupload.js"></script>
-<script src="../Dmitry/js/fileUpload.js"></script>
-<script src="../Dmitry/js/validaten.js"></script>
-
-</body>
+<!DOCTYPE html>
+<html lang="ru-RU">
+	<head>
+		<meta charset="utf-8">
+		<title>WATERMARK</title>
+		<meta name="viewport" content="width=980, initial-scale=1.0">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="bower/normalize-css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="../../bower/qtip2/jquery.qtip.min.css">
+		<!-- <link rel="stylesheet" href="bower/jquery-ui/themes/base/slider.css"> -->
+		<link rel="stylesheet" href="css/main.css">
+		<!-- <script src="bower/modernizr/modernizr.js"></script> -->
+	</head>
+	<body>
+		<!--[if lt IE 8]>
+		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
+		<![endif]-->
+		<div class="main-wrapper">
+			<div class="watermark-wrapper clearfix">
+				<div class="watermark-left left">
+					<div class="image-block__title">
+						<h1 class="image-block__title-text">Генератор водяных знаков</h1>
+					</div>
+					<div id="mainImageInsert" class="main-image-insert">
+						<div class="image-block__img">Изображение</div>
+						<div id="watermarkInsert" class="watermark-insert"></div>
+					</div>
+				</div>
+				<div class="watermark-right right">
+					<h2 class="settings__title">Настройки</h2>
+					<form class="settings">
+						<div class="form-input delimiter">
+							<div class="form-input-box">
+								<label for="" class="form__title">Исходное изображение</label>
+								<div class="form-input__origin form-input-style">
+									<input  name="baseImg" type="file" id="baseImg" value="Выберите файл" class="form-input__origin-file">
+									<div id="filename" qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
+									<label for="baseImg" class="form-input__origin-icon"></label>
+								</div>
+							</div>
+							<div class="form-input-box">
+								<label for="" class="form__title">Водяной знак</label>
+								<div class="form-input__origin form-input-style">
+									<input disabled="disabled"  name="watermark" type="file" id="watermark" value="Выберите файл" class="form-input__origin-file">
+									<div id="filename" qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake"></div>
+									<label for="watermark" class="form-input__origin-icon"></label>
+								</div>
+							</div>
+						</div>
+						<div class="form-position delimiter">
+							<label class="form__title">Положение</label>
+							<div class="position__adjust">
+								<div class="position__adjust-radio left">
+									<label for="" id="" class="label-position label-position_topLeft"><span class="out">topLeft</span>
+										<input type="radio" name="position" value="topLeft" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_topCenter"><span class="out">topCenter</span>
+										<input type="radio" name="position" value="topCenter" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_topRight"><span class="out">topRight</span>
+										<input type="radio" name="position" value="topRight" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_centerLeft"><span class="out">centerLeft</span>
+										<input type="radio" name="position" value="centerLeft" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_centerCenter"><span class="out">centerCenter</span>
+										<input type="radio" name="position" value="centerCenter" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_centerRight"><span class="out">centerRight</span>
+										<input type="radio" name="position" value="centerRight" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_bottomLeft"><span class="out">bottomLeft</span>
+										<input type="radio" name="position" value="bottomLeft" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_bottomCenter"><span class="out">bottomCenter</span>
+										<input type="radio" name="position" value="bottomCenter" id="" class="radio-position">
+									</label>
+									<label for="" id="" class="label-position label-position_bottomRight"><span class="out">bottomRight</span>
+										<input type="radio" name="position" value="bottomRight" id="" class="radio-position">
+									</label>
+								</div>
+								<div class="position__adjust-sett right">
+									<div class="position__adjust__sett-x">
+										<label for="inputX" id="" class="label-x">X</label>
+										<input type="" value="0" id="inputX" class="sett-x left">
+										<div class="sett-x__box right">
+											<div class="sett-up"><span class="out">Вверх</span></div>
+											<div class="sett-down"><span class="out">Вниз</span></div>
+										</div>
+									</div>
+									<div class="position__adjust__sett-y">
+										<label for="inputY" id="" class="label-y">Y</label>
+										<input type="" value="0" id="inputY" class="sett-y left">
+										<div class="sett-y__box right">
+											<div class="sett-up"><span class="out">Вверх</span></div>
+											<div class="sett-down"><span class="out">Вниз</span></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-opacity delimiter">
+							<label for="" id="" class="form__title form__title-opacity">Прозрачность</label>
+							<div id="slider" data- class="slider"></div>
+						</div>
+						<div class="buttons clearfix">
+							<div class="button__left left">
+								<input type="reset" value="Сброс" id="" class="button__reset">
+							</div>
+							<div class="button__right right">
+								<input name="submit" type="submit" value="Скачать" id="" class="button__submit">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="copyright">&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.</div>
+			<div class="languages">
+				<ul class="languages__list">
+					<li class="languages__item rus"><a href="#" alt="РУС" class="languages__link">РУС</a></li>
+					<li class="languages__item eng"><a href="#" alt="ENG" class="languages__link">ENG</a></li>
+				</ul>
+			</div>
+			<div class="like clearfix">
+				<ul class="like__list right">
+					<li class="like__item right"><a href="#" alt="Поставьте лайк" class="like__link like__link__like">Like us</a></li>
+					<li class="like__item left"><a href="#" alt="FB" class="like__link like__link__fb">facebook.com</a></li>
+				</ul>
+				<ul class="like__socials__list left">
+					<li class="like__socials__item"><a href="#" alt="TW" class="like__link like__link__tw">twitter.com</a></li>
+					<li class="like__socials__item"><a href="#" alt="VK" class="like__link like__link__vk">vk.com</a></li>
+				</ul>
+			</div>
+		</footer>
+		<script src="../../bower/jquery/dist/jquery.min.js" defer></script>
+		<!-- <script src="bower/jquery-ui/jquery-ui.min.js" defer></script> -->
+		<script src="../../bower/qtip2/jquery.qtip.min.js" defer></script>
+		<script src="../../bower/blueimp-file-upload/js/vendor/jquery.ui.widget.js" defer></script>
+		<script src="../../bower/blueimp-file-upload/js/cors/jquery.xdr-transport.js" defer></script>
+		<script src="../../bower/blueimp-file-upload/js/jquery.fileupload.js" defer></script>
+		<script src="test_upload/js/main.js" defer></script>
+		<!-- <script src="js/fileUpload.js" defer></script>
+		<script src="js/validaten.js" defer></script> -->
+		<!-- <script src="js/opacity.js" defer></script> -->
+	</body>
 </html>
