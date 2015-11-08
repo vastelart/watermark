@@ -25,9 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         header("HTTP/1.1 302 Moved Temporarily");
         header("Location: index.php");
     }
-//
-//        $image = $_FILES['image'];
-//        $watermark = $_FILES['watermark'];
+
 
 $image = WideImage::loadFromUpload('image');
 $watermark = WideImage::loadFromUpload('watermark');
@@ -38,9 +36,9 @@ $watermark = WideImage::loadFromUpload('watermark');
     $dest_x = round(($image->getWidth() - $water_width)/2,0);
     $dest_y = round(($image->getHeight() - $water_height)/2,0) ;
 
-    $i = array(100,200);
-        foreach ($i as $value) {
-            $merged = $image->merge($watermark, left+$i,  50)->merge( $watermark, top-$i,  50);
+    $x = array(100,200);
+        foreach ($x as $value) {
+            $merged = $image->merge($watermark, $x, $x,  50);
 
     }
 
@@ -49,14 +47,3 @@ $watermark = WideImage::loadFromUpload('watermark');
 
 }
 
-
-//    $arr = array(left, right,  middle );
-//    $val = array(center, top,bottom);
-//    foreach ($arr as $value) {
-//        echo "\$arr[$i] => $value\n";
-//        $i++;
-
-
-
-
-//   $merged = $image->merge($til, "right - 10", "bottom - 10", 150);
