@@ -19,7 +19,7 @@
 			<div class="watermark-wrapper clearfix">
 				<div class="watermark-left left">
 					<div class="image-block__title">
-						<h1 class="image-block__title-text">Генератор водяных знаков</h1>
+						<h1 class="image-block__title-text maintitle">Генератор водяных знаков</h1>
 					</div>
 					<div class="image-block__img">
 						<div id="mainImageInsert" class="main-image-insert">
@@ -28,11 +28,11 @@
 					</div>
 				</div>
 				<div class="watermark-right right">
-					<h2 class="settings__title">Настройки</h2>
+					<h2 class="settings__title settings">Настройки</h2>
 					<form class="settings">
 						<div class="form-input delimiter">
 							<div class="form-input-box">
-								<label for="" class="form__title">Исходное изображение</label>
+								<label for="" class="form__title srcimg">Исходное изображение</label>
 								<div class="form-input__origin form-input-style">
 									<input name="files[]" type="file" id="baseImg" class="form-input__origin-file">
 									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-base-img"></div>
@@ -40,7 +40,7 @@
 								</div>
 							</div>
 							<div class="form-input-box">
-								<label for="" class="form__title">Водяной знак</label>
+								<label for="" class="form__title watermark">Водяной знак</label>
 								<div class="form-input__origin form-input-style">
 									<input name="files[]" type="file" id="watermark" disabled class="form-input__origin-file">
 									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark"></div>
@@ -49,7 +49,7 @@
 							</div>
 						</div>
 						<div class="form-position delimiter">
-							<label class="form__title">Положение</label>
+							<label class="form__title position">Положение</label>
 							<div class="position__adjust">
 								<div class="position__adjust-radio left">
 									<label for="" id="" class="label-position label-position_topLeft"><span class="out">topLeft</span>
@@ -101,15 +101,15 @@
 							</div>
 						</div>
 						<div class="form-opacity delimiter">
-							<label for="" id="" class="form__title form__title-opacity">Прозрачность</label>
+							<label for="" id="" class="form__title form__title-opacity transparency">Прозрачность</label>
 							<div id="slider" data- class="slider"></div>
 						</div>
 						<div class="buttons clearfix">
 							<div class="button__left left">
-								<button type="reset" id="restBtn" class="button__reset">Сброс</button>
+								<button type="reset" id="restBtn" class="button__reset reset">Сброс</button>
 							</div>
 							<div class="button__right right">
-								<button name="submit" type="submit" id="submitBtn" class="button__submit">Скачать</button>
+								<button name="submit" type="submit" id="submitBtn" class="button__submit download">Скачать</button>
 							</div>
 						</div>
 					</form>
@@ -120,7 +120,7 @@
 			<div class="copyright">&#169;2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его.</div>
 			<div class="languages">
 				<ul class="languages__list">
-					<li class="languages__item rus"><a href="#" alt="РУС" id="rus" class="languages__link">РУС</a></li>
+					<li class="languages__item rus"><a href="#" alt="РУС" id="rus" class="languages__link languages__link_active">РУС</a></li>
 					<li class="languages__item eng"><a href="#" alt="ENG" id="eng" class="languages__link">ENG</a></li>
 				</ul>
 			</div>

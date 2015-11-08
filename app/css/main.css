@@ -403,7 +403,7 @@ body {
   color: #52575f;
   opacity: .6; }
 
-.languages__link:hover {
+.languages__link:hover, .languages__link:active, .languages__link:focus, .languages__link_active {
   opacity: 1; }
 
 /*------like socials-------*/
