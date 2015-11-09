@@ -36,6 +36,8 @@ var uploadModule = (function () {
 
 		    				//Убираем disabled у инпута вотермарка
 		    				waterMark.attr('disabled') ? waterMark.removeAttr('disabled') : waterMark.attr('disabled', 'disabled');
+		    				var disabled = $('.disabled', '.watermark-right');
+		    				disabled.removeClass('disabled');
 		    				
 		    				//Получаем модный JSON резалт загруженного файла, достаем ссылку на сам файл
 		    				var bigData = JSON.parse(data.result);
@@ -54,6 +56,19 @@ var uploadModule = (function () {
 		    				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
 		    				//insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
 		    				insert.attr('src', bigDataUrl);
+
+		    				//Инсерты были скрыты. Показываем
+		    				insert.parent().fadeIn(500);
+
+		    				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
+		    				if(insert.parent().attr('id') === 'mainImageInsert') {
+		    					insert.parent().css({
+		    						display: 'inline-block'
+		    					});
+		    				}
+
+		    				//Инит модуля позишена
+		    				position.init();
 	    				});
 	    			}
 	    		});

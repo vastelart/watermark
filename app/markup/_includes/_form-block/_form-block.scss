@@ -73,7 +73,7 @@
   left: -9999px;
 }
 .form-input__fake {
-  width: 200px;
+  width: 166px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -83,6 +83,7 @@
   padding: 5px;
   background: #f1f1f5;
   border: 1px solid #9eb2c0;
+  border-right: 0;
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
@@ -365,24 +366,24 @@
 .form-position_view-1 {
 
     .label-x {
-      background-image: url(../img/spritesheet-block.png);
+      //background-image: url(../img/spritesheet-block.png);
       background-repeat: no-repeat;
       display: block;
-      width: 11px;
-        height: 30px;
-        background-position: -20px -20px;
-        left: 7px;
-        top: 7px;
+      //width: 11px;
+      //height: 30px;
+      background-position: -20px -20px;
+      //left: 7px;
+      //top: 7px;
     }
 
     .label-y {
-       background-image: url(../img/spritesheet-block.png);
+       //background-image: url(../img/spritesheet-block.png);
        background-repeat: no-repeat;
        display: block;
-       width: 29px;
-       height: 9px;
+       //width: 29px;
+       //height: 9px;
        background-position: -20px -90px;
-       left: -12px;
+       //left: -12px;
 
     }
     .position__adjust{
@@ -410,3 +411,7 @@
       }
     }
 }
+
+.linePositions {display: none;}
+//Additions #2
+.disabled {opacity: .5;}

@@ -36,7 +36,7 @@ var position = (function () {
 		};
 		//определение radio buttons
 		var
-			boxLabel = $('.position__box-input'),
+			boxLabel = $('.position__box-label'),
 			leftTop = boxLabel.eq(0);
 			middleTop = boxLabel.eq(1),
 			rightTop = boxLabel.eq(2),
@@ -51,7 +51,7 @@ var position = (function () {
 			_watermark.position({
 				my: "left top",
   				at: "left top",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -61,7 +61,7 @@ var position = (function () {
 			_watermark.position({
 				my: "center top",
   				at: "center top",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -71,7 +71,7 @@ var position = (function () {
 			_watermark.position({
 				my: "right top",
   				at: "right top",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -81,7 +81,7 @@ var position = (function () {
 			_watermark.position({
 				my: "left center",
   				at: "left center",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -91,7 +91,7 @@ var position = (function () {
 			_watermark.position({
 				my: "center center",
   				at: "center center",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -101,7 +101,7 @@ var position = (function () {
 			_watermark.position({
 				my: "right center",
   				at: "right center",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -111,7 +111,7 @@ var position = (function () {
 			_watermark.position({
 				my: "left bottom",
   				at: "left bottom",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -121,7 +121,7 @@ var position = (function () {
 			_watermark.position({
 				my: "center bottom",
   				at: "center bottom",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -131,7 +131,7 @@ var position = (function () {
 			_watermark.position({
 				my: "right bottom",
   				at: "right bottom",
-  				of: ".watermark__container",
+  				of: ".main-image-insert",
   				collision: "fit"
 			});
 			_getNewCoordinates();
@@ -188,7 +188,4 @@ var position = (function () {
 	};
 
 })();
-
-
-position.init();
 
