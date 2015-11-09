@@ -15,8 +15,8 @@ var uploadModule = (function () {
 			//Теперь объявляем 'переменные среды'
 			var mainImg = $('#baseImg', '.form-input'),
 				waterMark = $('#watermark', '.form-input'),
-				mainImgInsert = $('#mainImageInsert', '.watermark-left'),
-				watermarkInsert = $('#watermarkInsert', '.watermark-left'),
+				mainImgInsert = $('.main-img-inserted', '.watermark-left'),
+				watermarkInsert = $('.water-img-inserted', '.watermark-left'),
 				mainImgName = $('.form-input__fake-base-img', '.form-input'),
 				waterMarkName = $('.form-input__fake-watermark', '.form-input');
 
@@ -52,7 +52,8 @@ var uploadModule = (function () {
 		    				imgs.remove();
 
 		    				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
-		    				insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
+		    				//insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
+		    				insert.attr('src', bigDataUrl);
 	    				});
 	    			}
 	    		});

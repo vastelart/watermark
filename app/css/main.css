@@ -383,7 +383,7 @@ body {
     margin-left: 10px;
     margin-bottom: 10px; }
   .form__view .form__view-item--1 .form__view-link {
-    background-image: url(../../../img/spritesheet-block.png);
+    background-image: url(../img/spritesheet-block.png);
     background-repeat: no-repeat;
     display: block;
     width: 19px;
@@ -394,7 +394,7 @@ body {
       height: 19px;
       background-position: -20px -316px; }
   .form__view .form__view-item--2 .form__view-link {
-    background-image: url(../../../img/spritesheet-block.png);
+    background-image: url(../img/spritesheet-block.png);
     background-repeat: no-repeat;
     display: block;
     width: 19px;
@@ -406,7 +406,7 @@ body {
       background-position: -20px -198px; }
 
 .form-position_view-1 .label-x {
-  background-image: url(../../../img/spritesheet-block.png);
+  background-image: url(../img/spritesheet-block.png);
   background-repeat: no-repeat;
   display: block;
   width: 11px;
@@ -415,7 +415,7 @@ body {
   left: 7px;
   top: 7px; }
 .form-position_view-1 .label-y {
-  background-image: url(../../../img/spritesheet-block.png);
+  background-image: url(../img/spritesheet-block.png);
   background-repeat: no-repeat;
   display: block;
   width: 29px;

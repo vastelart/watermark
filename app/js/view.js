@@ -25,7 +25,7 @@ var ViewStateChange = (function () {
 
 	return {
 		init: function(){
-			$('.form__view-link').on('click', function(e){
+			$('.form__view-link').on('click', function(e) {
 				e.preventDefault();
 				_changeState;
 				console.log('HELLO');

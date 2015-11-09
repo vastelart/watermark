@@ -1,8 +1,8 @@
 var position = (function () {
 		//определение переменных
 		var
-			_container = $('.watermark__container'),
-			_watermark = $('.watermark__image'),
+			_container = $('#mainImageInsert'),
+			_watermark = $('#watermarkInsert'),
 			_inputY = $('.number__input-y'),
 			_inputX = $('.number__input-x'),
 			_defY = $('.number__input-y').val(0),
@@ -17,11 +17,6 @@ var position = (function () {
 
 	function _setUpListners () {
 		_watermark.on('mouseover', _Drag);
-		//_watermark.on('dragMove', _getCoordinates );
-		//_top.on('click', _changePositionYup );
-		//_bottom.on('click', _changePositionYdown );
-		//_left.on('click', _changePositionXup );
-		//_right.on('click', _changePositionXdown );
 		$(document).ready(_Drag);
 	}
 	//инициализация драг метода и передача координат в инпуты
@@ -159,32 +154,32 @@ var position = (function () {
 			max:_container.height() - _watermark.height(),
 			min:0,
 			change:function(ev, ui) {
-				var cval = this.value;
-				_watermark.css({
-				top: cval + 'px'
-				})
+					var cval = this.value;
+					_watermark.css({
+					top: cval + 'px'
+				});
 			},
 			spin:function(e, ui) {
 				var sval = ui.value;
 				_watermark.css({
 				top: sval + 'px'
-				})
+				});
 			}
 		}),
 			spinnerX = _inputX.spinner({
 			max:_container.width()-_watermark.width(),
 			min:0,
 			change:function(ev, ui) {
-				var cval = this.value;
-				_watermark.css({
-				left: cval + 'px'
-				})
+					var cval = this.value;
+					_watermark.css({
+					left: cval + 'px'
+				});
 			},
 			spin:function(event, ui) {
-				var sval = ui.value;
-				_watermark.css({
-				left: sval + 'px'
-				})
+					var sval = ui.value;
+					_watermark.css({
+					left: sval + 'px'
+				});
 			}
 		});
 	
