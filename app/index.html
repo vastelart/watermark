@@ -29,7 +29,7 @@
 				</div>
 				<div class="watermark-right right">
 					<h2 class="settings__title settings">Настройки</h2>
-					<form class="settings">
+					<form action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform" class="settings">
 						<div class="form-input delimiter">
 							<div class="form-input-box">
 								<label for="" class="form__title srcimg">Исходное изображение</label>
@@ -51,10 +51,12 @@
 						<div id="form-position" class="form-position delimiter form-position_view-1">
 							<label class="form__title position">Положение
 								<div class="form-block">
-									<ul class="form__view">
-										<li class="form__view-item form__view-item--1"><a href="#" class="form__view-link"></a></li>
-										<li class="form__view-item form__view-item--2"><a href="#" class="form__view-link"></a></li>
-									</ul>
+									<label class="form__view-item form__view-item--1">
+										<input type="radio" name="placeaction" value="single" checked class="form__view-link">
+									</label>
+									<label class="form__view-item form__view-item--2">
+										<input type="radio" name="placeaction" value="tile" class="form__view-link">
+									</label>
 								</div>
 							</label>
 							<div class="position__adjust">
@@ -120,9 +122,10 @@
 								<button type="reset" id="restBtn" class="button__reset reset">Сброс</button>
 							</div>
 							<div class="button__right right">
-								<button name="submit" type="submit" id="submitBtn" class="button__submit download">Скачать</button>
+								<button id="submitBtn" data-server="php/toserver.php" type="submit" class="button__submit download">Скачать</button>
 							</div>
 						</div>
+						<div id="linker"></div>
 					</form>
 				</div>
 			</div>
@@ -151,11 +154,12 @@
 		<script src="bower/qtip2/jquery.qtip.min.js" defer></script>
 		<script src="bower/blueimp-file-upload/js/jquery.iframe-transport.js" defer></script>
 		<script src="bower/blueimp-file-upload/js/jquery.fileupload.js" defer></script>
-		<script src="bower/fetch/fetch.js"></script>
+		<script src="bower/blueimp-file-upload/js/jquery.fileupload-process.js" defer></script>
+		<script src="bower/blueimp-file-upload/js/jquery.fileupload-validate.js" defer></script>
 		<script src="js/send.js" defer></script>
 		<script src="js/opacity.js" defer></script>
-		<script src="js/view.js" defer></script>
 		<script src="js/position.js" defer></script>
+		<script src="js/toserver.js" defer></script>
 		<script src="js/lang.js" defer></script>
 	</body>
 </html>

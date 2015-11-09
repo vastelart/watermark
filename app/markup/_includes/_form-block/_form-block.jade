@@ -1,6 +1,6 @@
 .watermark-right.right
 	h2.settings__title.settings Настройки
-	form.settings
+	form(action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform").settings
 		.form-input.delimiter
 			.form-input-box
 				label(for="").form__title.srcimg Исходное изображение
@@ -18,11 +18,10 @@
 			label.form__title.position Положение
 				//- блок для изменения видов
 				.form-block
-					ul.form__view
-						li.form__view-item.form__view-item--1
-							a(href="#").form__view-link
-						li.form__view-item.form__view-item--2
-							a(href="#").form__view-link
+					label.form__view-item.form__view-item--1
+						input(type="radio", name="placeaction", value="single", checked).form__view-link
+					label.form__view-item.form__view-item--2
+						input(type="radio", name="placeaction", value="tile").form__view-link
 			.position__adjust
 				.position__adjust-radio.left
 					- var items = ["topLeft", "topCenter", "topRight", "centerLeft", "centerCenter", "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]
@@ -57,4 +56,5 @@
 			.button__left.left
 				button(type="reset" id="restBtn").button__reset.reset Сброс
 			.button__right.right
-				button(name="submit" type="submit" id="submitBtn").button__submit.download Скачать
+				button(id="submitBtn", data-server="php/toserver.php", type="submit").button__submit.download Скачать
+		div(id="linker")

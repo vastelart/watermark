@@ -304,7 +304,11 @@ body {
   background: #c1cfd9; }
 
 .button__submit {
-  background: #f97e76; }
+  background: #f97e76;
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none; }
 
 .button__reset:hover {
   border: 1px solid #a4b2bb;
