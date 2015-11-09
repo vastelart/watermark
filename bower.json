@@ -25,6 +25,7 @@
     "normalize-css": "~3.0.3",
     "qtip2": "~2.2.1",
     "blueimp-file-upload": "jquery-file-upload#~9.11.2",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "fetch": "~0.10.1"
   }
 }
