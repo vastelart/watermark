@@ -4,6 +4,7 @@
 	var form = document.getElementById('theForm');
 	var submit = document.getElementById('submitBtn');
 	var toserver = submit.getAttribute('data-server');
+	var waterimg = document.getElementById('watermarkInsert');
 	
 	//Дико прослушиваем нужное событие - кто-то нажал 'Скачать'
 	submit.addEventListener('click', _reliz, true);
@@ -19,8 +20,8 @@
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
 		var watermark = document.querySelector('.form-input__fake-watermark').textContent;
 		var opacity = document.getElementById('slider').getAttribute('data-value');
-		var inputX = document.getElementById('inputX').getAttribute('aria-valuenow');
-		var inputY = document.getElementById('inputY').getAttribute('aria-valuenow');
+		var indentX = waterimg.style.left;
+		var indentY = waterimg.style.top;
 
 		//Пилим форм-дату
 		var formData = new FormData(form);
@@ -30,8 +31,10 @@
 		formData.append('image', mainimage);
 		formData.append('watermark', watermark);
 		formData.append('opacity', opacity);
-		formData.append('indentX', inputX);
-		formData.append('indentY', inputY);
+		formData.append('indentX', indentX);
+		formData.append('indentY', indentY);
+
+		//console.log(waterimg.style.left + ' ' + waterimg.style.top);
 
 		//Отправляем
 		var reliz = new XMLHttpRequest();

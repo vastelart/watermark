@@ -29,8 +29,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 	$image = $_POST['image'];
 	$waterimage = $_POST['watermark'];
 	$opacity = $_POST['opacity'];
-	$indentX = $_POST['indentX'];
-	$indentY = $_POST['indentY'];
+	$indentX = intval($_POST['indentX']);
+	$indentY = intval($_POST['indentY']);
 
 	//Если метод наложения - single (без замощения)
 	if ($_REQUEST['placeaction'] == "single") {
@@ -41,6 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 		$merged = $image->merge($watermark, 'left + '.$indentX, 'top + '.$indentY, $opacity);
 
 		$merged->saveToFile($path.'/'.date('Ymd_his').'_spazm.jpg', 80);
+
+		echo intval($indentX)." ".intval($indentY);
 
 	} elseif ($_REQUEST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['watermark'])) { //Если метод наложения - замостить (tile)
 
