@@ -6,13 +6,13 @@
 				label(for="").form__title.srcimg Исходное изображение
 				.form-input__origin.form-input-style
 					input(name="files[]" type="file"  id="baseImg").form-input__origin-file
-					.form-input__fake.form-input__fake-base-img(qtip-content="Вы не выбрали изображение", qtip-position="left")
+					.form-input__fake.form-input__fake-base-img(qtip-content="Вы не выбрали изображение", qtip-position="left") DglrGVXb1cI.jpg
 					label(for="baseImg").form-input__origin-icon
 			.form-input-box
 				label(for="").form__title.watermark Водяной знак
 				.form-input__origin.form-input-style.disabled
 					input(name="files[]" type="file" id="watermark" disabled).form-input__origin-file
-					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left")
+					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left") ninja.png
 					label(for="watermark").form-input__origin-icon.disabled
 		.form-position.delimiter.form-position_view-1(id="form-position")
 			label.form__title.position Положение
@@ -35,7 +35,7 @@
 				.position__adjust-sett.right
 					.position__adjust__sett-x
 						label(for="inputX", id="").label-x.number__input-label X
-						input(type="" value="0" id="inputX").sett-x.left.number__input-x
+						input(type="text" max="4" value="0" id="inputX").sett-x.left.number__input-x
 						.sett-x__box.right
 							.sett-up
 								span.out Вверх
@@ -43,7 +43,7 @@
 								span.out Вниз
 					.position__adjust__sett-y
 						label(for="inputY", id="").label-y.number__input-label Y
-						input(type="" value="0" id="inputY").sett-y.left.number__input-y
+						input(type="text" max="3" value="0" id="inputY").sett-y.left.number__input-y
 						.sett-y__box.right
 							.sett-up
 								span.out Вверх
@@ -51,10 +51,9 @@
 								span.out Вниз
 		.form-opacity.delimiter
 			label(for="", id="").form__title.form__title-opacity.transparency Прозрачность
-			.slider(id="slider", data-)
+			.slider(id="slider", data-value="100")
 		.buttons.clearfix
 			.button__left.left
 				button(type="reset" id="restBtn").button__reset.reset Сброс
 			.button__right.right
 				button(id="submitBtn", data-server="php/toserver.php", type="submit").button__submit.download Скачать
-		div(id="linker")

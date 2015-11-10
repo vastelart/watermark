@@ -13,7 +13,7 @@ if(!file_exists($path)){
 }
 
 //Проверяем, нужным ли запросом отправлена форма
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POST['watermark'])) {
 
 	//Массив допустимых типов файлов
 	$types = array("image/png", "image/jpeg", "image/jpg");
@@ -26,29 +26,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	//Вроде файлы есть, плэйсим их в переменные
-	$image = $_FILES['image'];
-	$waterimage = $_FILES['watermark'];
+	$image = $_POST['image'];
+	$waterimage = $_POST['watermark'];
+	$opacity = $_POST['opacity'];
+	$indentX = $_POST['indentX'];
+	$indentY = $_POST['indentY'];
 
 	//Если метод наложения - single (без замощения)
 	if ($_REQUEST['placeaction'] == "single") {
 
-		$image = WideImage::loadFromUpload('image');
-		$watermark = WideImage::loadFromUpload('watermark');
+		$image = WideImage::load($path.'/'.$image);
+		$watermark = WideImage::load($path.'/'.$waterimage);
 
-		$water_height = round($image->getHeight() / 2, 0);
-		$watermark = $watermark->resize(null, $water_height);
-		$water_width = $watermark->getWidth();
-		$dest_x = round(($image->getWidth() - $water_width) / 2, 0);
-		$dest_y = round(($image->getHeight() - $water_height) / 2, 0);
+		$merged = $image->merge($watermark, 'left + '.$indentX, 'top + '.$indentY, $opacity);
 
-		$x = array(100, 200);
-		foreach ($x as $value) {
-		   $merged = $image->merge($watermark, $x, $x, 50);
-		}
+		$merged->saveToFile($path.'/'.date('Ymd_his').'_spazm.jpg', 80);
 
-		$merged->output('jpg');
-
-	} elseif ($_REQUEST['placeaction'] == "tile") { //Если метод наложения - замостить (tile)
+	} elseif ($_REQUEST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['watermark'])) { //Если метод наложения - замостить (tile)
 
 		$filename = basename($image['name']);
 		if (move_uploaded_file($image['tmp_name'], "$path/$filename")) {

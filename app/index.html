@@ -35,7 +35,7 @@
 								<label for="" class="form__title srcimg">Исходное изображение</label>
 								<div class="form-input__origin form-input-style">
 									<input name="files[]" type="file" id="baseImg" class="form-input__origin-file">
-									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-base-img"></div>
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-base-img">DglrGVXb1cI.jpg</div>
 									<label for="baseImg" class="form-input__origin-icon"></label>
 								</div>
 							</div>
@@ -43,7 +43,7 @@
 								<label for="" class="form__title watermark">Водяной знак</label>
 								<div class="form-input__origin form-input-style disabled">
 									<input name="files[]" type="file" id="watermark" disabled class="form-input__origin-file">
-									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark"></div>
+									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark">ninja.png</div>
 									<label for="watermark" class="form-input__origin-icon disabled"></label>
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 								<div class="position__adjust-sett right">
 									<div class="position__adjust__sett-x">
 										<label for="inputX" id="" class="label-x number__input-label">X</label>
-										<input type="" value="0" id="inputX" class="sett-x left number__input-x">
+										<input type="text" max="4" value="0" id="inputX" class="sett-x left number__input-x">
 										<div class="sett-x__box right">
 											<div class="sett-up"><span class="out">Вверх</span></div>
 											<div class="sett-down"><span class="out">Вниз</span></div>
@@ -104,7 +104,7 @@
 									</div>
 									<div class="position__adjust__sett-y">
 										<label for="inputY" id="" class="label-y number__input-label">Y</label>
-										<input type="" value="0" id="inputY" class="sett-y left number__input-y">
+										<input type="text" max="3" value="0" id="inputY" class="sett-y left number__input-y">
 										<div class="sett-y__box right">
 											<div class="sett-up"><span class="out">Вверх</span></div>
 											<div class="sett-down"><span class="out">Вниз</span></div>
@@ -115,7 +115,7 @@
 						</div>
 						<div class="form-opacity delimiter">
 							<label for="" id="" class="form__title form__title-opacity transparency">Прозрачность</label>
-							<div id="slider" data- class="slider"></div>
+							<div id="slider" data-value="100" class="slider"></div>
 						</div>
 						<div class="buttons clearfix">
 							<div class="button__left left">
@@ -125,7 +125,6 @@
 								<button id="submitBtn" data-server="php/toserver.php" type="submit" class="button__submit download">Скачать</button>
 							</div>
 						</div>
-						<div id="linker"></div>
 					</form>
 				</div>
 			</div>
