@@ -15,7 +15,7 @@
 		event.preventDefault();
 		submit.disabled = 'disabled';
 
-		//Достаем нужные значения. Да. Только так их нужно доставать
+		//Достаем нужные значения
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
 		var watermark = document.querySelector('.form-input__fake-watermark').textContent;
 		var opacity = document.getElementById('slider').getAttribute('data-value');
@@ -33,9 +33,7 @@
 		formData.append('indentX', inputX);
 		formData.append('indentY', inputY);
 
-		//console.log('ХЭХЭЙ!!' + formData.indentX + ' ' + formData.indentY);
-
-		//console.log(formData);
+		//Отправляем
 		var reliz = new XMLHttpRequest();
 		
 		reliz.open('POST', toserver, true);
