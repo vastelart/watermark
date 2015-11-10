@@ -8,13 +8,12 @@
 	
 	//Дико прослушиваем нужное событие - кто-то нажал 'Скачать'
 	submit.addEventListener('click', _reliz, true);
-	//form.addEventListener('submit', _reliz, true);
 
 	//Запускаем гигантскую функцию сбора информации и отправки ее на сервер
 	function _reliz(event) {
 		//Отменяем событие бай дефолт
 		event.preventDefault();
-		submit.disabled = 'disabled';
+		submit.classList = this.classList + ' disabled';
 
 		//Достаем нужные значения
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
@@ -34,20 +33,22 @@
 		formData.append('indentX', indentX);
 		formData.append('indentY', indentY);
 
-		//console.log(waterimg.style.left + ' ' + waterimg.style.top);
-
 		//Отправляем
 		var reliz = new XMLHttpRequest();
 		
 		reliz.open('POST', toserver, true);
-		reliz.send(formData);
+		reliz.responseType = 'blob';
 
-		reliz.onreadystatechange = function () {
-			if(reliz.readyState === 4 && reliz.status === 200) {
-				console.log(reliz.responseText);
-				submit.removeAttribute('disabled');
+		reliz.onload = function(e) {
+			if (this.status === 200 && this.readyState === 4) {
+				return reliz;
 			}
-		}
+			else {
+				console.log('НЕ ОК');
+			}
+		};
+
+		reliz.send(formData);
 	}
 
 })();

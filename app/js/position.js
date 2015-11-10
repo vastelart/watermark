@@ -1,7 +1,7 @@
 var position = (function () {
 		//определение переменных
 		var
-			_container = $('#mainImageInsert'),
+			_container = $('.main-img-inserted'),
 			_watermark = $('#watermarkInsert'),
 			_inputY = $('.number__input-y'),
 			_inputX = $('.number__input-x'),

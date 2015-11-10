@@ -310,6 +310,9 @@ body {
   text-align: center;
   text-decoration: none; }
 
+.button__submit.disabled {
+  opacity: .2; }
+
 .button__reset:hover {
   border: 1px solid #a4b2bb;
   border-top: 2px solid #a4b2bb;

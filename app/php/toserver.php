@@ -6,10 +6,14 @@ use \WideImage\WideImage as WideImage;
 
 //Определяем папку для загрузки файлов
 $path = "files";
+$pathtosave = "files/watermarked";
 
 //Если таковой нет в дереве, запиливаем немедленно
 if(!file_exists($path)){
 	mkdir($path);
+}
+elseif (!file_exists($pathtosave)) {
+	mkdir($pathtosave);
 }
 
 //Проверяем, нужным ли запросом отправлена форма
@@ -17,13 +21,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 
 	//Массив допустимых типов файлов
 	$types = array("image/png", "image/jpeg", "image/jpg");
-
-	//Функция для редиректа, еще понадобится
-	function checkidizer($message) {
-			$_SESSION['message'] = $message;
-			header("HTTP/1.1 302 Moved Temporarily");
-			header("Location: _failer.php");
-	}
 
 	//Вроде файлы есть, плэйсим их в переменные
 	$image = $_POST['image'];
@@ -35,14 +32,63 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 	//Если метод наложения - single (без замощения)
 	if ($_REQUEST['placeaction'] == "single") {
 
+		//Загружаем в обработку файлы из каталога, в который грузит jQueryFileUpload
 		$image = WideImage::load($path.'/'.$image);
 		$watermark = WideImage::load($path.'/'.$waterimage);
 
+		//Склеиваем картинки
 		$merged = $image->merge($watermark, 'left + '.$indentX, 'top + '.$indentY, $opacity);
 
-		$merged->saveToFile($path.'/'.date('Ymd_his').'_spazm.jpg', 80);
+		//Это - будущее имя сохраненного файла
+		$tofilename = $pathtosave.'/'.date('Ymd_his');
 
+		//А это - сохранение файла прямо в корень с php
+		$merged->saveToFile($tofilename.'_spazm.jpg', 90);
+
+		//А это чисто отладочная фича, для консоли браузера
 		echo intval($indentX)." ".intval($indentY);
+
+		//Теперь направляемся в файл с месседжем, в котором имя сохраненного файла, оттуда и скачаем директом в браузер
+		//$_SESSION['message'] = $tofilename.'_spazm.jpg';
+		//header("HTTP/1.1 302 Moved Temporarily");
+		//header("Location: _test.php");
+
+
+		//Плэйс в переменную полученных дел
+		$tobrowser = $tofilename.'_spazm.jpg';
+
+		//А вот и сама функция
+	    function file_force_download($file) {
+			if (file_exists($file)) {
+			// сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+			// если этого не сделать файл будет читаться в память полностью!
+			if (ob_get_level()) {
+			  ob_end_clean();
+		}
+			// заставляем браузер показать окно сохранения файла
+			header('Content-Description: File Transfer');
+			header('Content-Type: image/jpeg');
+			header('Content-Disposition: attachment; filename=' . basename($file));
+			header('Content-Transfer-Encoding: binary');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($file));
+			// читаем файл и отправляем его пользователю
+			if ($fd = fopen($file, 'rb')) {
+				while (!feof($fd)) {
+					print fread($fd, 1024);
+				}
+				fclose($fd);
+			}
+				exit;
+			}
+		}
+
+		//Модная функция пушинга файла в браузер
+		file_force_download($tobrowser);
+
+		//=========================
 
 	} elseif ($_REQUEST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['watermark'])) { //Если метод наложения - замостить (tile)
 
@@ -103,5 +149,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 
 }
 else {
+	header("HTTP/1.0 404 Not Found");
 	die('FAIL TO ACTION');
 }

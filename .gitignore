@@ -9,3 +9,4 @@ app/bower
 dist
 /.idea
 .DS_Store
+app/tests
