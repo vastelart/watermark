@@ -78,18 +78,24 @@
 		reliz.send(formData);
 	}
 
+	//Функция удаления файла сразу же после скачивания
 	function toDeleteFile(fileToDelete) {
 		var destroyer = new XMLHttpRequest();
+		var former = new FormData();
+
+		former.append('todelete', fileToDelete);
+
 		destroyer.open('POST', '/php/todelete.php', true);
 		destroyer.onload = function() {
 			if(this.status === 200 && this.readyState === 4) {
-				console.log(fileToDelete + ' удален. Ура.');
+				console.log(this.response);
 			}
 			else {
 				console.log('НИЧЕГО НЕ ВЫШЛО. ФАЙЛ ОСТАЛСЯ');
 			}
 		}
-		destroyer.send();
+
+		destroyer.send(former);
 	}
 
 })();
