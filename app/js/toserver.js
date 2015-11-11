@@ -4,6 +4,7 @@
 	var form = document.getElementById('theForm');
 	var submit = document.getElementById('submitBtn');
 	var toserver = submit.getAttribute('data-server');
+	//var toserver = 'php/tiletest.php';
 	var waterimg = document.getElementById('watermarkInsert');
 
 	//Модуль вызова диалога сохранения файла - новый экземпляр
@@ -26,12 +27,20 @@
 		var opacity = document.getElementById('slider').getAttribute('data-value');
 		var indentX = waterimg.style.left;
 		var indentY = waterimg.style.top;
+		var placemethod = document.querySelectorAll('.form__view-link');
+
+		//Определяем, какой режим выбран - single или tile
+		for(var key in placemethod) {
+			if(placemethod[key].checked) {
+				var placeaction = placemethod[key].value;
+			}
+		}
 
 		//Пилим форм-дату
 		var formData = new FormData(form);
 
 		//Запиливаем все в форм-дату
-		formData.append('placeaction', 'single');
+		formData.append('placeaction', placeaction);
 		formData.append('image', mainimage);
 		formData.append('watermark', watermark);
 		formData.append('opacity', opacity);

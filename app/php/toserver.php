@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 		//Плэйс в переменную полученных дел
 		$tobrowser = $tofilename.'_spazm.jpg';
 
-		//А вот и сама функция
+		//Модная функция пушинга файла в браузер
 	    function file_force_download($file) {
 			if (file_exists($file)) {
 			// сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт

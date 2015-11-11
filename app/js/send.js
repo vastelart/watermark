@@ -59,10 +59,6 @@ var uploadModule = (function () {
 				waterMark.prop('disabled', false);
 				var disabled = $('.disabled', '.watermark-right');
 				disabled.removeClass('disabled').removeAttr('disabled');
-				
-				//Получаем модный JSON резалт загруженного файла, достаем ссылку на сам файл
-				//var bigData = JSON.parse(data.result);
-				//var bigDataUrl = bigData.files[index].url;
 
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
@@ -91,8 +87,6 @@ var uploadModule = (function () {
 				else if(insert.parent().attr('id') === 'watermarkInsert') {
 					console.log('WATER IS HERE');
 				}
-
-				
 			});
 		});
 	} //Здесь этот кошмар заканчивается
