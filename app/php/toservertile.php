@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST['placeaction'] == "tile" && isset($image) && isset($waterimage) { //Если метод наложения - замостить (tile)
+if ($_POST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['watermark']) { //Если метод наложения - замостить (tile)
 
 //$filename = $_FILES['watermark']['name'];
 //$source = $_FILES['watermark']['tmp_name'];
