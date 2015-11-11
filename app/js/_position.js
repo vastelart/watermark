@@ -145,6 +145,43 @@ var position = (function () {
 			Math.round(_inputY.val(newY));
   			Math.round(_inputX.val(newX));
 	}
+		//добавление стрелок виджетом spinner
+		//задание мин. и макс. размеров контейнера, 
+		//перемещение объекта стрелками, 
+		//передача координат в инпуты,
+		//ввод значения в инпут и перемещение объекта при потере фокуса
+		var spinnerY = _inputY.spinner({
+			max:_container.height() - _watermark.height(),
+			min:0,
+			change:function(ev, ui) {
+					var cval = this.value;
+					_watermark.css({
+					top: cval + 'px'
+				});
+			},
+			spin:function(e, ui) {
+				var sval = ui.value;
+				_watermark.css({
+				top: sval + 'px'
+				});
+			}
+		}),
+			spinnerX = _inputX.spinner({
+			max:_container.width()-_watermark.width(),
+			min:0,
+			change:function(ev, ui) {
+					var cval = this.value;
+					_watermark.css({
+					left: cval + 'px'
+				});
+			},
+			spin:function(event, ui) {
+					var sval = ui.value;
+					_watermark.css({
+					left: sval + 'px'
+				});
+			}
+		});
 	
 	return {
 		init: init

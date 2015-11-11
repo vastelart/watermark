@@ -18,10 +18,10 @@
 			h5.form__title.position Положение
 				//- блок для изменения видов
 				.form-block
-					label.form__view-item
-						input(type="radio", name="placeaction", value="single", checked).form__view-link
-					label.form__view-item
-						input(type="radio", name="placeaction", value="tile").form__view-link
+					label(for="placeSingle").form__view-item.disabled.form__view-link.form__view-link_single.active
+						input(type="radio", id="placeSingle" name="placeaction", value="single", disabled, checked).form__view-button_placeaction.disabled.out
+					label(for="placeTile").form__view-item.disabled.form__view-link.form__view-link_tile
+						input(type="radio", id="placeTile" name="placeaction", disabled, value="tile").form__view-button_placeaction.disabled.out
 			.position__adjust.clearfix
 				.position__adjust-radio.left
 					- var items = ["topLeft", "topCenter", "topRight", "centerLeft", "centerCenter", "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]

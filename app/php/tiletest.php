@@ -4,22 +4,31 @@ if ($_POST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['w
 
 	//Определяем папку для загрузки файлов
 	$path = "files";
-	$pathtosave = "files/watermarked";
+	$pathtosave = "files/watermarkedtile";
+	//Если директории нет в дереве, запиливаем немедленно
+	if (!file_exists($pathtosave)) {
+		mkdir($pathtosave);
+	}
 	//Вроде файлы есть, плэйсим их в переменные
 	$imname = $path.'/'.$_POST['image'];
 	$patternname = $path.'/'.$_POST['watermark'];
+	$opacity = $_POST['opacity'];
+
+	//==========================================
+
+	//...Function
 
 	//==========================================
 
 	//Проверяем основное изображение и делаем нужное сжатие
 	if (preg_match('/[.](GIF)|(gif)$/', $imname)) {
-		$im = imagecreatefromgif($imname);
+		$srcimg = imagecreatefromgif($imname);
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
-		$im = imagecreatefrompng($imname);
+		$srcimg = imagecreatefrompng($imname);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
-		$im = imagecreatefromjpeg($imname);
+		$srcimg = imagecreatefromjpeg($imname);
 	}
 
 	//Проверяем вотермарк по типу и делаем нужное сжатие
@@ -36,38 +45,51 @@ if ($_POST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['w
 	//==========================================
 
 
-	//Если таковой нет в дереве, запиливаем немедленно
-	if (!file_exists($pathtosave)) {
-		mkdir($pathtosave);
-	}
-
-	$imWidth = imagesx($im);
-	$imHeight = imagesy($im);
+	$srcWidth = imagesx($srcimg);
+	$srcHeight = imagesy($srcimg);
 
 	// 4. Create background pattern from image
 
 	$patternWidth = imagesx($pattern);
 	$patternHeight = imagesy($pattern);
 
+	//======================================================================
+
+	$im = imagecreatetruecolor($srcWidth, $srcHeight);
+	$black = imagecolorallocate($im, 0, 0, 0);
+    imagecolortransparent($im, $black);
+
+	//======================================================================
+	
 	// 5. Repeatedly copy pattern to fill target image
-	if ($patternWidth < $imWidth || $patternHeight < $imHeight) {
-		for ($patternX = 0; $patternX < $imWidth; $patternX += $patternWidth) {
-			for ($patternY = 0; $patternY < $imHeight; $patternY += $patternHeight) {
-				imagecopymerge($im, $pattern, $patternX, $patternY, 30, 30, $patternWidth, $patternHeight, 0);
-			}
-		}
+    if($patternWidth<$srcWidth || $patternHeight<$srcHeight){
+        for($patternX=0;$patternX<$srcWidth;$patternX+=$patternWidth){
+            for($patternY=0;$patternY<$srcHeight;$patternY+=$patternHeight){
+                imagecopy($im,$pattern,$patternX,$patternY,0,0,$patternWidth,$patternHeight);
+            }
+        }
+    } else imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
+ 
+    // Сохранение замощенного прозрачного (пустого) изображения с размерами основного
+    imagepng($im, 'smell.png');
 
-		imagejpeg($im, 'spazm.jpg');
-	}
+    $tomerge = imagecreatefrompng('smell.png');
+    imagealphablending($tomerge, false);
+    imagesavealpha($tomerge, true);
 
-	else {
-		imagecopymerge($im, $pattern, 0, 0, 0, 0, $patternWidth, $patternHeight, 60);
-		imagejpeg($im, 'spazm.jpg');
-	}
+    //Основной мерж картинок
+    imagecopymerge($srcimg, $tomerge, 0, 0, 0, 0, $srcWidth, $srcHeight, $opacity);
+    imagealphablending($srcimg, false);
+    imagesavealpha($srcimg, true);
 
-	//imagejpeg($im, 'spazm.jpg');
+    //Сохранение файла
+    $tofilename = $pathtosave.'/'.date('Ymd_his');
+    imagepng($srcimg, $tofilename.'_spazm_tiled.png');
+    $tobrowser = $tofilename.'_spazm.jpg';
 
-	//А вот и сама функция
+    //=====================================================================
+
+    //А вот и сама функция
     function file_force_download($file) {
 		if (file_exists($file)) {
 		// Cбрасываем буфер вывода PHP, чтобы избежать переполнения памяти, выделенной под скрипт. Если этого не сделать, файл будет читаться в память полностью
@@ -94,8 +116,14 @@ if ($_POST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['w
 		}
 	}
 
-	//Модная функция пушинга файла в браузер
-	file_force_download($path.'/'.$im);
+    //Модная функция пушинга файла в браузер. Туда придет бинарный blob, который форсом выдается в браузер-даунлоад через JS
+	file_force_download($tobrowser);
+
+    imagedestroy($im);
+    imagedestroy($srcimg);
+    imagedestroy($pattern);
+
+	//======================================================================
 
 }
 else {

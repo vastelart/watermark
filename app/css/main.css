@@ -383,65 +383,29 @@ body {
 .form-block {
   float: right; }
 
-.form__view {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  .form__view .form__view-item {
-    cursor: pointer;
-    display: inline-block;
-    float: left;
-    margin-left: 10px;
-    margin-bottom: 10px; }
-  .form__view .form__view-item--1 .form__view-link {
-    background-image: url(../img/spritesheet-block.png);
-    background-repeat: no-repeat;
-    display: block;
+.form__view-link_single {
+  background-image: url(../img/spritesheet-block.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background-position: -20px -139px; }
+  .form__view-link_single:active, .form__view-link_single:hover, .form__view-link_single:focus, .form__view-link_single.active {
     width: 19px;
     height: 19px;
-    background-position: -20px -257px; }
-    .form__view .form__view-item--1 .form__view-link:active {
-      width: 19px;
-      height: 19px;
-      background-position: -20px -316px; }
-  .form__view .form__view-item--2 .form__view-link {
-    background-image: url(../img/spritesheet-block.png);
-    background-repeat: no-repeat;
-    display: block;
-    width: 19px;
-    height: 19px;
-    background-position: -20px -139px; }
-    .form__view .form__view-item--2 .form__view-link:active {
-      width: 19px;
-      height: 19px;
-      background-position: -20px -198px; }
+    background-position: -20px -198px; }
 
-.form-position_view-1 .label-x {
+.form__view-link_tile {
+  background-image: url(../img/spritesheet-block.png);
   background-repeat: no-repeat;
-  display: block;
-  background-position: -20px -20px; }
-.form-position_view-1 .label-y {
-  background-repeat: no-repeat;
-  display: block;
-  background-position: -20px -90px; }
-.form-position_view-1 .position__adjust .position__adjust-radio {
-  position: relative;
-  z-index: 1; }
-  .form-position_view-1 .position__adjust .position__adjust-radio .linePosition-gorizont {
-    z-index: 222;
-    top: 0px;
-    left: 35px;
-    width: 18px;
-    height: 100px;
-    background: #f97e76;
-    position: absolute; }
-  .form-position_view-1 .position__adjust .position__adjust-radio .linePosition-vertical {
-    top: 41px;
-    left: -5px;
-    width: 99px;
-    height: 18px;
-    background: #f97e76;
-    position: absolute; }
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background-position: -20px -257px; }
+  .form__view-link_tile:active, .form__view-link_tile:hover, .form__view-link_tile:focus, .form__view-link_tile.active {
+    width: 19px;
+    height: 19px;
+    background-position: -20px -316px; }
 
 .linePositions {
   display: none; }

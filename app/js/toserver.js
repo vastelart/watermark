@@ -3,8 +3,6 @@
 	//Переменные среды
 	var form = document.getElementById('theForm');
 	var submit = document.getElementById('submitBtn');
-	var toserver = submit.getAttribute('data-server');
-	//var toserver = 'php/tiletest.php';
 	var waterimg = document.getElementById('watermarkInsert');
 
 	//Модуль вызова диалога сохранения файла - новый экземпляр
@@ -27,7 +25,8 @@
 		var opacity = document.getElementById('slider').getAttribute('data-value');
 		var indentX = waterimg.style.left;
 		var indentY = waterimg.style.top;
-		var placemethod = document.querySelectorAll('.form__view-link');
+		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
+		var toserver = submit.getAttribute('data-server');
 
 		//Определяем, какой режим выбран - single или tile
 		for(var key in placemethod) {

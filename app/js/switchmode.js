@@ -4,15 +4,22 @@ var switchModeCatcher = (function () {
 	var submit = $('#submitBtn', '.watermark-right');
 	var single = 'php/toserver.php';
 	var tile = 'php/tiletest.php';
+	var viewMode = $('.form__view-link');
 
 	function _listener() {
-		$('.form__view-link').on('click', _setServerData);
-
+		viewMode.on('click', _setServerData);
 		console.log('SWICTH MODE CATCHER');
 	}
 
 	function _setServerData() {
-		var serve = $(this).val();
+		var serve = $(this).find('input[type=radio]').val();
+		
+		$.each(viewMode, function (index, value) {
+			$(value).removeClass('active');
+		});
+
+		$(this).addClass('active');
+
 		switch(serve) {
 			case 'tile':
 				submit.attr('data-server', tile);
