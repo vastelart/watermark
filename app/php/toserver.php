@@ -28,9 +28,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 	$opacity = $_POST['opacity'];
 	$indentX = intval($_POST['indentX']);
 	$indentY = intval($_POST['indentY']);
+	$placeaction = $_POST['placeaction'];
 
 	//Если метод наложения - single (без замощения)
-	if ($_REQUEST['placeaction'] == "single") {
+	if ($placeaction == "single") {
 
 		//Загружаем в обработку файлы из каталога, в который грузит jQueryFileUpload
 		$image = WideImage::load($path.'/'.$image);
@@ -47,12 +48,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 
 		//А это чисто отладочная фича, для консоли браузера
 		echo intval($indentX)." ".intval($indentY);
-
-		//Теперь направляемся в файл с месседжем, в котором имя сохраненного файла, оттуда и скачаем директом в браузер
-		//$_SESSION['message'] = $tofilename.'_spazm.jpg';
-		//header("HTTP/1.1 302 Moved Temporarily");
-		//header("Location: _test.php");
-
 
 		//Плэйс в переменную полученных дел
 		$tobrowser = $tofilename.'_spazm.jpg';
@@ -88,64 +83,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 		//Модная функция пушинга файла в браузер
 		file_force_download($tobrowser);
 
-		//=========================
 
-	} elseif ($_REQUEST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['watermark'])) { //Если метод наложения - замостить (tile)
-
-		$filename = basename($image['name']);
-		if (move_uploaded_file($image['tmp_name'], "$path/$filename")) {
-			list($width, $height) = getimagesize("$path/$filename");
-			if (preg_match('/[.](GIF)|(gif)$/', $filename)) {
-				$im = imagecreatefromgif("$path/$filename"); //если оригинал был в формате gif, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-			}
-			if (preg_match('/[.](PNG)|(png)$/', $filename)) {
-				$im = imagecreatefrompng("$path/$filename");//если оригинал был в формате png, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-			}
-
-			if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $filename)) {
-				$im = imagecreatefromjpeg("$path/$filename"); //если оригинал был в формате jpg, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-			}
-
-		}
-
-
-		$filename = $_FILES['watermark']['name'];
-		$source = $_FILES['watermark']['tmp_name'];
-		move_uploaded_file($source,"$path/$filename");//загрузка оригинала в папку $path
-
-		if (preg_match('/[.](GIF)|(gif)$/', $filename)) {
-			$pattern = imagecreatefromgif("$path/$filename"); //если оригинал был в формате gif, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-		}
-		if (preg_match('/[.](PNG)|(png)$/', $filename)) {
-			$pattern = imagecreatefrompng("$path/$filename");//если оригинал был в формате png, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-		}
-
-		if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $filename)) {
-			$pattern = imagecreatefromjpeg("$path/$filename"); //если оригинал был в формате jpg, то создаем изображение в этом же формате. Необходимо для последующего сжатия
-		}
-		$imWidth = imagesx($im);
-		$imHeight = imagesy($im);
-
-		// 4. Create background pattern from image
-
-		$patternWidth = imagesx($pattern);
-		$patternHeight = imagesy($pattern);
-
-		// 5. Repeatedly copy pattern to fill target image
-		if ($patternWidth < $imWidth || $patternHeight < $imHeight) {
-			for ($patternX = 0; $patternX < $imWidth; $patternX += $patternWidth) {
-				for ($patternY = 0; $patternY < $imHeight; $patternY += $patternHeight) {
-					imagecopymerge($im, $pattern, $patternX, $patternY, 30, 30, $patternWidth, $patternHeight, 60);
-				}
-			}
-		} else imagecopymerge($im, $pattern, 0, 0, 0, 0, $patternWidth, $patternHeight, 60);
-
-
-		imagepng($im, 'wat.png');
-		imagedestroy($im);
-		//echo '<img src="http://watermark/app/tests/Sergey/wat.png">';
-
-		}
+	}
 
 }
 else {

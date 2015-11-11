@@ -29,9 +29,7 @@ var langModule = (function () {
 
 		lang.open('GET', langPath, true);
 
-		lang.send(null);
-
-		lang.onreadystatechange = function () {
+		lang.onload = function () {
 			if (lang.readyState === 4 && lang.status === 200) {
 				// Сменить язык
 				//console.log(lang.responseText);
@@ -57,9 +55,11 @@ var langModule = (function () {
 
 			} else {
 				// Выдать в консоль полный крах и молча наблюдать дальше
-				console.log('FAIL'); //он все равно выводит в консоль FAIL, причем дважды. даже при удачном запросе. подумать.
+				console.log('FAIL');
 			}
 		}
+
+		lang.send(null);
 	}
 
 	function _setLang(langSet) {
