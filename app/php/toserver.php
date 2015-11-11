@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 			if (ob_get_level()) {
 			  ob_end_clean();
 		}
-			// заставляем браузер показать окно сохранения файла
+			// Возвращаем файл и заголовки. XMLHttpResponse на клиенте выполнит сохранение файла
 			header('Content-Description: File Transfer');
 			header('Content-Type: image/jpeg');
 			header('Content-Disposition: attachment; filename=' . basename($file));

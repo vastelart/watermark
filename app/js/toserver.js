@@ -5,6 +5,11 @@
 	var submit = document.getElementById('submitBtn');
 	var toserver = submit.getAttribute('data-server');
 	var waterimg = document.getElementById('watermarkInsert');
+
+	//Модуль вызова диалога сохранения файла - новый экземпляр
+
+	//Реджексп для извлечения имени файла
+	var nameRegexp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
 	
 	//Дико прослушиваем нужное событие - кто-то нажал 'Скачать'
 	submit.addEventListener('click', _reliz, true);
@@ -33,6 +38,9 @@
 		formData.append('indentX', indentX);
 		formData.append('indentY', indentY);
 
+		// Для разных браузеров, не заморачиваться
+		var GLOBAL_URL = window.URL || window.webkitURL;
+
 		//Отправляем
 		var reliz = new XMLHttpRequest();
 		
@@ -41,14 +49,47 @@
 
 		reliz.onload = function(e) {
 			if (this.status === 200 && this.readyState === 4) {
-				return reliz;
+				//Отладочные сообщения в консоль
+				console.log(this.response);
+				console.log(this.getResponseHeader('Content-Disposition'));
+
+				//Извлекаем название файла из заголовков, которые отправил PHP-обработчик
+				var getHeaderResponse = this.getResponseHeader('Content-Disposition');
+				var extractHeaderResponseArray = nameRegexp.exec(getHeaderResponse);
+				var fileNameToSave = extractHeaderResponseArray[1];
+				//Отладочное сообщение имени файла в консоль
+				console.log(fileNameToSave);
+
+				//Плэйс бинарного объекта в переменную
+				var blob = this.response;
+				var blobUrl = GLOBAL_URL.createObjectURL(blob);
+
+				//Сохраняем файл через модный плагин FileSaver.js - установлен через bower
+				saveAs(blob, fileNameToSave);
+
+				//Посылаем запрос на удаление файла через новый XMLHttpRequest, естественно
+				toDeleteFile(fileNameToSave);
 			}
 			else {
-				console.log('НЕ ОК');
+				console.log('НЕ ОК. ЧТО-ТО НЕ СРАБОТАЛО');
 			}
 		};
 
 		reliz.send(formData);
+	}
+
+	function toDeleteFile(fileToDelete) {
+		var destroyer = new XMLHttpRequest();
+		destroyer.open('POST', '/php/todelete.php', true);
+		destroyer.onload = function() {
+			if(this.status === 200 && this.readyState === 4) {
+				console.log(fileToDelete + ' удален. Ура.');
+			}
+			else {
+				console.log('НИЧЕГО НЕ ВЫШЛО. ФАЙЛ ОСТАЛСЯ');
+			}
+		}
+		destroyer.send();
 	}
 
 })();

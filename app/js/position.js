@@ -189,3 +189,5 @@ var position = (function () {
 
 })();
 
+//Инит модуля позишена и дрэггабблла
+position.init();

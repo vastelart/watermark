@@ -53,6 +53,7 @@ var uploadModule = (function () {
 
 				//Файл загружен
 				console.log('LOAD');
+				console.log(file);
 
 				//Убираем disabled у инпута вотермарка
 				waterMark.prop('disabled', false);
@@ -60,14 +61,14 @@ var uploadModule = (function () {
 				disabled.removeClass('disabled').removeAttr('disabled');
 				
 				//Получаем модный JSON резалт загруженного файла, достаем ссылку на сам файл
-				var bigData = JSON.parse(data.result);
-				var bigDataUrl = bigData.files[index].url;
+				//var bigData = JSON.parse(data.result);
+				//var bigDataUrl = bigData.files[index].url;
 
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
 
 				//Обязательно ссылку в консоль, дочь самурая. Возьми себя в руки
-				console.log(bigDataUrl);
+				//console.log(bigDataUrl);
 
 				//Очищаем контейнер перед вставкой изображения
 				var imgs = insert.find('img');
@@ -75,7 +76,7 @@ var uploadModule = (function () {
 
 				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
 				//insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
-				insert.attr('src', bigDataUrl);
+				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
 				insert.parent().fadeIn(500);
@@ -91,8 +92,7 @@ var uploadModule = (function () {
 					console.log('WATER IS HERE');
 				}
 
-				//Инит модуля позишена и дрэггабблла
-				position.init();
+				
 			});
 		});
 	} //Здесь этот кошмар заканчивается
