@@ -85,6 +85,12 @@ var uploadModule = (function () {
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
+
+					//
+					waterMark.css({
+						left: 0,
+						top: 0
+					});
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');

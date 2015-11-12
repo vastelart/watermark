@@ -14,8 +14,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$patternname = $path.'/'.$_POST['watermark'];
 	$opacity = $_POST['opacity'];
 	$placeaction = $_POST['placeaction'];
-	$indentX = $_POST['indentX'];
-	$indentY = $_POST['indentY'];
+	$indentX = intval($_POST['indentX']);
+	$indentY = intval($_POST['indentY']);
 
 	//==========================================
 
@@ -29,6 +29,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg = imagecreatefrompng($imname);
+		imagealphablending($srcimg, false);
+    	imagesavealpha($srcimg, true);
+    	$black = imagecolorallocate($srcimg, 0, 0, 0);
+    	imagecolortransparent($srcimg, $black);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
 		$srcimg = imagecreatefromjpeg($imname);
@@ -40,6 +44,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
 		$pattern = imagecreatefrompng($patternname);
+		imagealphablending($pattern, false);
+    	imagesavealpha($pattern, true);
+    	$black = imagecolorallocate($pattern, 0, 0, 0);
+    	imagecolortransparent($pattern, $black);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
 		$pattern = imagecreatefromjpeg($patternname);
@@ -64,10 +72,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	
 	//Замостить
 	if(isset($pattern) && $placeaction == 'tile') {
-		if($patternWidth<$srcWidth || $patternHeight<$srcHeight){
-        for($patternX=0;$patternX<$srcWidth;$patternX+=$patternWidth){
-            for($patternY=0;$patternY<$srcHeight;$patternY+=$patternHeight){
-                	imagecopy($im,$pattern,$patternX,$patternY,0,0,$patternWidth,$patternHeight);
+		if($patternWidth < $srcWidth || $patternHeight < $srcHeight){
+        for($patternX=0; $patternX < $srcWidth; $patternX += $patternWidth){
+            for($patternY=0; $patternY < $srcHeight; $patternY += $patternHeight){
+                	imagecopy($im,$pattern,0,0,0,0,$patternWidth + $indentX,$patternHeight + $indentY);
             	}
         	}
     	} else imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
@@ -89,7 +97,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     imagesavealpha($tomerge, true);
 
     //Основной мерж картинок
-    imagecopymerge($srcimg, $tomerge, $indentX, $indentY, 0, 0, $srcWidth, $srcHeight, $opacity);
+    imagecopymerge($srcimg, $tomerge, 0, 0, 0, 0, $srcWidth, $srcHeight, $opacity);
     imagealphablending($srcimg, false);
     imagesavealpha($srcimg, true);
 
