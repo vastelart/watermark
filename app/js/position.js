@@ -93,6 +93,15 @@ var position = (function () {
 		});
 	}
 
+	//Смещение по клику на кнопки
+	function _setPositionByButton() {
+		_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); });
+		_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); });
+		_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); });
+		_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); });
+		console.log('CHECKED TO SINGLE');
+	}
+
 	//получение координат после нажатия на radiobutton и передача их в инпуты (button слева от инпутов с координатами)
 	function _getNewCoordinates(){
 		var
@@ -103,20 +112,13 @@ var position = (function () {
   			Math.round(_inputX.val(newX));
 	}
 
-	//Смещение по клику на кнопки
-	function _setPositionByButton() {
-		_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 });});
-		_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 });});
-		_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 });});
-		_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 });});
-	}
-
 	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
 	function _setMarginsToWatermark() {
 		_btnXUp.on('click', function() {_watermark.css({ 'margin-right': _watermark.css('margin-right') + 2 });});
 		_btnXDown.on('click', function() {_watermark.css({ 'margin-right': _watermark.css('margin-right') - 2 });});
 		_btnYUp.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') + 2 });});
 		_btnYDown.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') - 2 });});
+		console.log('CHECKED TO TILE');
 	}
 
 

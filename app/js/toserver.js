@@ -4,6 +4,7 @@
 	var form = document.getElementById('theForm');
 	var submit = document.getElementById('submitBtn');
 	var waterimg = document.getElementById('watermarkInsert');
+	var toserver = 'php/toserver.php';
 
 	//Модуль вызова диалога сохранения файла - новый экземпляр
 
@@ -32,7 +33,7 @@
 		var indentX = waterimg.style.left;
 		var indentY = waterimg.style.top;
 		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
-		var toserver = submit.getAttribute('data-server');
+		//var toserver = submit.getAttribute('data-server');
 
 		//Определяем, какой режим выбран - single или tile
 		for(var key in placemethod) {

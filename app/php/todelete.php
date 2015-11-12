@@ -4,14 +4,7 @@
 		$filetodelete = $_POST['todelete'];
 		$actionplace = $_POST['actionplace'];
 
-		switch ($actionplace) {
-			case 'single':
-			    $destroyer = unlink("files/watermarked/" . $filetodelete);
-			    break;
-			case 'tile':
-			    $destroyer = unlink("files/watermarkedtile/" . $filetodelete);
-			    break;
-			}
+		$destroyer = unlink("files/watermarkedtile/" . $filetodelete);
 
 		if($destroyer) {
 			header ('HTTP/1.1 200 OK');

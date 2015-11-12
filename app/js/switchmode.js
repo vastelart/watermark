@@ -2,8 +2,6 @@ var switchModeCatcher = (function () {
 	var init = _listener;
 
 	var submit = $('#submitBtn', '.watermark-right');
-	var single = 'php/toserver.php';
-	var tile = 'php/tiletest.php';
 	var viewMode = $('.form__view-link');
 
 	function _listener(actionplace) {
@@ -26,14 +24,12 @@ var switchModeCatcher = (function () {
 
 		$(this).addClass('active');
 
-		//Устанавливаем нужный data-server атрибут кнопке Скачать
+		//Инициализируем нужное состояние модуля позишена
 		switch(serve) {
 			case 'tile':
-				submit.attr('data-server', tile);
 				position.init('tile');
 				break;
 			case 'single':
-				submit.attr('data-server', single);
 				position.init('single');
 				break;
 			}
