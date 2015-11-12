@@ -6,7 +6,12 @@ var position = (function () {
 			_inputY = $('.number__input-y'),
 			_inputX = $('.number__input-x'),
 			_defY = $('.number__input-y').val(0),
-			_defX = $('.number__input-x').val(0);
+			_defX = $('.number__input-x').val(0),
+			_btnXUp = $('#XUp', '.position__adjust-sett'),
+			_btnXDown = $('#XDown', '.position__adjust-sett'),
+			_btnYUp = $('#YUp', '.position__adjust-sett'),
+			_btnYDown = $('#YDown', '.position__adjust-sett'),
+			_posBtns = $('button', '.position__adjust-sett');
 			
 	//Рычаг
 	var init = _setUpListners;
@@ -17,15 +22,12 @@ var position = (function () {
 		$(document).ready(_Drag);
 		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
 		console.log('POSITION IS ' + actionplace);
-		switch(actionplace) {
-			case 'single':
-				//Устанавливаем функционал кнопок позиционирования - смещение по вертикали/горизонтали
-				_setPositionByButton;
-				break;
-			case 'tile':
-				//Устанавливаем функционал кнопок позиционирования - добавление отступов замощенному вотермарку
-				_setMarginsToWatermark;
-		}
+
+		//По клику на кнопки позиционирования выясняем, какой режим установлен
+		_posBtns.on('click', _catchViewMode(actionplace));
+		_posBtns.on('click', function (event) {
+			event.preventDefault();
+		});
 	}
 	//инициализация драг метода и передача координат в инпуты
 	function _Drag(){
@@ -97,6 +99,18 @@ var position = (function () {
 
 			Math.round(_inputY.val(newY));
   			Math.round(_inputX.val(newX));
+	}
+
+	//Клик на кнопки - определяем режим (сингл/тайл)
+	function _catchViewMode(actionplace) {
+
+		var that = $(this);
+
+		//Определяем режим
+		that.click(function (actionplace) {
+			actionplace === 'single' ? _setPositionByButton : _setMarginsToWatermark;
+			console.log(actionplace);
+		});
 	}
 
 	//Смещение по клику на кнопки
