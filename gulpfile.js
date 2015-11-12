@@ -3,7 +3,6 @@ var
 	scss = require('gulp-scss'),
 	jade        = require('gulp-jade'),
 	browserSync = require('browser-sync').create(),
-	wiredep = require('wiredep').stream,
 	useref = require("gulp-useref"),
 	uglify = require("gulp-uglify"),
 	minifyCss = require("gulp-minify-css"),
@@ -21,8 +20,8 @@ var
 var
 	paths = {
 		jade : {
-			location    : 'ap/markup/**/*.jade',
-			compiled    : 'ap/markup/pages/*.jade',
+			location    : 'app/markup/**/*.jade',
+			compiled    : 'app/markup/pages/*.jade',
 			destination : 'app/'
 		},
 
@@ -43,21 +42,15 @@ var
 /* --------- jade --------- */
 
 gulp.task('jade', function() {
-	var assets = useref.assets();
-	gulp.src(paths.jade.compiled,paths.baseDir+ paths.browserSync.watchPaths )
+
+	gulp.src(paths.jade.compiled )
 		.pipe(plumber())
 		.pipe(jade({
 			pretty: '\t',
 		}))
-		.pipe(wiredep({
-			derictory: RS_CONF.path.baseDir+"/bower"
-		}))
-		.pipe(assets)
-		.pipe(gulpif("*.js", uglify()))
-		.pipe(gulpif("*.css", minifyCss({compatibility: "ie8"})))
-		.pipe(assets.restore())
-		.pipe(useref())
-		.pipe(gulp.dest(paths.jade.destination));
+
+
+		.pipe(gulp.dest('app/'));
 });
 
 /* --------- scss-compass --------- */
@@ -100,18 +93,10 @@ gulp.task('default', ['jade', 'scss', 'sync', 'watch']);
  ******************************************/
 
 // Переносим CSS JS HTML в папку DIST
-gulp.task('jadeDist', function() {
+gulp.task('useref', function() {
 	var assets = useref.assets();
 
-	return gulp.src('app/js/*.js')
-		.pipe(plumber())
-		.pipe(jade({
-			pretty: '\t',
-		}))
-		.pipe(wiredep({
-			derictory: RS_CONF.path.baseDir+"/bower"
-		}))
-
+	return gulp.src('app/index.html' )
 		.pipe(assets)
 		.pipe(gulpif("*.js", uglify()))
 		.pipe(gulpif("*.css", minifyCss({compatibility: "ie8"})))
@@ -119,27 +104,36 @@ gulp.task('jadeDist', function() {
 		.pipe(useref())
 		.pipe(gulp.dest("./dist"));
 });
+gulp.task('php', function() {
+	var assets = useref.assets();
+
+	return gulp.src('app/php/*.php')
+		.pipe(assets)
+
+		.pipe(assets.restore())
+		.pipe(useref())
+		.pipe(gulp.dest("./dist/php"));
+});
 
 
 
 // Перенос картинок
 gulp.task("images", function () {
-	return gulp.src(RS_CONF.path.baseDir+"/img/*")
+	return gulp.src([RS_CONF.path.baseDir+"/img/*", "!"+ RS_CONF.path.baseDir+"/img/test"])
 		.pipe(gulp.dest(RS_CONF.path.distDir+"/img"));
 });
 
-// Перенос шрифтов
-gulp.task("fonts", function() {
-	gulp.src(RS_CONF.path.baseDir + "/fonts/*")
-		.pipe(filter(["*.eot","*.svg","*.ttf","*.woff","*.woff2"]))
-		.pipe(gulp.dest(RS_CONF.path.distDir+"/fonts/"))
+gulp.task("htc", function (){
+	return gulp.src ('app/php/files/.htaccess')
+		.pipe(gulp.dest("./dist/php/files"))
+
 });
 
 /****************?????*************/
 // Перенос остальных файлов (favicon и т.д.)
 gulp.task("extras", function () {
-	return gulp.src([RS_CONF.path.baseDir+"*.*", "!"+RS_CONF.path.htmlDir])
-		.pipe(filter([ "*.php","*.ico"]))
+	return gulp.src([RS_CONF.path.baseDir+"*.*","!"+RS_CONF.path.htmlDir])
+		.pipe(filter([".ico"]))
 		.pipe(gulp.dest(RS_CONF.path.distDir));
 });
 /****************????? END *************/
@@ -156,7 +150,7 @@ gulp.task("size-app", function () {
 
 
 // Сборка и вывод размера папки DIST
-gulp.task("dist", ["jadeDist","scss", "images", "fonts", "extras", "size-app" ], function () {
+gulp.task("dist", ["php","useref", "images", "extras","htc", "size-app" ], function () {
 	return gulp.src(RS_CONF.path.distDir+"/**/*").pipe(size({title: "DIST size: "}));
 });
 
