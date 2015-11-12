@@ -24,7 +24,7 @@ var position = (function () {
 		console.log('POSITION IS ' + actionplace);
 
 		//Клик на кнопки позиционирования
-		actionplace === 'single' ? _setPositionByButton() : _setMarginsToWatermark();
+		//actionplace === 'single' ? _setPositionByButton() : _setMarginsToWatermark();
 
 		//Отменяем событие бай дефолт при клике по button
 		_posBtns.on('click', function (event) {

@@ -13,7 +13,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$imname = $path.'/'.$_POST['image'];
 	$patternname = $path.'/'.$_POST['watermark'];
 	$opacity = $_POST['opacity'];
-	$placeaction = $_POST['placeaction'];
+	//$placeaction = $_POST['placeaction'];
+	$placeaction = 'tile';
 	$indentX = intval($_POST['indentX']);
 	$indentY = intval($_POST['indentY']);
 
@@ -29,10 +30,6 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg = imagecreatefrompng($imname);
-		imagealphablending($srcimg, false);
-    	imagesavealpha($srcimg, true);
-    	$black = imagecolorallocate($srcimg, 0, 0, 0);
-    	imagecolortransparent($srcimg, $black);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
 		$srcimg = imagecreatefromjpeg($imname);
@@ -44,10 +41,6 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
 		$pattern = imagecreatefrompng($patternname);
-		imagealphablending($pattern, false);
-    	imagesavealpha($pattern, true);
-    	$black = imagecolorallocate($pattern, 0, 0, 0);
-    	imagecolortransparent($pattern, $black);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
 		$pattern = imagecreatefromjpeg($patternname);
@@ -75,7 +68,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		if($patternWidth < $srcWidth || $patternHeight < $srcHeight){
         for($patternX=0; $patternX < $srcWidth; $patternX += $patternWidth){
             for($patternY=0; $patternY < $srcHeight; $patternY += $patternHeight){
-                	imagecopy($im,$pattern,0,0,0,0,$patternWidth + $indentX,$patternHeight + $indentY);
+                	imagecopy($im,$pattern,0,0,$indentX,$indentY,$patternWidth,$patternHeight);
             	}
         	}
     	} else imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
