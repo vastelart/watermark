@@ -8,16 +8,24 @@ var position = (function () {
 			_defY = $('.number__input-y').val(0),
 			_defX = $('.number__input-x').val(0);
 			
-	
-	function init () {
-		_setUpListners();
-	}
+	//Рычаг
+	var init = _setUpListners;
 
 	 //слушатели событий
 
-	function _setUpListners () {
-		_watermark.on('mouseover', _Drag);
+	function _setUpListners (actionplace) {
 		$(document).ready(_Drag);
+		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
+		console.log('POSITION IS ' + actionplace);
+		switch(actionplace) {
+			case 'single':
+				//Устанавливаем функционал кнопок позиционирования - смещение по вертикали/горизонтали
+				_setPositionByButton;
+				break;
+			case 'tile':
+				//Устанавливаем функционал кнопок позиционирования - добавление отступов замощенному вотермарку
+				_setMarginsToWatermark;
+		}
 	}
 	//инициализация драг метода и передача координат в инпуты
 	function _Drag(){
@@ -45,98 +53,43 @@ var position = (function () {
 			rightMiddle = boxLabel.eq(5),
 			leftBottom = boxLabel.eq(6),
 			middleBottom = boxLabel.eq(7),
-			rightBottom = boxLabel.eq(8);
+			rightBottom = boxLabel.eq(8),
+			contain = $(".main-image-insert");
+
+	//Устанавливаем листенеры на радиобаттоны именно здесь
 	//верхний левый
-	leftTop.on('click', function() {
-			_watermark.position({
-				my: "left top",
-  				at: "left top",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(leftTop, "left top", "left top", contain);
 	//верхний средний
-	middleTop.on('click', function() {
-			_watermark.position({
-				my: "center top",
-  				at: "center top",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(middleTop, "center top", "center top", contain);
 	//верхний правый
-	rightTop.on('click', function() {
-			_watermark.position({
-				my: "right top",
-  				at: "right top",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(rightTop, "right top", "right top", contain);
 	//левый средний
-	leftMiddle.on('click', function() {
-			_watermark.position({
-				my: "left center",
-  				at: "left center",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(leftMiddle, "left center", "left center", contain);
 	//средний средний
-	middleMiddle.on('click', function() {
-			_watermark.position({
-				my: "center center",
-  				at: "center center",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(middleMiddle, "center center", "center center", contain);
 	//правый средний
-	rightMiddle.on('click', function() {
-			_watermark.position({
-				my: "right center",
-  				at: "right center",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(rightMiddle, "right center", "right center", contain);
 	// левый нижний
-	leftBottom.on('click', function() {
-			_watermark.position({
-				my: "left bottom",
-  				at: "left bottom",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(leftBottom, "left bottom", "left bottom", contain);
 	// средний нижний
-	middleBottom.on('click', function() {
-			_watermark.position({
-				my: "center bottom",
-  				at: "center bottom",
-  				of: ".main-image-insert",
-  				collision: "fit"
-			});
-			_getNewCoordinates();
-		});
+	_setPositionRadio(middleBottom, "center bottom", "center bottom", contain);
 	// правый нижний
-	rightBottom.on('click', function() {
+	_setPositionRadio(rightBottom, "right bottom", "right bottom", contain);
+
+	//Функция для позиционирования по радиобаттонам
+	function _setPositionRadio(button, my, at, contain) {
+		button.on('click', function() {
 			_watermark.position({
-				my: "right bottom",
-  				at: "right bottom",
-  				of: ".main-image-insert",
+				my: my,
+  				at: at,
+  				of: contain,
   				collision: "fit"
 			});
 			_getNewCoordinates();
 		});
-	//получение координат после нажатия на radiobutton и передача их в инпуты
+	}
+
+	//получение координат после нажатия на radiobutton и передача их в инпуты (button слева от инпутов с координатами)
 	function _getNewCoordinates(){
 		var
 			newY = _watermark.position().top,
@@ -145,12 +98,20 @@ var position = (function () {
 			Math.round(_inputY.val(newY));
   			Math.round(_inputX.val(newX));
 	}
-	
+
+	//Смещение по клику на кнопки
+	function _setPositionByButton() {
+		console.log('СМЕЩЕНИЕ');
+	}
+
+	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
+	function _setMarginsToWatermark() {
+		console.log('МАРДЖИНЫ');
+	}
+
+
 	return {
 		init: init
 	};
 
 })();
-
-//Инит модуля позишена и дрэггабблла
-position.init();

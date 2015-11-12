@@ -81,6 +81,12 @@ var uploadModule = (function () {
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				else if(insert.parent().attr('id') === 'watermarkInsert') {
+
+					//Первый инит модуля position с позицией single
+					position.init('single');
+
+					//Инит переключателя режимов вотермарка
+					//switchModeCatcher.init('single');
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');
