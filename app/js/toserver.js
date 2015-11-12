@@ -71,9 +71,9 @@
 				var getHeaderResponse = this.getResponseHeader('Content-Disposition');
 				var extractHeaderResponseArray = nameRegexp.exec(getHeaderResponse);
 				var fileNameToSave = extractHeaderResponseArray[1];
+				
 				//Отладочное сообщение имени файла в консоль
 				console.log(fileNameToSave);
-				console.log('ТАКАЯ ВОТ ' + formData);
 
 				//Плэйс бинарного объекта в переменную
 				var blob = this.response;

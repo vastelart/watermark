@@ -7,10 +7,10 @@ var position = (function () {
 			_inputX = $('.number__input-x'),
 			_defY = $('.number__input-y').val(0),
 			_defX = $('.number__input-x').val(0),
-			_btnXUp = $('#XUp', '.position__adjust-sett'),
-			_btnXDown = $('#XDown', '.position__adjust-sett'),
-			_btnYUp = $('#YUp', '.position__adjust-sett'),
-			_btnYDown = $('#YDown', '.position__adjust-sett'),
+			_btnXUp = $('#XUp'),
+			_btnXDown = $('#XDown'),
+			_btnYUp = $('#YUp'),
+			_btnYDown = $('#YDown'),
 			_posBtns = $('.sett-up, .sett-down', '.position__adjust-sett');
 			
 	//Рычаг
@@ -23,8 +23,10 @@ var position = (function () {
 		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
 		console.log('POSITION IS ' + actionplace);
 
-		//По клику на кнопки позиционирования выясняем, какой режим установлен
-		_btnXUp.on('click', _catchViewMode(actionplace));
+		//Клик на кнопки позиционирования
+		actionplace === 'single' ? _setPositionByButton() : _setMarginsToWatermark();
+
+		//Отменяем событие бай дефолт при клике по button
 		_posBtns.on('click', function (event) {
 			event.preventDefault();
 		});
@@ -35,13 +37,13 @@ var position = (function () {
 		_watermark.draggable({
 			containment: _container,
 
-			drag: function(){
-            var position = $(this).position();
-            var posX = position.left;
-            var posY = position.top;
-            Math.round(_inputY.val(posY));
-            Math.round(_inputX.val(posX));
-        }
+				drag: function(){
+	            var position = $(this).position();
+	            var posX = position.left;
+	            var posY = position.top;
+	            Math.round(_inputY.val(posY));
+	            Math.round(_inputX.val(posX));
+        	}
 		});
 		};
 		//определение radio buttons
@@ -101,21 +103,20 @@ var position = (function () {
   			Math.round(_inputX.val(newX));
 	}
 
-	//Клик на кнопки - определяем режим (сингл/тайл)
-	function _catchViewMode(actionplace) {
-
-		var that = $(this);
-
-	}
-
 	//Смещение по клику на кнопки
 	function _setPositionByButton() {
-		console.log('СМЕЩЕНИЕ');
+		_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 });});
+		_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 });});
+		_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 });});
+		_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 });});
 	}
 
 	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
 	function _setMarginsToWatermark() {
-		console.log('МАРДЖИНЫ');
+		_btnXUp.on('click', function() {_watermark.css({ 'margin-right': _watermark.css('margin-right') + 2 });});
+		_btnXDown.on('click', function() {_watermark.css({ 'margin-right': _watermark.css('margin-right') - 2 });});
+		_btnYUp.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') + 2 });});
+		_btnYDown.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') - 2 });});
 	}
 
 

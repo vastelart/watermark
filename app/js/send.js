@@ -81,7 +81,7 @@ var uploadModule = (function () {
 					});
 				}
 				//Здесь будет происходить масштабирование вотермарка
-				else if(insert.parent().attr('id') === 'watermarkInsert') {
+				if(insert.parent().attr('id') === 'watermarkInsert') {
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
