@@ -342,6 +342,7 @@
 
 .form__view-link_single{
 	@include viewModeMix(-20px, -139px, -198px);
+  margin-right: 10px;
 }
 
 .form__view-link_tile{

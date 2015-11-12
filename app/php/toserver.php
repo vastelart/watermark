@@ -36,6 +36,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['image']) && isset($_POS
 		//Загружаем в обработку файлы из каталога, в который грузит jQueryFileUpload
 		$image = WideImage::load($path.'/'.$image);
 		$watermark = WideImage::load($path.'/'.$waterimage);
+		
+
+		//===========================================
+		//ИСПРАВИТЬ
+
+		/*if (preg_match('/[.](PNG)|(png)$/', $waterimage)) {
+			$waterWidth = imagesx($watermark);
+			$waterHeight = imagesy($watermark);
+
+			$im = imagecreatetruecolor($waterWidth, $waterHeight);
+			$black = imagecolorallocate($im, 0, 0, 0);
+	    	imagecolortransparent($im, $black);
+
+	    	imagecopy($im,$watermark,0,0,0,0,$waterWidth,$waterHeight);
+	    	imagepng($im, $pathtosave.'smell.png');
+
+	    	$watermark = imagecreatefrompng($pathtosave.'smell.png');
+	    	imagealphablending($watermark, false);
+	    	imagesavealpha($watermark, true);
+		}*/
+
+		//===========================================
+
 
 		//Склеиваем картинки
 		$merged = $image->merge($watermark, 'left + '.$indentX, 'top + '.$indentY, $opacity);

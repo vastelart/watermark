@@ -393,7 +393,8 @@ body {
   display: inline-block;
   width: 19px;
   height: 19px;
-  background-position: -20px -139px; }
+  background-position: -20px -139px;
+  margin-right: 10px; }
   .form__view-link_single:active, .form__view-link_single:hover, .form__view-link_single:focus, .form__view-link_single.active {
     width: 19px;
     height: 19px;
