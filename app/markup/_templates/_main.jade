@@ -6,10 +6,17 @@ html(lang="ru-RU")
 		meta(name="viewport" content="width=980, initial-scale=1.0")
 		link(rel="shortcut icon" href="favicon.ico" type="image/x-icon")
 		link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic' rel='stylesheet' type='text/css')
+		//build:js js/main.js
+
 		link(rel="stylesheet", href="bower/normalize-css/normalize.css")
 		link(rel="stylesheet", href="bower/jquery-ui/themes/base/slider.css")
+		//endbuild
+		//build:css css/main.css
 		link(rel="stylesheet", href="css/main.css")
+		//endbuild
+
 		script(src="bower/modernizr/modernizr.js")
+
 	body
 		<!--[if lt IE 8]>
 		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
@@ -17,8 +24,10 @@ html(lang="ru-RU")
 
 		block watermark
 		block footer
-		
-		//Vendor
+
+
+		//build:js js/vendor.js
+
 		script(src="bower/jquery/dist/jquery.min.js", defer)
 		script(src="bower/jquery-ui/jquery-ui.min.js", defer)
 		script(src="bower/qtip2/jquery.qtip.min.js", defer)
@@ -27,7 +36,9 @@ html(lang="ru-RU")
 		script(src="bower/blueimp-file-upload/js/jquery.fileupload-process.js", defer)
 		script(src="bower/blueimp-file-upload/js/jquery.fileupload-validate.js", defer)
 		script(src="bower/file-saver.js/FileSaver.js", defer)
-		//Custom
+		//endbuild
+
+		//build:js js/main.js
 		script(src="js/send.js", defer)
 		script(src="js/opacity.js", defer)
 		script(src="js/position.js", defer)
@@ -36,3 +47,4 @@ html(lang="ru-RU")
 		script(src="js/lang.js", defer)
 		script(src="js/errorcatch.js", defer)
 		script(src="js/resetform.js", defer)
+		//endbuild
