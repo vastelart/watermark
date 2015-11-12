@@ -44,13 +44,8 @@ var tilingModule = (function () {
 
 		for (var i = 0, l = countY * countX; i < l; i++) {
 			clone = waterMark.clone();
-			clone.css({
-				//float: 'left',
-				'margin-right' : 30,
-				'margin-bottom' : 30
-			});
 
-			//Плэйсим (атаку) клонов в увеличенный контейнер вотермарка
+			//Плэйсим клонов в увеличенный контейнер вотермарка
 			waterWrapper.append(clone);
 		}
 
@@ -68,23 +63,33 @@ var tilingModule = (function () {
 	}
 
 	function _setSingleMode () {
-		var tiledImages = waterWrapper.find('img');
-		var rememberHtml = tiledImages[0];
 
-		waterWrapper.html(rememberHtml);
+		var tiledImages = waterWrapper.find('img');
+
 		waterWrapper.width(waterWrapper.find('img').width());
 		waterWrapper.height(waterWrapper.find('img').height());
 		waterWrapper.css({ left: 0, top: 0 });
 
-		$.each(tiledImages, function (elem, index) {
-			$(this).remove();
-		});
+		if(tiledImages.length > 1) {
+			var rememberHtml = tiledImages[0];
 
-		waterWrapper.draggable({
-			containment: 
-		});
+			$.each(tiledImages, function (elem, index) {
+				$(this).remove();
+			});
+
+			waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
+			waterWrapper.draggable({
+				containment: mainImageWrapper
+			});
+		}
 		
 		console.log(rememberHtml);
+		_resizeIt();
+	}
+
+	function _resizeIt () {
+		var srcimg = document.querySelector('.main-img-inserted');
+		console.log(srcimg);
 	}
 
 	return {

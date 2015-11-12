@@ -86,11 +86,14 @@ var uploadModule = (function () {
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
-					//
+					//Возвращаем свойства вотермарку при плэйсе в контейнер
 					waterMark.css({
 						left: 0,
 						top: 0
 					});
+
+					//Масштабируем вотермарк
+					_resizeIt(watermarkInsert, mainImgInsert);
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');
@@ -100,6 +103,25 @@ var uploadModule = (function () {
 			});
 		});
 	} //Здесь этот кошмар заканчивается
+
+	//Функция масштабирования вотермарка
+	function _resizeIt(water, image) {
+		var imgParentWidth = image.parent().width();
+		var imgParentHeight = image.parent().height();
+		var nativeWidth = document.querySelector('.main-img-inserted').naturalWidth;
+		var nativeHeight = document.querySelector('.main-img-inserted').naturalHeight;
+
+		var widthRatio = imgParentWidth / nativeWidth;
+		var heightRatio = imgParentHeight / nativeHeight;
+
+		console.log(widthRatio);
+		console.log(heightRatio);
+
+		water.width(water.width() * widthRatio);
+		water.height(water.height() * heightRatio);
+
+		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+	}
 
 	//Возвращаем рычаг
 	return {
