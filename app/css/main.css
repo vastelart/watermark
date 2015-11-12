@@ -414,6 +414,10 @@ body {
 .linePositions {
   display: none; }
 
+.position {
+  display: inline-block;
+  max-width: 170px; }
+
 .footer {
   text-align: center;
   font-size: 12px;

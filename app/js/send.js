@@ -9,7 +9,8 @@ var uploadModule = (function () {
 		mainImgInsert = $('.main-img-inserted', '.watermark-left'),
 		watermarkInsert = $('.water-img-inserted', '.watermark-left'),
 		mainImgName = $('.form-input__fake-base-img', '.form-input'),
-		waterMarkName = $('.form-input__fake-watermark', '.form-input');
+		waterMarkName = $('.form-input__fake-watermark', '.form-input'),
+		resetBtn = $('#restBtn', '.settings');
 
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
@@ -84,9 +85,6 @@ var uploadModule = (function () {
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
-
-					//Инит переключателя режимов вотермарка
-					//switchModeCatcher.init('single');
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');

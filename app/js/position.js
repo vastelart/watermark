@@ -11,7 +11,7 @@ var position = (function () {
 			_btnXDown = $('#XDown', '.position__adjust-sett'),
 			_btnYUp = $('#YUp', '.position__adjust-sett'),
 			_btnYDown = $('#YDown', '.position__adjust-sett'),
-			_posBtns = $('button', '.position__adjust-sett');
+			_posBtns = $('.sett-up, .sett-down', '.position__adjust-sett');
 			
 	//Рычаг
 	var init = _setUpListners;
@@ -24,7 +24,7 @@ var position = (function () {
 		console.log('POSITION IS ' + actionplace);
 
 		//По клику на кнопки позиционирования выясняем, какой режим установлен
-		_posBtns.on('click', _catchViewMode(actionplace));
+		_btnXUp.on('click', _catchViewMode(actionplace));
 		_posBtns.on('click', function (event) {
 			event.preventDefault();
 		});
@@ -106,11 +106,6 @@ var position = (function () {
 
 		var that = $(this);
 
-		//Определяем режим
-		that.click(function (actionplace) {
-			actionplace === 'single' ? _setPositionByButton : _setMarginsToWatermark;
-			console.log(actionplace);
-		});
 	}
 
 	//Смещение по клику на кнопки

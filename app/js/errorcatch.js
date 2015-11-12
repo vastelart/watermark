@@ -12,5 +12,5 @@ var errorCatch = (function () {
 })();
 
 if($('body').length > 0) {
-	errorCatch.init('ГРАНУЛИРОВАННЫЙ КОФЕ');
+	errorCatch.init('ГРАНУЛИРОВАННЫЙ КОФЕ - ПЕРЕХВАТ И ВЫВОД ОШИБОК');
 }

@@ -15,7 +15,8 @@
 					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="watermark").form-input__origin-icon.disabled
 		.form-position.delimiter.disabled(id="form-position")
-			h5.form__title.position Положение
+			h5.form__title
+				span.position Положение
 				//- блок для изменения видов
 				.form-block
 					label(for="placeSingle").form__view-item.disabled.form__view-link.form__view-link_single.active
@@ -54,6 +55,6 @@
 			.slider(id="slider", data-value="100").disabled
 		.buttons.clearfix
 			.button__left.left
-				button(type="reset" id="restBtn").button__reset.reset.disabled Сброс
+				button(id="restBtn").button__reset.reset.disabled Сброс
 			.button__right.right
 				button(id="submitBtn", data-server="php/toserver.php", type="submit", disabled).button__submit.download.disabled Скачать
