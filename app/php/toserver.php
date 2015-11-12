@@ -13,10 +13,9 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$imname = $path.'/'.$_POST['image'];
 	$patternname = $path.'/'.$_POST['watermark'];
 	$opacity = $_POST['opacity'];
-	//$placeaction = $_POST['placeaction'];
-	$placeaction = 'tile';
-	$indentX = intval($_POST['indentX']);
-	$indentY = intval($_POST['indentY']);
+	$placeaction = $_POST['placeaction'];
+	$indentX = $_POST['indentX'];
+	$indentY = $_POST['indentY'];
 
 	//==========================================
 
@@ -65,10 +64,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	
 	//Замостить
 	if(isset($pattern) && $placeaction == 'tile') {
-		if($patternWidth < $srcWidth || $patternHeight < $srcHeight){
-        for($patternX=0; $patternX < $srcWidth; $patternX += $patternWidth){
-            for($patternY=0; $patternY < $srcHeight; $patternY += $patternHeight){
-                	imagecopy($im,$pattern,0,0,$indentX,$indentY,$patternWidth,$patternHeight);
+		if($patternWidth<$srcWidth || $patternHeight<$srcHeight){
+        for($patternX=0;$patternX<$srcWidth;$patternX+=$patternWidth){
+            for($patternY=0;$patternY<$srcHeight;$patternY+=$patternHeight){
+                	imagecopy($im,$pattern,$patternX,$patternY,0,0,$patternWidth,$patternHeight);
             	}
         	}
     	} else imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
@@ -90,7 +89,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     imagesavealpha($tomerge, true);
 
     //Основной мерж картинок
-    imagecopymerge($srcimg, $tomerge, 0, 0, 0, 0, $srcWidth, $srcHeight, $opacity);
+    imagecopymerge($srcimg, $tomerge, intval($indentX), intval($indentY), 0, 0, $srcWidth, $srcHeight, $opacity);
     imagealphablending($srcimg, false);
     imagesavealpha($srcimg, true);
 
@@ -141,6 +140,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 else {
 	header('Content-Disposition: attachment; filename=NOFILE.php');
 	header("HTTP/1.0 404 Not Found");
+	exit('NO FILES');
+}
+
+?>;
 	exit('NO FILES');
 }
 
