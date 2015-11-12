@@ -32,6 +32,10 @@ body {
   width: 960px;
   margin: 0 auto; }
 
+.disabled {
+  opacity: .5;
+  pointer-events: none; }
+
 .watermark-left {
   width: 702px;
   background: #605c60;
@@ -409,9 +413,6 @@ body {
 
 .linePositions {
   display: none; }
-
-.disabled {
-  opacity: .5; }
 
 .footer {
   text-align: center;

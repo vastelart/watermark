@@ -9,12 +9,12 @@
 					.form-input__fake.form-input__fake-base-img(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="baseImg").form-input__origin-icon
 			.form-input-box
-				label(for="").form__title.watermark Водяной знак
+				label(for="").form__title.watermark.disabled Водяной знак
 				.form-input__origin.form-input-style.disabled
 					input(name="files[]" type="file" id="watermark" disabled).form-input__origin-file
 					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left")
 					label(for="watermark").form-input__origin-icon.disabled
-		.form-position.delimiter(id="form-position")
+		.form-position.delimiter.disabled(id="form-position")
 			h5.form__title.position Положение
 				//- блок для изменения видов
 				.form-block
@@ -49,11 +49,11 @@
 								span.out Вверх
 							.sett-down
 								span.out Вниз
-		.form-opacity.delimiter
-			label(for="", id="").form__title.form__title-opacity.transparency Прозрачность
-			.slider(id="slider", data-value="100")
+		.form-opacity.delimiter.disabled
+			label(for="", id="").form__title.form__title-opacity.transparency.disabled Прозрачность
+			.slider(id="slider", data-value="100").disabled
 		.buttons.clearfix
 			.button__left.left
-				button(type="reset" id="restBtn").button__reset.reset Сброс
+				button(type="reset" id="restBtn").button__reset.reset.disabled Сброс
 			.button__right.right
 				button(id="submitBtn", data-server="php/toserver.php", type="submit", disabled).button__submit.download.disabled Скачать

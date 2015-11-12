@@ -19,6 +19,12 @@
 		event.preventDefault();
 		submit.classList = this.classList + ' disabled';
 
+		//Вставляем в кнопку лоадер
+		var rememberHtml = submit.textContent;
+		submit.textContent = '';
+		submit.innerHTML = '<img src="img/ajax-loader.gif">';
+		submit.setAttribute('disabled', true);
+
 		//Достаем нужные значения
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
 		var watermark = document.querySelector('.form-input__fake-watermark').textContent;
@@ -76,7 +82,12 @@
 				saveAs(blob, fileNameToSave);
 
 				//Посылаем запрос на удаление файла через новый XMLHttpRequest, естественно
-				toDeleteFile(fileNameToSave);
+				toDeleteFile(fileNameToSave, placeaction);
+
+				//Возвращаем в кнопку сабмита текст
+				submit.innerHTML = '';
+				submit.textContent = rememberHtml;
+				submit.removeAttribute('disabled');
 			}
 			else {
 				console.log('НЕ ОК. ЧТО-ТО НЕ СРАБОТАЛО');
@@ -87,11 +98,14 @@
 	}
 
 	//Функция удаления файла сразу же после скачивания
-	function toDeleteFile(fileToDelete) {
+	function toDeleteFile(fileToDelete, action) {
 		var destroyer = new XMLHttpRequest();
 		var former = new FormData();
 
 		former.append('todelete', fileToDelete);
+		former.append('actionplace', action);
+
+		console.log(action);
 
 		destroyer.open('POST', '/php/todelete.php', true);
 		destroyer.onload = function() {
@@ -99,7 +113,7 @@
 				console.log(this.response);
 			}
 			else {
-				console.log('НИЧЕГО НЕ ВЫШЛО. ФАЙЛ ОСТАЛСЯ');
+				console.log('НИЧЕГО НЕ ВЫШЛО. ФАЙЛ ' + fileToDelete + ' ОСТАЛСЯ');
 			}
 		}
 

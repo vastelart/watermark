@@ -22,8 +22,8 @@
 						<h1 class="image-block__title-text maintitle">Генератор водяных знаков</h1>
 					</div>
 					<div class="image-block__img">
-						<div id="mainImageInsert" class="main-image-insert"><img src="img/test/room.jpg" class="main-img-inserted">
-							<div id="watermarkInsert" class="watermark-insert"><img src="img/test/stewie.png" class="water-img-inserted"></div>
+						<div id="mainImageInsert" class="main-image-insert"><img src="" class="main-img-inserted">
+							<div id="watermarkInsert" class="watermark-insert"><img src="" class="water-img-inserted"></div>
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 								</div>
 							</div>
 							<div class="form-input-box">
-								<label for="" class="form__title watermark">Водяной знак</label>
+								<label for="" class="form__title watermark disabled">Водяной знак</label>
 								<div class="form-input__origin form-input-style disabled">
 									<input name="files[]" type="file" id="watermark" disabled class="form-input__origin-file">
 									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark"></div>
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="form-position" class="form-position delimiter">
+						<div id="form-position" class="form-position delimiter disabled">
 							<h5 class="form__title position">Положение
 								<div class="form-block">
 									<label for="placeSingle" class="form__view-item disabled form__view-link form__view-link_single active">
@@ -113,13 +113,13 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-opacity delimiter">
-							<label for="" id="" class="form__title form__title-opacity transparency">Прозрачность</label>
-							<div id="slider" data-value="100" class="slider"></div>
+						<div class="form-opacity delimiter disabled">
+							<label for="" id="" class="form__title form__title-opacity transparency disabled">Прозрачность</label>
+							<div id="slider" data-value="100" class="slider disabled"></div>
 						</div>
 						<div class="buttons clearfix">
 							<div class="button__left left">
-								<button type="reset" id="restBtn" class="button__reset reset">Сброс</button>
+								<button type="reset" id="restBtn" class="button__reset reset disabled">Сброс</button>
 							</div>
 							<div class="button__right right">
 								<button id="submitBtn" data-server="php/toserver.php" type="submit" disabled class="button__submit download disabled">Скачать</button>
@@ -164,5 +164,6 @@
 		<script src="js/toserver.js" defer></script>
 		<script src="js/switchmode.js" defer></script>
 		<script src="js/lang.js" defer></script>
+		<script src="js/errorcatch.js" defer></script>
 	</body>
 </html>

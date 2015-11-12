@@ -57,21 +57,17 @@ var uploadModule = (function () {
 
 				//Убираем disabled у инпута вотермарка
 				waterMark.prop('disabled', false);
-				var disabled = $('.disabled', '.watermark-right');
-				disabled.removeClass('disabled').removeAttr('disabled');
+				waterMark.parent().removeClass('disabled');
+				$('label[for=watermark]').removeClass('disabled');
 
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
-
-				//Обязательно ссылку в консоль, дочь самурая. Возьми себя в руки
-				//console.log(bigDataUrl);
 
 				//Очищаем контейнер перед вставкой изображения
 				var imgs = insert.find('img');
 				imgs.remove();
 
 				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
-				//insert.append('<img class="main-img-inserted" src="' + bigDataUrl + '">');
 				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
@@ -85,6 +81,10 @@ var uploadModule = (function () {
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				else if(insert.parent().attr('id') === 'watermarkInsert') {
+					
+					//Убираем disabled у всех остальных элементов
+					var disabled = $('.disabled', '.watermark-right');
+					disabled.removeClass('disabled').removeAttr('disabled');
 					console.log('WATER IS HERE');
 				}
 			});

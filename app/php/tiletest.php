@@ -84,8 +84,8 @@ if ($_POST['placeaction'] == "tile" && isset($_POST['image']) && isset($_POST['w
 
     //Сохранение файла
     $tofilename = $pathtosave.'/'.date('Ymd_his');
-    imagepng($srcimg, $tofilename.'_spazm_tiled.png');
-    $tobrowser = $tofilename.'_spazm.jpg';
+    $tobrowser = $tofilename.'_spazm_tiled.jpg';
+    imagejpeg($srcimg, $tobrowser, 90);
 
     //=====================================================================
 
