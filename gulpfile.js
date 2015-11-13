@@ -92,7 +92,7 @@ gulp.task('default', ['jade', 'scss', 'sync', 'watch']);
 gulp.task('useref', function() {
 	var assets = useref.assets();
 
-	return gulp.src(['app/index.html', 'app/favicon.ico'])
+	return gulp.src(['app/index.html', 'app/favicon.ico', 'app/lang.json'])
 		.pipe(assets)
 		.pipe(gulpif("*.js", uglify()))
 		.pipe(gulpif("*.css", minifyCss()))
