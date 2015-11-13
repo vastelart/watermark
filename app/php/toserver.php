@@ -88,8 +88,11 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     imagealphablending($tomerge, false);
     imagesavealpha($tomerge, true);
 
+    $mergeWidth = imagesx($tomerge);
+    $mergeHeight = imagesy($tomerge);
+
     //Основной мерж картинок
-    imagecopymerge($srcimg, $tomerge, intval($indentX), intval($indentY), 0, 0, $srcWidth, $srcHeight, $opacity);
+    imagecopymerge($srcimg, $tomerge, intval($indentX), intval($indentY), 0, 0, $mergeWidth, $mergeHeight, $opacity);
     imagealphablending($srcimg, false);
     imagesavealpha($srcimg, true);
 

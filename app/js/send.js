@@ -64,9 +64,7 @@ var uploadModule = (function () {
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
 
-				//Очищаем контейнер перед вставкой изображения
-				var imgs = insert.find('img');
-				imgs.remove();
+				
 
 				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
 				insert.attr('src', '/php/files/' + file.name);
@@ -83,14 +81,20 @@ var uploadModule = (function () {
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
 
+					//Очищаем контейнер перед вставкой изображения
+					var imgs = $('.watermark-insert').find('img');
+					if(imgs.length > 1) {
+						var rememberHtml = imgs[0];
+
+						for(var im = 1; im < imgs.length; im++ ) {
+							imgs[im].remove();
+						}
+					}
+					
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
-					//Возвращаем свойства вотермарку при плэйсе в контейнер
-					waterMark.css({
-						left: 0,
-						top: 0
-					});
+					
 
 					//Масштабируем вотермарк
 					//_resizeIt(watermarkInsert, mainImgInsert);
