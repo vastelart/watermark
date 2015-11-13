@@ -23,8 +23,8 @@
 		//Вставляем в кнопку лоадер
 		var rememberHtml = submit.textContent;
 		submit.textContent = '';
-		submit.innerHTML = '<img src="img/ajax-loader.gif">';
-		submit.setAttribute('disabled', true);
+		//submit.innerHTML = '<img src="img/ajax-loader.gif">';
+		submit.setAttribute('disabled', 'disabled');
 
 		//Достаем нужные значения
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;

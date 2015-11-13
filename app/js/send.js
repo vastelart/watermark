@@ -90,7 +90,7 @@ var uploadModule = (function () {
 							imgs[im].remove();
 						}
 					}
-					
+
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
@@ -110,8 +110,8 @@ var uploadModule = (function () {
 
 	//Функция масштабирования вотермарка
 	function _resizeIt(water, image) {
-		var imgParentWidth = image.parent().width();
-		var imgParentHeight = image.parent().height();
+		var imgParentWidth = $('#mainImageInsert').width();
+		var imgParentHeight = $('#mainImageInsert').height();
 		var nativeWidth = document.querySelector('.main-img-inserted').naturalWidth;
 		var nativeHeight = document.querySelector('.main-img-inserted').naturalHeight;
 
@@ -121,8 +121,13 @@ var uploadModule = (function () {
 		console.log(widthRatio);
 		console.log(heightRatio);
 
-		water.width(water.width() * widthRatio);
-		water.height(water.height() * heightRatio);
+		//water.width(water.width() * widthRatio);
+		//water.height(water.height() * heightRatio);
+
+		water.css({
+			width: (water.width() * widthRatio) + 'px',
+			height: (water.height() * heightRatio) + 'px'
+		});
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
 	}
