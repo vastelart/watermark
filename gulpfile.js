@@ -1,7 +1,7 @@
 var
-	gulp        = require('gulp'),
+	gulp = require('gulp'),
 	scss = require('gulp-scss'),
-	jade        = require('gulp-jade'),
+	jade = require('gulp-jade'),
 	browserSync = require('browser-sync').create(),
 	useref = require("gulp-useref"),
 	uglify = require("gulp-uglify"),
@@ -13,7 +13,7 @@ var
 	gutil = require("gulp-util"),
 	RS_CONF = require('./rs-conf.js'),
 	concatCss = require("gulp-concat-css"),
-	plumber     = require('gulp-plumber');
+	plumber = require('gulp-plumber');
 
 /* --------- paths --------- */
 
@@ -29,8 +29,6 @@ var
 			location    : 'app/markup/_templates/main.scss',
 			entryPoint  : 'app/css/main.css'
 		},
-
-
 
 		browserSync : {
 			baseDirDist : './dist',
@@ -88,73 +86,62 @@ gulp.task('watch', function(){
 gulp.task('default', ['jade', 'scss', 'sync', 'watch']);
 
 
-/*******************************************
- * DIST
- ******************************************/
+/********************* BUILD **********************/
 
-// Переносим CSS JS HTML в папку DIST
+
 gulp.task('useref', function() {
 	var assets = useref.assets();
 
-	return gulp.src('app/index.html' )
+	return gulp.src(['app/index.html', 'app/favicon.ico'])
 		.pipe(assets)
 		.pipe(gulpif("*.js", uglify()))
-		.pipe(gulpif("*.css", minifyCss({compatibility: "ie8"})))
+		.pipe(gulpif("*.css", minifyCss()))
 		.pipe(assets.restore())
 		.pipe(useref())
 		.pipe(gulp.dest("./dist"));
 });
+
+
 gulp.task('php', function() {
-	var assets = useref.assets();
-
 	return gulp.src('app/php/*.php')
-		.pipe(assets)
-
-		.pipe(assets.restore())
-		.pipe(useref())
 		.pipe(gulp.dest("./dist/php"));
 });
 
 
-
-// Перенос картинок
 gulp.task("images", function () {
 	return gulp.src([RS_CONF.path.baseDir+"/img/*", "!"+ RS_CONF.path.baseDir+"/img/test"])
 		.pipe(gulp.dest(RS_CONF.path.distDir+"/img"));
 });
 
+
 gulp.task("htc", function (){
 	return gulp.src ('app/php/files/.htaccess')
-		.pipe(gulp.dest("./dist/php/files"))
-
+		.pipe(gulp.dest("./dist/php/files"));
 });
 
-/****************?????*************/
-// Перенос остальных файлов (favicon и т.д.)
+
 gulp.task("extras", function () {
 	return gulp.src([RS_CONF.path.baseDir+"*.*","!"+RS_CONF.path.htmlDir])
 		.pipe(filter([".ico"]))
 		.pipe(gulp.dest(RS_CONF.path.distDir));
 });
-/****************????? END *************/
 
-// Очищаем директорию DIST
+
 gulp.task("clean-dist", function () {
 	return del(RS_CONF.path.distDelDir);
 });
 
-// Вывод размера папки APP
+
 gulp.task("size-app", function () {
 	return gulp.src(RS_CONF.path.baseDir+"/**/*").pipe(size({title: "APP size: "}));
 });
 
 
-// Сборка и вывод размера папки DIST
-gulp.task("dist", ["php","useref", "images", "extras","htc", "size-app" ], function () {
+gulp.task("dist", ["php","useref","images","extras","htc"], function () {
 	return gulp.src(RS_CONF.path.distDir+"/**/*").pipe(size({title: "DIST size: "}));
 });
 
-// Собираем папку DIST - только когда файлы готовы
+
 gulp.task("build", ["clean-dist"], function () {
 	gulp.start("dist");
 });

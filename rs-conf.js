@@ -14,8 +14,7 @@
             distDir: distBaseDir,
             distCssDir: distBaseDir +"/css/",
             distJsDir: distBaseDir +"/js/",
-            distDelDir: [distBaseDir +"/**", "!"+ distBaseDir],
-
+            distDelDir: [distBaseDir +"/**", "!"+ distBaseDir]
         }
 
     };

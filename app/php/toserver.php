@@ -136,6 +136,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     imagedestroy($im);
     imagedestroy($srcimg);
     imagedestroy($pattern);
+    imagedestroy($tomerge);
 
 	//======================================================================
 

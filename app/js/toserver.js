@@ -72,6 +72,12 @@
 				var getHeaderResponse = this.getResponseHeader('Content-Disposition');
 				var extractHeaderResponseArray = nameRegexp.exec(getHeaderResponse);
 				var fileNameToSave = extractHeaderResponseArray[1];
+
+				//Ошибка загрузки
+				if(!fileNameToSave) {
+					console.log('ERROR DETECTED ', Error);
+					return false;
+				}
 				
 				//Отладочное сообщение имени файла в консоль
 				console.log(fileNameToSave);

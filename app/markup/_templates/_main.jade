@@ -6,28 +6,31 @@ html(lang="ru-RU")
 		meta(name="viewport" content="width=980, initial-scale=1.0")
 		link(rel="shortcut icon" href="favicon.ico" type="image/x-icon")
 		link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic' rel='stylesheet' type='text/css')
-		//build:js js/main.js
-
+		//build:css css/vendor.css
 		link(rel="stylesheet", href="bower/normalize-css/normalize.css")
 		link(rel="stylesheet", href="bower/jquery-ui/themes/base/slider.css")
 		//endbuild
 		//build:css css/main.css
 		link(rel="stylesheet", href="css/main.css")
 		//endbuild
-
+		//build:js js/modernizr.js
 		script(src="bower/modernizr/modernizr.js")
+		//endbuild
 
 	body
 		<!--[if lt IE 8]>
 		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
 		<![endif]-->
 
+		.danger.clearfix
+			span.danger__text Свойства
+			span.danger__close.right Закрыть
+
 		block watermark
 		block footer
 
 
 		//build:js js/vendor.js
-
 		script(src="bower/jquery/dist/jquery.min.js", defer)
 		script(src="bower/jquery-ui/jquery-ui.min.js", defer)
 		script(src="bower/qtip2/jquery.qtip.min.js", defer)

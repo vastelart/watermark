@@ -10,7 +10,10 @@ var uploadModule = (function () {
 		watermarkInsert = $('.water-img-inserted', '.watermark-left'),
 		mainImgName = $('.form-input__fake-base-img', '.form-input'),
 		waterMarkName = $('.form-input__fake-watermark', '.form-input'),
-		resetBtn = $('#restBtn', '.settings');
+		resetBtn = $('#restBtn', '.settings'),
+		danger = $('.danger'),
+		dangerText = $('.danger__text'),
+		dangerClose = $('.danger__close');
 
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
@@ -24,9 +27,15 @@ var uploadModule = (function () {
 			//Все ок
 			console.log('UPLOAD MODULE');
 
+			//Скрыть дисплей ошибок
+			dangerClose.on('click', function () {
+				danger.fadeOut(300);
+			});
+
 			//Вешаем аплоад файлов на инпуты основной картинки и вотермарка
 			_loadImage(mainImg, mainImgInsert, mainImgName);
 			_loadImage(waterMark, watermarkInsert, waterMarkName);
+
 
 		});
 	}
@@ -37,24 +46,35 @@ var uploadModule = (function () {
 			url: '/php/',
 			autoUpload: false,
 			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-			maxFileSize: 999000,
+			maxFileSize: 1572864,
 			minFileSize: 1,
 			maxNumberOfFiles: 1
 		}).on('fileuploadadd', function (e, data) {
 			$.each(data.files, function (index, file) {
-				if(!imgregexp.test(file.name)) {
-					return false;
-				}
-				else {
-					data.submit();
-				}
+				
+				data.submit();
+
 			});
-		}).on('fileuploaddone', function (e, data) {
+		}).on('fileuploadprocessalways', function (e, data) {
+	        var index = data.index,
+	            file = data.files[index];
+	        if (file.error) {
+	            _abortUpload(file.error);
+	        }
+	    }).on('fileuploaddone', function (e, data) {
 			$.each(data.files, function (index, file) {
 
 				//Файл загружен
-				console.log('LOAD');
-				console.log(file);
+				//console.log(file);
+
+				if(file.error ) {
+					console.log(file.error);
+					return false;
+				}
+				else {
+					console.log('LOAD');
+					console.log(file);
+				}
 
 				//Убираем disabled у инпута вотермарка
 				waterMark.prop('disabled', false);
@@ -105,7 +125,11 @@ var uploadModule = (function () {
 					console.log('WATER IS HERE');
 				}
 			});
-		});
+		}).on('fileuploadfail', function (e, data) {
+        	$.each(data.files, function (index) {
+            	console.log(file.name + ' FAILED TO LOAD!');
+        	});
+        });
 	} //Здесь этот кошмар заканчивается
 
 	//Функция масштабирования вотермарка
@@ -130,6 +154,13 @@ var uploadModule = (function () {
 		});
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+	}
+
+	//Функция прерывания берем... загрузки файла
+	function _abortUpload (message) {
+		dangerText.text(message);
+		danger.fadeIn(300);
+		return false;
 	}
 
 	//Возвращаем рычаг

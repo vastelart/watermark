@@ -22,3 +22,22 @@ body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
 }
 .watermark-wrapper {width: 960px; margin: 0 auto;}
 .disabled {opacity: .5; pointer-events: none;}
+.danger {
+	position: fixed;
+	left: 0;
+	right: 0;
+	padding: 15px;
+	background: #f97e76;
+	color: white;
+	font-weight: 400;
+	font-size: 18px;
+	text-align: center;
+	z-index: 9999;
+	display: none;
+}
+.danger__close {
+	font-size: 11px;
+	cursor: pointer;
+	opacity: .5;
+	line-height: 22px;
+}
