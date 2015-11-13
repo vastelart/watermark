@@ -73,18 +73,18 @@ var tilingModule = (function () {
 		if(tiledImages.length > 1) {
 			var rememberHtml = tiledImages[0];
 
-			$.each(tiledImages, function (elem, index) {
-				$(this).remove();
-			});
+			for(var im = 1; im < tiledImages.length; im++ ) {
+				tiledImages[im].remove();
+			}
 
-			waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
+			//waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
 			waterWrapper.draggable({
 				containment: mainImageWrapper
 			});
 		}
 		
 		console.log(rememberHtml);
-		_resizeIt();
+		//_resizeIt();
 	}
 
 	function _resizeIt () {

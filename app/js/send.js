@@ -93,7 +93,7 @@ var uploadModule = (function () {
 					});
 
 					//Масштабируем вотермарк
-					_resizeIt(watermarkInsert, mainImgInsert);
+					//_resizeIt(watermarkInsert, mainImgInsert);
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');
