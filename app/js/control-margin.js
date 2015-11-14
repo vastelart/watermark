@@ -24,10 +24,18 @@ var controlMargin = (function () {
 		}
 		else if(destroy === 'tile') {
 			console.log('УСТАНОВКА МАРДЖИНОВ ПО СТРЕЛКАМ ВКЛЮЧЕНА');
+			_btnXUp.unbind('click');
+			_btnXUp.unbind('click');
+			_btnYUp.unbind('click');
+			_btnYDown.unbind('click');
 			_setPositionByButton(destroy);
 		}
 		else if(destroy === 'single') {
 			console.log('ВКЛЮЧЕН КОНТРОЛЬ КООРДИНАТ ПО СТРЕЛКАМ');
+			_btnXUp.unbind('click');
+			_btnXUp.unbind('click');
+			_btnYUp.unbind('click');
+			_btnYDown.unbind('click');
 			_setPositionByButton(destroy);
 		}
 
@@ -97,11 +105,11 @@ var controlMargin = (function () {
 			_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); });
 			console.log('CHECKED TO SINGLE');
 		}
-		else {
-			_btnXUp.on('click', function() { _setMarginsToWatermark('plus', destroy); });
-			_btnXDown.on('click', function() { _setMarginsToWatermark('minus', destroy); });
-			_btnYUp.on('click', function() { _setMarginsToWatermark('plus', destroy); });
-			_btnYDown.on('click', function() { _setMarginsToWatermark('minus', destroy); });
+		else if(destroy === 'tile') {
+			_btnXUp.on('click', function() { _setMarginsToWatermark('right plus', destroy); });
+			_btnXDown.on('click', function() { _setMarginsToWatermark('right minus', destroy); });
+			_btnYUp.on('click', function() { _setMarginsToWatermark('bottom plus', destroy); });
+			_btnYDown.on('click', function() { _setMarginsToWatermark('bottom minus', destroy); });
 			console.log('CHECKED TO TILE');	
 		}
 	}
