@@ -43,6 +43,15 @@ var resetForm = (function () {
 			opacity: 1
 		});
 
+		//Сбрасываем отступы у вотермарков
+		var watermarkImages = $('#watermarkInsert').find('img');
+		$.each(watermarkImages, function () {
+			$(this).css({
+				'margin-right' : 0,
+				'margin-bottom' : 0
+			});
+		});
+
 		//Сбрасываем спиннер прозрачности и ставим ему атрибут data-value 100, его значение отпарвляется на сервер
 		sliderSpin.slider('value', 100);
 		sliderSpin.attr('data-value', 100);

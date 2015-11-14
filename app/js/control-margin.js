@@ -24,11 +24,11 @@ var controlMargin = (function () {
 		}
 		else if(destroy === 'tile') {
 			console.log('УСТАНОВКА МАРДЖИНОВ ПО СТРЕЛКАМ ВКЛЮЧЕНА');
-			_setPositionByButton(true);
+			_setPositionByButton(destroy);
 		}
 		else if(destroy === 'single') {
 			console.log('ВКЛЮЧЕН КОНТРОЛЬ КООРДИНАТ ПО СТРЕЛКАМ');
-			_setPositionByButton(false);
+			_setPositionByButton(destroy);
 		}
 
 		//Отменяем событие бай дефолт при клике по button
@@ -39,48 +39,71 @@ var controlMargin = (function () {
 
 	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
 	function _setMarginsToWatermark(oper, destroy) {
-
-		if(destroy !== false) {
+		if(destroy === 'tile') {
 			var waterImgs = _watermark.find('img');
 			var marginRight = waterImgs.css('margin-right');
-			var indent = null;
+
+			if(marginRight < 0) {
+				marginRight = 0;
+				return marginRight;
+			}
+
 			console.log(marginRight);
 
+
+			//Такая вот конструкция. Не знаю, как избежать здесь DRY. Времени нет подумать.
+			//Если аргумент оператора равен 'plus', увеличиваем отступы у вотермарков
+			//Если 'minus' - уменьшаем. Ничего не ограничиваем
 			switch(oper) {
-				case 'plus':
+				case 'right plus':
 					$.each(waterImgs, function () {
 						$(this).css({
-							'margin-right': parseInt(marginRight) + 1,
+							'margin-right': parseInt(marginRight) + 1
+						});
+					});
+					break;
+				case 'right minus ':
+					$.each(waterImgs, function () {
+						$(this).css({
+							'margin-right': parseInt(marginRight) - 1
+						});
+					});
+					break;
+				case 'bottom plus':
+					$.each(waterImgs, function () {
+						$(this).css({
 							'margin-bottom' : parseInt(marginRight) + 1
 						});
 					});
 					break;
-				case 'minus':
+				case 'bottom minus':
 					$.each(waterImgs, function () {
 						$(this).css({
-							'margin-right': parseInt(marginRight) - 1,
 							'margin-bottom' : parseInt(marginRight) - 1
 						});
 					});
 					break;
-				default:
-					indent = '+'
-					break;
 			}
-
-		}
-		else {
-			return;
 		}
 	}
 
 	//Смещение по клику на кнопки
 	function _setPositionByButton(destroy) {
-		_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); _setMarginsToWatermark('plus', destroy); });
-		_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); _setMarginsToWatermark('minus', destroy); });
-		_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); _setMarginsToWatermark('plus', destroy); });
-		_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); _setMarginsToWatermark('minus', destroy); });
-		console.log('CHECKED TO SINGLE');
+
+		if(destroy === 'single') {
+			_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); });
+			_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); });
+			_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); });
+			_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); });
+			console.log('CHECKED TO SINGLE');
+		}
+		else {
+			_btnXUp.on('click', function() { _setMarginsToWatermark('plus', destroy); });
+			_btnXDown.on('click', function() { _setMarginsToWatermark('minus', destroy); });
+			_btnYUp.on('click', function() { _setMarginsToWatermark('plus', destroy); });
+			_btnYDown.on('click', function() { _setMarginsToWatermark('minus', destroy); });
+			console.log('CHECKED TO TILE');	
+		}
 	}
 
 	//Установка координат в инпуты
