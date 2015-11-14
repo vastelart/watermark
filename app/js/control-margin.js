@@ -24,11 +24,13 @@ var controlMargin = (function () {
 		}
 		else if(destroy === 'tile') {
 			console.log('УСТАНОВКА МАРДЖИНОВ ПО СТРЕЛКАМ ВКЛЮЧЕНА');
-			_setMarginsToWatermark();
+			_setPositionByButton(false);
+			//_setMarginsToWatermark(true);
 		}
 		else if(destroy === 'single') {
-			console.log('ВКЛЮЧЕН КОНТРОЛЬ КООРДИНАТ ПО СТРЕЛКАМ');
-			_setPositionByButton();
+			//console.log('ВКЛЮЧЕН КОНТРОЛЬ КООРДИНАТ ПО СТРЕЛКАМ');
+			//_setMarginsToWatermark(false);
+			_setPositionByButton(true);
 		}
 
 		//Отменяем событие бай дефолт при клике по button
@@ -39,20 +41,28 @@ var controlMargin = (function () {
 
 	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
 	function _setMarginsToWatermark() {
-		_btnXUp.on('click', function() { _watermark.find('img').css({ 'margin-right' : +2 }); });
-		_btnXDown.on('click', function() {_watermark.css({ 'margin-right': _watermark.css('margin-right') - 2 });});
-		_btnYUp.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') + 2 });});
-		_btnYDown.on('click', function() {_watermark.css({ 'margin-bottom': _watermark.css('margin-bottom') - 2 });});
-		console.log('CHECKED TO TILE');
+		var waterImgs = _watermark.find('img');
+		var marginRight = waterImgs.css('margin-right');
+		console.log(marginRight);
+		//console.log(waterImgs);
+
+		$.each(waterImgs, function () {
+			$(this).css({
+				'margin-right': parseInt(marginRight) + 2,
+				'margin-bottom' : parseInt(marginRight) + 2
+			});
+		});
 	}
 
 	//Смещение по клику на кнопки
-	function _setPositionByButton() {
-		_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); });
-		_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); });
-		_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); });
-		_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); });
-		console.log('CHECKED TO SINGLE');
+	function _setPositionByButton(destroy) {
+		if(destroy === true) {
+			_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); _setMarginsToWatermark(); });
+			_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); _setMarginsToWatermark(); });
+			_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); _setMarginsToWatermark(); });
+			_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); _setMarginsToWatermark(); });
+			console.log('CHECKED TO SINGLE');
+		}
 	}
 
 	//Установка координат в инпуты

@@ -114,8 +114,6 @@ var uploadModule = (function () {
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
-					
-
 					//Масштабируем вотермарк
 					//_resizeIt(watermarkInsert, mainImgInsert);
 					
