@@ -37,56 +37,6 @@ var controlMargin = (function () {
 		});
 	}
 
-	//Добавление отступов по клику на кнопки (button слева от инпутов с координатами)
-	function _setMarginsToWatermark(oper, destroy) {
-		if(destroy === 'tile') {
-			var waterImgs = _watermark.find('img');
-			var marginRight = waterImgs.css('margin-right');
-
-			if(marginRight < 0) {
-				marginRight = 0;
-				return marginRight;
-			}
-
-			console.log(marginRight);
-
-
-			//Такая вот конструкция. Не знаю, как избежать здесь DRY. Времени нет подумать.
-			//Если аргумент оператора равен 'plus', увеличиваем отступы у вотермарков
-			//Если 'minus' - уменьшаем. Ничего не ограничиваем
-			switch(oper) {
-				case 'right plus':
-					$.each(waterImgs, function () {
-						$(this).css({
-							'margin-right': parseInt(marginRight) + 1
-						});
-					});
-					break;
-				case 'right minus ':
-					$.each(waterImgs, function () {
-						$(this).css({
-							'margin-right': parseInt(marginRight) - 1
-						});
-					});
-					break;
-				case 'bottom plus':
-					$.each(waterImgs, function () {
-						$(this).css({
-							'margin-bottom' : parseInt(marginRight) + 1
-						});
-					});
-					break;
-				case 'bottom minus':
-					$.each(waterImgs, function () {
-						$(this).css({
-							'margin-bottom' : parseInt(marginRight) - 1
-						});
-					});
-					break;
-			}
-		}
-	}
-
 	//Смещение по клику на кнопки
 	function _setPositionByButton(destroy) {
 
@@ -103,6 +53,63 @@ var controlMargin = (function () {
 			_btnYUp.on('click', function() { _setMarginsToWatermark('bottom plus', destroy); });
 			_btnYDown.on('click', function() { _setMarginsToWatermark('bottom minus', destroy); });
 			console.log('CHECKED TO TILE');	
+		}
+	}
+
+	//Добавление отступов по клику на кнопки (button справа от инпутов с координатами)
+	function _setMarginsToWatermark(oper, destroy) {
+		if(destroy === 'tile') {
+			var waterImgs = _watermark.find('img');
+			var marginRight = waterImgs.css('margin-right');
+			var marginBottom = waterImgs.css('margin-bottom');
+			marginRight = parseInt(marginRight);
+			marginBottom = parseInt(marginBottom);
+
+			console.log(marginRight);
+
+			//Такая вот конструкция. Не знаю, как избежать здесь DRY. Времени нет подумать.
+			//Если аргумент оператора равен 'plus', увеличиваем отступы у вотермарков
+			//Если 'minus' - уменьшаем. Ничего не ограничиваем
+			switch(oper) {
+				case 'right plus':
+					$.each(waterImgs, function () {
+						$(this).css({
+							'margin-right': marginRight + 1
+						});
+					});
+					break;
+				case 'right minus':
+					if(marginRight === 0) {
+						return false;
+					}
+					else {
+						$.each(waterImgs, function () {
+							$(this).css({
+								'margin-right': marginRight - 1
+							});
+						});	
+					}
+					break;
+				case 'bottom plus':
+					$.each(waterImgs, function () {
+						$(this).css({
+							'margin-bottom' : marginBottom + 1
+						});
+					});
+					break;
+				case 'bottom minus':
+					if (marginBottom === 0) {
+						return false;
+					}
+					else {
+						$.each(waterImgs, function () {
+							$(this).css({
+								'margin-bottom' : marginBottom - 1
+							});
+						});
+					}
+					break;
+			}
 		}
 	}
 
