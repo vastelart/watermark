@@ -24,19 +24,11 @@ var controlMargin = (function () {
 		}
 		else if(destroy === 'tile') {
 			console.log('УСТАНОВКА МАРДЖИНОВ ПО СТРЕЛКАМ ВКЛЮЧЕНА');
-			_btnXUp.unbind('click');
-			_btnXUp.unbind('click');
-			_btnYUp.unbind('click');
-			_btnYDown.unbind('click');
-			_setPositionByButton(destroy);
+			_unbindClick(_posBtns, destroy);
 		}
 		else if(destroy === 'single') {
 			console.log('ВКЛЮЧЕН КОНТРОЛЬ КООРДИНАТ ПО СТРЕЛКАМ');
-			_btnXUp.unbind('click');
-			_btnXUp.unbind('click');
-			_btnYUp.unbind('click');
-			_btnYDown.unbind('click');
-			_setPositionByButton(destroy);
+			_unbindClick(_posBtns, destroy);
 		}
 
 		//Отменяем событие бай дефолт при клике по button
@@ -122,6 +114,15 @@ var controlMargin = (function () {
 
 			_inputY.val(Math.round(newY));
   			_inputX.val(Math.round(newX));
+	}
+
+	//Удаляем слушатель событий с кнопок и запускаем соответствующее позиционирование
+	function _unbindClick (btns, destroy) {
+		$.each(btns, function () {
+			$(this).unbind('click');
+		});
+
+		_setPositionByButton(destroy);
 	}
 
 	return {
