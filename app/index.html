@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>WATERMARK</title>
-		<meta name="viewport" content="width=980, initial-scale=1.0">
+		<meta name="viewport" content="width=980, initial-scale=1.0"><meta property="og:image" content="http://watermark.javascriptum.ru/img/logo.png" />
+		<meta property="og:title" content="Модный ресурс по созданию модных watermark'ов, например" />
+		<meta property="og:description" content="Создайте с помощью удобных инструментов неограниченное количество модных watermark'ов. Угар-угар, например!" />
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
 		<!--build:css css/vendor.css-->
@@ -16,12 +18,14 @@
 		<!--build:js js/modernizr.js-->
 		<script src="bower/modernizr/modernizr.js"></script>
 		<!--endbuild-->
+		
 	</head>
 	<body>
 		<!--[if lt IE 8]>
 		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
 		<![endif]-->
 		<div class="danger clearfix"><span class="danger__text">Свойства</span><span class="danger__close right">Закрыть</span></div>
+		<div class="logo"><img src="img/logo.png" alt="watermark" class="logo__img"></div>
 		<div class="main-wrapper">
 			<div class="watermark-wrapper clearfix">
 				<div class="watermark-left left">
@@ -147,11 +151,11 @@
 			<div class="like clearfix">
 				<ul class="like__list right">
 					<li class="like__item right"><a href="#" alt="Поставьте лайк" class="like__link like__link__like">Like us</a></li>
-					<li class="like__item left"><a href="#" alt="FB" class="like__link like__link__fb">facebook.com</a></li>
+					<li class="like__item left"><a href="#" alt="FB" data-type="fb" class="like__link like__link__fb">facebook.com</a></li>
 				</ul>
 				<ul class="like__socials__list left">
-					<li class="like__socials__item"><a href="#" alt="TW" class="like__link like__link__tw">twitter.com</a></li>
-					<li class="like__socials__item"><a href="#" alt="VK" class="like__link like__link__vk">vk.com</a></li>
+					<li class="like__socials__item"><a href="#" alt="TW" data-type="tw" class="like__link like__link__tw">twitter.com</a></li>
+					<li class="like__socials__item"><a href="#" alt="VK" data-type="vk" class="like__link like__link__vk">vk.com</a></li>
 				</ul>
 			</div>
 		</footer>
@@ -176,6 +180,7 @@
 		<script src="js/tiling.js" defer></script>
 		<script src="js/resetform.js" defer></script>
 		<script src="js/control-margin.js" defer></script>
+		<script src="js/social.js" defer></script>
 		<!--endbuild-->
 	</body>
 </html>

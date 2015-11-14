@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "496f75639f6678b70aa197016e83dad8",
+    "content-hash": "db0f96482282cc354e145b68e83946e8",
     "packages": [
         {
             "name": "smottt/wideimage",
