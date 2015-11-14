@@ -101,7 +101,8 @@ body {
   z-index: 99; }
 
 .logo {
-  display: none; }
+  left: -9999px;
+  position: absolute; }
 
 .watermark-right {
   width: 258px;
