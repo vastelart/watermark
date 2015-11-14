@@ -1,21 +1,25 @@
 var switchModeCatcher = (function () {
+	console.log('SWICTH MODE CATCHER');
+
 	var init = _listener;
 
 	var submit = $('#submitBtn', '.watermark-right');
+	var singleMode = $('.form__view-link_single');
+	var tileMode = $('.form__view-link_tile');
 	var viewMode = $('.form__view-link');
 
 	function _listener(actionplace) {
-		viewMode.on('click', _setServerData);
+		singleMode.on('click', _setServerData);
+		tileMode.on('click', _setServerData);
 		if(actionplace === 'single') {
 			console.log('SINGLE MODE');
 		}
 		else {
 			console.log('TILE MODE');
 		}
-		console.log('SWICTH MODE CATCHER');
 	}
 
-	function _setServerData(actionplace) {
+	function _setServerData() {
 		var serve = $(this).find('input[type=radio]').val();
 		
 		$.each(viewMode, function (index, value) {

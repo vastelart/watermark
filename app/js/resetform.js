@@ -11,10 +11,15 @@ var resetForm = (function () {
 	var sliderSpin = $('#slider', '.watermark-right');
 
 	//Начинаем слушать события
-	function _setListeners() {
+	function _setListeners(forceReset) {
 
 		//По клику на кнопку Сброс выполняем ряд процедур. Очень осторожно, чтобы не сбить настройки отправки данных на сервер
 		resetBtn.on('click', _resetForm);
+
+		//Если модуль вызвали в другом модуле, передав параметр TRUE, сбрасываем форму
+		if(forceReset) {
+			resetBtn.trigger('click');
+		}
 
 		//Модуль подключился. Если нет в консоли при рефреше страницы, занчит - нет
 		console.log('RESET MODULE');

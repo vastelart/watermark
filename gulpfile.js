@@ -92,7 +92,7 @@ gulp.task('default', ['jade', 'scss', 'sync', 'watch']);
 gulp.task('useref', function() {
 	var assets = useref.assets();
 
-	return gulp.src(['app/index.html', 'app/favicon.ico', 'app/lang.json'])
+	return gulp.src(['app/index.html', 'app/lang.json'])
 		.pipe(assets)
 		.pipe(gulpif("*.js", uglify()))
 		.pipe(gulpif("*.css", minifyCss()))
@@ -101,6 +101,10 @@ gulp.task('useref', function() {
 		.pipe(gulp.dest("./dist"));
 });
 
+gulp.task("icon", function () {
+	return gulp.src('app/favicon.ico')
+	.pipe(gulp.dest('dist'));
+});
 
 gulp.task('php', function() {
 	return gulp.src('app/php/*.php')
@@ -120,13 +124,6 @@ gulp.task("htc", function (){
 });
 
 
-gulp.task("extras", function () {
-	return gulp.src([RS_CONF.path.baseDir+"*.*","!"+RS_CONF.path.htmlDir])
-		.pipe(filter([".ico"]))
-		.pipe(gulp.dest(RS_CONF.path.distDir));
-});
-
-
 gulp.task("clean-dist", function () {
 	return del(RS_CONF.path.distDelDir);
 });
@@ -137,7 +134,7 @@ gulp.task("size-app", function () {
 });
 
 
-gulp.task("dist", ["php","useref","images","extras","htc"], function () {
+gulp.task("dist", ["php","useref","images","htc","icon"], function () {
 	return gulp.src(RS_CONF.path.distDir+"/**/*").pipe(size({title: "DIST size: "}));
 });
 

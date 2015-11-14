@@ -25,6 +25,10 @@ var tilingModule = (function () {
 
 	//Устанавливаем замощение
 	function _setTileMode () {
+
+		//Меняем логику поведения стрелок-контроллеров
+		//controlPosition.init('destroy');
+		//controlMargin.init();
 		
 		var waterWrapperWidth = waterWrapper.width(),
 			waterWrapperHeight = waterWrapper.height(),
@@ -60,9 +64,22 @@ var tilingModule = (function () {
         	}
 		});
 
+		//Сбрасываем позишен контейнера вотермарков
+		waterWrapper.css({
+			left: 0,
+			top: 0
+		});
+
+		//Сбрасываем форму
+		resetForm.init(true);
+
 	}
 
 	function _setSingleMode () {
+
+		//Меняем логику поведения стрелок-контроллеров
+		//controlPosition.init();
+		//controlMargin.init('destroy');
 
 		var tiledImages = waterWrapper.find('img');
 
@@ -83,13 +100,6 @@ var tilingModule = (function () {
 			});
 		}
 		
-		console.log(rememberHtml);
-		//_resizeIt();
-	}
-
-	function _resizeIt () {
-		var srcimg = document.querySelector('.main-img-inserted');
-		console.log(srcimg);
 	}
 
 	return {
