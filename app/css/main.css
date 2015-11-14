@@ -100,6 +100,9 @@ body {
   display: none;
   z-index: 99; }
 
+.logo {
+  display: none; }
+
 .watermark-right {
   width: 258px;
   background: #f1f1f5;
@@ -118,7 +121,7 @@ body {
   color: #2e3641;
   margin-bottom: 40px; }
 
-/*---------╤А╨░╨╖╨┤╨╡╨╗╨╕╤В╨╡╨╗╤М ---------*/
+/*---------разделитель ---------*/
 .delimiter {
   padding: 0 20px;
   box-sizing: border-box;

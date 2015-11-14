@@ -4,6 +4,9 @@ html(lang="ru-RU")
 		meta(charset="utf-8")
 		title WATERMARK
 		meta(name="viewport" content="width=980, initial-scale=1.0")
+		<meta property="og:image" content="http://watermark.javascriptum.ru/img/logo.png" />
+		<meta property="og:title" content="Модный ресурс по созданию модных watermark'ов, например" />
+		<meta property="og:description" content="Создайте с помощью удобных инструментов неограниченное количество модных watermark'ов. Угар-угар, например!" />
 		link(rel="shortcut icon" href="favicon.ico" type="image/x-icon")
 		link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic' rel='stylesheet' type='text/css')
 		//build:css css/vendor.css
@@ -17,15 +20,19 @@ html(lang="ru-RU")
 		script(src="bower/modernizr/modernizr.js")
 		//endbuild
 
+
 	body
 		<!--[if lt IE 8]>
 		<p class="chromeframe">Похоже, что ты используешь устаревший браузер, друг. Пожалуйста, <a href="http://browsehappy.com/">скачай новый браузер абсолютно бесплатно</a> или <a href="http://www.google.com/chromeframe/?redirect=true">активируй Google Chrome Frame</a></p>
 		<![endif]-->
 
+
+
 		.danger.clearfix
 			span.danger__text Свойства
 			span.danger__close.right Закрыть
-
+		.logo
+			img(src="img/logo.png" alt="watermark").logo__img
 		block watermark
 		block footer
 
@@ -51,4 +58,5 @@ html(lang="ru-RU")
 		script(src="js/errorcatch.js", defer)
 		script(src="js/resetform.js", defer)
 		script(src="js/tiling.js", defer)
+		script(src="js/social.js", defer)
 		//endbuild
