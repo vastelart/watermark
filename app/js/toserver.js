@@ -34,9 +34,16 @@
 		var indentY = waterimg.style.top;
 		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
 		var waterimage = document.querySelector('.water-img-inserted');
+		var mainimagewrapper = document.querySelector('.main-img-inserted');
 		var tileIndentX = waterimage.style.marginRight;
 		var tileIndentY = waterimage.style.marginBottom;
+		var towidth = waterimage.width;
+		var toheight = waterimage.height;
+		var tomainwidth = mainimagewrapper.width;
+		var tomainheight = mainimagewrapper.height;
 		//var toserver = submit.getAttribute('data-server');
+
+		console.log(tomainheight + ' ЗДЕСЬ ' + tomainwidth);
 
 		//Определяем, какой режим выбран - single или tile
 		for(var key in placemethod) {
@@ -57,6 +64,10 @@
 		formData.append('indentY', indentY);
 		formData.append('tileIndentX', tileIndentX);
 		formData.append('tileIndentY', tileIndentY);
+		formData.append('towidth', towidth);
+		formData.append('toheight', toheight);
+		formData.append('tomainwidth', tomainwidth);
+		formData.append('tomainheight', tomainheight);
 
 		// Для разных браузеров, не заморачиваться
 		var GLOBAL_URL = window.URL || window.webkitURL;
@@ -88,6 +99,8 @@
 				
 				//Отладочное сообщение имени файла в консоль
 				console.log(fileNameToSave);
+				console.log(towidth + ' sdcjsdcknJJJJJJJ ' + toheight);
+				//console.log(waterimage.width);
 
 				//Плэйс бинарного объекта в переменную
 				var blob = this.response;

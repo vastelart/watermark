@@ -18,6 +18,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$indentY = $_POST['indentY'];
 	$tileIndentX = intval($_POST['tileIndentX']);
 	$tileIndentY = intval($_POST['tileIndentY']);
+	$towidth = intval($_POST['towidth']);
+	$toheight = intval($_POST['toheight']);
+	$tomainwidth = intval($_POST['tomainwidth']);
+	$tomainheight = intval($_POST['tomainheight']);
 
 	//==========================================
 
@@ -27,24 +31,54 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 	//Проверяем основное изображение и делаем нужное сжатие
 	if (preg_match('/[.](GIF)|(gif)$/', $imname)) {
-		$srcimg = imagecreatefromgif($imname);
+		$srcimg_src = imagecreatefromgif($imname);
+		$width = imagesx($srcimg_src);
+		$height = imagesy($srcimg_src);
+		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
-		$srcimg = imagecreatefrompng($imname);
+		$srcimg_src = imagecreatefrompng($imname);
+		$width = imagesx($srcimg_src);
+		$height = imagesy($srcimg_src);
+		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
-		$srcimg = imagecreatefromjpeg($imname);
+		$srcimg_src = imagecreatefromjpeg($imname);
+		$width = imagesx($srcimg_src);
+		$height = imagesy($srcimg_src);
+		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagedestroy($srcimg_src);
 	}
 
 	//Проверяем вотермарк по типу и делаем нужное сжатие
 	if (preg_match('/[.](GIF)|(gif)$/', $patternname)) {
-		$pattern = imagecreatefromgif($patternname);
+		$pattern_src = imagecreatefromgif($patternname);
+		$width = imagesx($pattern_src);
+		$height = imagesy($pattern_src);
+		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
-		$pattern = imagecreatefrompng($patternname);
+		$pattern_src = imagecreatefrompng($patternname);
+		$width = imagesx($pattern_src);
+		$height = imagesy($pattern_src);
+		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
-		$pattern = imagecreatefromjpeg($patternname);
+		$pattern_src = imagecreatefromjpeg($patternname);
+		$width = imagesx($pattern_src);
+		$height = imagesy($pattern_src);
+		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagedestroy($pattern_src);
 	}
 
 	//==========================================
@@ -139,6 +173,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     imagedestroy($srcimg);
     imagedestroy($pattern);
     imagedestroy($tomerge);
+    imagedestroy($pattern_src);
+    imagedestroy($srcimg_src);
 
 	//======================================================================
 
