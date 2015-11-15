@@ -71,16 +71,14 @@
 				//Извлекаем название файла из заголовков, которые отправил PHP-обработчик
 				var getHeaderResponse = this.getResponseHeader('Content-Disposition');
 				var extractHeaderResponseArray = nameRegexp.exec(getHeaderResponse);
-				var fileNameToSave = extractHeaderResponseArray[1];
 
-				//Ошибка загрузки
-				if(fileNameToSave === 'error') {
-					console.log('ERROR DETECTED ', Error);
-					return false;
+				if(extractHeaderResponseArray !== null) {
+					var fileNameToSave = extractHeaderResponseArray[1];
 				}
-
-				reliz.onerror = function () {
+				else {
 					reliz.abort();
+					errorCatch.init('Ошибка работы сервера. Скорее всего, файл слишком большой. Обновите страницу');
+					return false;
 				}
 				
 				//Отладочное сообщение имени файла в консоль
@@ -107,6 +105,7 @@
 		};
 
 		reliz.send(formData);
+		
 	}
 
 	//Функция удаления файла сразу же после скачивания
