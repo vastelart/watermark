@@ -15,7 +15,8 @@ var controlMargin = (function () {
 		_btnYUp = $('#YUp'),
 		_btnYDown = $('#YDown'),
 		_posBtns = $('.sett-up, .sett-down', '.position__adjust-sett'),
-		_watermark = $('#watermarkInsert');
+		_watermark = $('#watermarkInsert'),
+		_linePositions = $('.linePositions', '.watermark-right');
 
 	//Слушатель
 	function _setListener(destroy) {
@@ -130,6 +131,8 @@ var controlMargin = (function () {
 		});
 
 		_setPositionByButton(destroy);
+
+		destroy === 'single' ? _linePositions.fadeOut(300) : _linePositions.fadeIn(300);
 	}
 
 	return {

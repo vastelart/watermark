@@ -351,5 +351,5 @@
 	@include viewModeMix(-20px, -257px, -316px);
 }
 
-.linePositions {display: none;}
+.linePositions {display: none; z-index: 500;}
 .position {display: inline-block; max-width: 170px;}
