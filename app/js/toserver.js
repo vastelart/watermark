@@ -33,6 +33,9 @@
 		var indentX = waterimg.style.left;
 		var indentY = waterimg.style.top;
 		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
+		var waterimage = document.querySelector('.water-img-inserted');
+		var tileIndentX = waterimage.style.marginRight;
+		var tileIndentY = waterimage.style.marginBottom;
 		//var toserver = submit.getAttribute('data-server');
 
 		//Определяем, какой режим выбран - single или tile
@@ -52,6 +55,8 @@
 		formData.append('opacity', opacity);
 		formData.append('indentX', indentX);
 		formData.append('indentY', indentY);
+		formData.append('tileIndentX', tileIndentX);
+		formData.append('tileIndentY', tileIndentY);
 
 		// Для разных браузеров, не заморачиваться
 		var GLOBAL_URL = window.URL || window.webkitURL;

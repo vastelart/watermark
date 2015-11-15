@@ -214,7 +214,8 @@ body {
 
 .position__adjust {
   height: 102px;
-  margin-bottom: 36px; }
+  margin-bottom: 36px;
+  position: relative; }
 
 .position__adjust-radio {
   width: 102px;
@@ -235,7 +236,8 @@ body {
   width: 34px;
   position: relative;
   background: #dbe1e8;
-  border: 1px solid #9eb2c0; }
+  border: 1px solid #9eb2c0;
+  cursor: pointer; }
 
 .label-position:hover, .label-position:active, .label-position:focus {
   background: #f97e76; }
@@ -422,6 +424,7 @@ body {
   display: inline-block;
   width: 19px;
   height: 19px;
+  cursor: pointer;
   background-position: -20px -139px;
   margin-right: 10px; }
   .form__view-link_single:active, .form__view-link_single:hover, .form__view-link_single:focus, .form__view-link_single.active {
@@ -435,6 +438,7 @@ body {
   display: inline-block;
   width: 19px;
   height: 19px;
+  cursor: pointer;
   background-position: -20px -257px; }
   .form__view-link_tile:active, .form__view-link_tile:hover, .form__view-link_tile:focus, .form__view-link_tile.active {
     width: 19px;
@@ -442,8 +446,26 @@ body {
     background-position: -20px -316px; }
 
 .linePositions {
-  display: none;
-  z-index: 500; }
+  z-index: 500;
+  height: 102px;
+  position: absolute;
+  display: none; }
+
+.linePosition-gorizont, .linePosition-vertical {
+  position: absolute; }
+
+.linePosition-gorizont {
+  height: 15px;
+  width: 99px;
+  background: #f97e76;
+  top: 43px; }
+
+.linePosition-vertical {
+  width: 15px;
+  background: #f97e76;
+  top: 0;
+  left: 41px;
+  height: 100px; }
 
 .position {
   display: inline-block;

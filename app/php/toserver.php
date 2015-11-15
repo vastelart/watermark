@@ -16,6 +16,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$placeaction = $_POST['placeaction'];
 	$indentX = $_POST['indentX'];
 	$indentY = $_POST['indentY'];
+	$tileIndentX = intval($_POST['tileIndentX']);
+	$tileIndentY = intval($_POST['tileIndentY']);
 
 	//==========================================
 
@@ -65,8 +67,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	//Замостить
 	if(isset($pattern) && $placeaction == 'tile') {
 		if($patternWidth<$srcWidth || $patternHeight<$srcHeight){
-        for($patternX=0;$patternX<$srcWidth*2;$patternX+=$patternWidth){
-            for($patternY=0;$patternY<$srcHeight*2;$patternY+=$patternHeight){
+        for($patternX=0;$patternX<$srcWidth*2;$patternX+=$patternWidth+$tileIndentX){
+            for($patternY=0;$patternY<$srcHeight*2;$patternY+=$patternHeight+$tileIndentY){
                 	imagecopy($im,$pattern,$patternX,$patternY,0,0,$patternWidth,$patternHeight);
             	}
         	}

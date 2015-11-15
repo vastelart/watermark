@@ -7,6 +7,7 @@ var switchModeCatcher = (function () {
 	var singleMode = $('.form__view-link_single');
 	var tileMode = $('.form__view-link_tile');
 	var viewMode = $('.form__view-link');
+	var positionRadios = $('.position__adjust-radio');
 
 	function _listener(actionplace) {
 		singleMode.on('click', _setServerData);
@@ -32,9 +33,11 @@ var switchModeCatcher = (function () {
 		switch(serve) {
 			case 'tile':
 				position.init('tile');
+				positionRadios.addClass('disabled');
 				break;
 			case 'single':
 				position.init('single');
+				positionRadios.removeClass('disabled');
 				break;
 			}
 	}

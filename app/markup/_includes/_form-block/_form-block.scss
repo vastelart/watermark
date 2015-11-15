@@ -111,6 +111,7 @@
 .position__adjust {
   height: 102px;
   margin-bottom: 36px;
+  position: relative;
 }
 .position__adjust-radio{
   width: 102px;
@@ -132,8 +133,9 @@
   position: relative;
   background: #dbe1e8;
   border: 1px solid #9eb2c0;
+  cursor: pointer;
 }
- .label-position:hover, .label-position:active, .label-position:focus,  {
+ .label-position:hover, .label-position:active, .label-position:focus {
   background: #f97e76;
 }
 .label-position_first {
@@ -334,6 +336,7 @@
 	  display: inline-block;
 	  width: 19px;
 	  height: 19px;
+    cursor: pointer;
 	  background-position: $left $top;
 	  &:active, &:hover, &:focus, &.active {
 		width: 19px;
@@ -351,5 +354,8 @@
 	@include viewModeMix(-20px, -257px, -316px);
 }
 
-.linePositions {display: none; z-index: 500;}
+.linePositions {z-index: 500; height: 102px; position: absolute; display: none;}
+.linePosition-gorizont, .linePosition-vertical {position: absolute;}
+.linePosition-gorizont {height: 15px; width: 99px; background: #f97e76; top: 43px;}
+.linePosition-vertical {width: 15px; background: #f97e76; top: 0; left: 41px; height: 100px;}
 .position {display: inline-block; max-width: 170px;}

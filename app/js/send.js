@@ -82,8 +82,6 @@ var uploadModule = (function () {
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
 
-				
-
 				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
 				insert.attr('src', '/php/files/' + file.name);
 
