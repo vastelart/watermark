@@ -1,3 +1,4 @@
+
 var inputPosition = (function () {
 	// Рычаг
 	var init = _setListeners;
@@ -36,3 +37,4 @@ var inputPosition = (function () {
 //Вызывается в модуле position.js
 //Инициализируем модуль ввода координат для вотермарка
 inputPosition.init();
+
