@@ -1,3 +1,4 @@
+
 var inputPosition = (function () {
 	// Рычаг
 	var init = _setListeners;
@@ -9,19 +10,25 @@ var inputPosition = (function () {
 
 	//Слушатель
 	function _setListeners () {
-		_inputY.on('change', _setCoords('top'));
-		_inputX.on('change', _setCoords('left'));
-		console.log('INPUT SET POSITION READY');
+		_inputY.on('keyup', _setCoordsY);
+		_inputX.on('keyup', _setCoordsX);
+		//console.log('INPUT SET POSITION READY');
 	}
 
-	function _setCoords (pos) {
-		var coords = _inputY.val();
-		console.log('ИНПУТЫ');
+	function _setCoordsY () {
+		var coordsY = _inputY.val();
 		watermarkWrapper.css({
-			pos: coords
+			'top': coordsY +'px'
 		});
-	}
 
+	}
+	function _setCoordsX () {
+		var coordsX = _inputX.val();
+		watermarkWrapper.css({
+			'left': coordsX +'px'
+		});
+
+	}
 	return {
 		init: init
 	}
@@ -30,3 +37,4 @@ var inputPosition = (function () {
 //Вызывается в модуле position.js
 //Инициализируем модуль ввода координат для вотермарка
 inputPosition.init();
+
