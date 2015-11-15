@@ -99,8 +99,6 @@
 				
 				//Отладочное сообщение имени файла в консоль
 				console.log(fileNameToSave);
-				console.log(towidth + ' sdcjsdcknJJJJJJJ ' + toheight);
-				//console.log(waterimage.width);
 
 				//Плэйс бинарного объекта в переменную
 				var blob = this.response;

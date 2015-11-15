@@ -86,7 +86,7 @@ var uploadModule = (function () {
 				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
-				insert.parent().show();
+				insert.parent().fadeIn(500);
 
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {

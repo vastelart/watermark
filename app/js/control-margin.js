@@ -14,7 +14,7 @@ var controlMargin = (function () {
 		_btnXDown = $('#XDown'),
 		_btnYUp = $('#YUp'),
 		_btnYDown = $('#YDown'),
-		_posBtns = $('.sett-up, .sett-down', '.position__adjust-sett'),
+		_posBtns = $('.sett-up, .sett-down'),
 		_watermark = $('#watermarkInsert');
 
 	//Слушатель
