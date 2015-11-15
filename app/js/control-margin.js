@@ -15,8 +15,7 @@ var controlMargin = (function () {
 		_btnYUp = $('#YUp'),
 		_btnYDown = $('#YDown'),
 		_posBtns = $('.sett-up, .sett-down', '.position__adjust-sett'),
-		_watermark = $('#watermarkInsert'),
-		_linePositions = $('.linePositions', '.watermark-right');
+		_watermark = $('#watermarkInsert');
 
 	//Слушатель
 	function _setListener(destroy) {
@@ -66,7 +65,7 @@ var controlMargin = (function () {
 			marginRight = parseInt(marginRight);
 			marginBottom = parseInt(marginBottom);
 
-			console.log(marginRight);
+			//console.log(marginRight);
 
 			//Такая вот конструкция. Не знаю, как избежать здесь DRY. Времени нет подумать.
 			//Если аргумент оператора равен 'plus', увеличиваем отступы у вотермарков
@@ -131,8 +130,6 @@ var controlMargin = (function () {
 		});
 
 		_setPositionByButton(destroy);
-
-		destroy === 'single' ? _linePositions.fadeOut(300) : _linePositions.fadeIn(300);
 	}
 
 	return {

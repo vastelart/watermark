@@ -86,13 +86,16 @@ var uploadModule = (function () {
 				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
-				insert.parent().fadeIn(500);
+				insert.parent().show();
 
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {
 					insert.parent().css({
 						display: 'inline-block'
 					});
+
+					//Масштабируем вотермарк
+					_resizeIt();
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -111,7 +114,7 @@ var uploadModule = (function () {
 					position.init('single');
 
 					//Масштабируем вотермарк
-					//_resizeIt(watermarkInsert, mainImgInsert);
+					_resizeIt();
 					
 					//Убираем disabled у всех остальных элементов
 					var disabled = $('.disabled', '.watermark-right');
@@ -127,14 +130,18 @@ var uploadModule = (function () {
 	} //Здесь этот кошмар заканчивается
 
 	//Функция масштабирования вотермарка
-	function _resizeIt(water, image) {
-		var imgParentWidth = $('#mainImageInsert').width();
-		var imgParentHeight = $('#mainImageInsert').height();
+	function _resizeIt() {
+		var mainImgInsert = $('.main-img-inserted', '.watermark-left');
+		var watermarkInsert = $('.water-img-inserted', '.watermark-left');
+		var imgParentWidth = mainImgInsert.width();
+		var imgParentHeight = mainImgInsert.height();
 		var nativeWidth = document.querySelector('.main-img-inserted').naturalWidth;
 		var nativeHeight = document.querySelector('.main-img-inserted').naturalHeight;
+		var nativeWaterWidth = document.querySelector('.water-img-inserted').naturalWidth;
+		var nativeWaterHeight = document.querySelector('.water-img-inserted').naturalHeight;
 
-		var widthRatio = imgParentWidth / nativeWidth;
-		var heightRatio = imgParentHeight / nativeHeight;
+		var widthRatio = nativeWidth / imgParentWidth;
+		var heightRatio = nativeHeight / imgParentHeight;
 
 		console.log(widthRatio);
 		console.log(heightRatio);
@@ -142,9 +149,13 @@ var uploadModule = (function () {
 		//water.width(water.width() * widthRatio);
 		//water.height(water.height() * heightRatio);
 
-		water.css({
-			width: (water.width() * widthRatio) + 'px',
-			height: (water.height() * heightRatio) + 'px'
+		watermarkInsert.css({
+			//'height' : nativeWaterHeight,
+			//'width' : nativeWaterWidth,
+			'max-width': imgParentWidth,
+			'max-height': imgParentHeight,
+			'left' : 0,
+			'top' : 0
 		});
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);

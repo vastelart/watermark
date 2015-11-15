@@ -90,6 +90,7 @@
   text-overflow: ellipsis;
   color: #9eb2c0;
   font-size: 12px;
+  border-radius: 4px 0 0 4px;
 }
 .form-input__origin-icon {
   position: absolute;
@@ -100,6 +101,7 @@
   overflow: hidden;
   cursor: pointer;
   background: url("../img/input-file.png") center center no-repeat;
+  border-radius: 0 8px 4px 0;
 }
 
 
@@ -138,16 +140,16 @@
  .label-position:hover, .label-position:active, .label-position:focus {
   background: #f97e76;
 }
-.label-position_first {
+.label-position_topLeft {
   border-top-left-radius: 4px;
 }
-.label-position_third {
+.label-position_topRight {
   border-top-right-radius: 4px;
 }
-.label-position_seventh {
+.label-position_bottomLeft {
   border-bottom-left-radius: 4px;
 }
-.label-position_ninth {
+.label-position_bottomRight {
   border-bottom-right-radius: 4px;
 }
 .radio-position {
@@ -198,9 +200,32 @@
 .label-x, .label-y {
   display: inline-block;
   position: absolute;
-  top: 16px;
-  left: 0;
+  top: 13px;
+  left: -25px;
+  width: 38px;
+  height: 15px;
+  text-align: right;
+  transition: .3s;
 }
+
+.label-y_tile, .label-x_tile {
+  font-size: 0;
+  left: -17px;
+  transition: .3s;
+}
+
+.label-x_tile {
+  background: url(../img/spritesheet-block.png) no-repeat -20px -85px;
+}
+
+.label-y_tile {
+  background: url(../img/spritesheet-block.png) no-repeat -20px -21px;
+  width: 10px;
+  height: 35px;
+  left: -9px;
+  top: 9px;
+}
+
 .out {
   position: absolute;
   left: -9999px;

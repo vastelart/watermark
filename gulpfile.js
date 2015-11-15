@@ -137,7 +137,7 @@ gulp.task("size-app", function () {
 });
 
 
-gulp.task("dist", ["php","useref","images","htc"], function () {
+gulp.task("dist", ["php","useref","images","htc","generate-favicon"], function () {
 	return gulp.src(RS_CONF.path.distDir+"/**/*").pipe(size({title: "DIST size: "}));
 });
 
@@ -158,8 +158,8 @@ var FAVICON_DATA_FILE = 'faviconData.json';
 gulp.task('generate-favicon', function(done) {
 	realFavicon.generateFavicon({
 		masterPicture: 'app/img/master_icon.png',
-		dest: 'app/img/icons',
-		iconsPath: '/',
+		dest: 'dist/img/icons',
+		iconsPath: '/img/icons',
 		design: {
 			ios: {
 				pictureAspect: 'noChange'

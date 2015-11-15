@@ -41,8 +41,8 @@ var position = (function () {
 	            var position = $(this).position();
 	            var posX = position.left;
 	            var posY = position.top;
-	            Math.round(_inputY.val(posY));
-	            Math.round(_inputX.val(posX));
+	            _inputY.val(Math.round(posY));
+	            _inputX.val(Math.round(posX));
         	}
 		});
 		};

@@ -12,7 +12,8 @@ body {
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  font-weight: 300; }
+  font-weight: 300;
+  transition: .3s; }
 
 .left {
   float: left; }
@@ -34,7 +35,8 @@ body {
 
 .disabled {
   opacity: .5;
-  pointer-events: none; }
+  pointer-events: none;
+  transition: .3s; }
 
 .danger {
   position: fixed;
@@ -87,9 +89,10 @@ body {
   max-width: 652px;
   max-height: 535px;
   display: none; }
-  .main-image-insert img {
-    max-width: 652px;
-    max-height: 535px; }
+
+.main-img-inserted {
+  max-width: 652px;
+  max-height: 535px; }
 
 .watermark-insert {
   position: absolute;
@@ -196,7 +199,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   color: #9eb2c0;
-  font-size: 12px; }
+  font-size: 12px;
+  border-radius: 4px 0 0 4px; }
 
 .form-input__origin-icon {
   position: absolute;
@@ -206,7 +210,8 @@ body {
   left: 175px;
   overflow: hidden;
   cursor: pointer;
-  background: url("../img/input-file.png") center center no-repeat; }
+  background: url("../img/input-file.png") center center no-repeat;
+  border-radius: 0 8px 4px 0; }
 
 /*------------position--------*/
 .form-position .form__title, .form__title-opacity {
@@ -242,16 +247,16 @@ body {
 .label-position:hover, .label-position:active, .label-position:focus {
   background: #f97e76; }
 
-.label-position_first {
+.label-position_topLeft {
   border-top-left-radius: 4px; }
 
-.label-position_third {
+.label-position_topRight {
   border-top-right-radius: 4px; }
 
-.label-position_seventh {
+.label-position_bottomLeft {
   border-bottom-left-radius: 4px; }
 
-.label-position_ninth {
+.label-position_bottomRight {
   border-bottom-right-radius: 4px; }
 
 .radio-position {
@@ -300,8 +305,27 @@ body {
 .label-x, .label-y {
   display: inline-block;
   position: absolute;
-  top: 16px;
-  left: 0; }
+  top: 13px;
+  left: -25px;
+  width: 38px;
+  height: 15px;
+  text-align: right;
+  transition: .3s; }
+
+.label-y_tile, .label-x_tile {
+  font-size: 0;
+  left: -17px;
+  transition: .3s; }
+
+.label-x_tile {
+  background: url(../img/spritesheet-block.png) no-repeat -20px -85px; }
+
+.label-y_tile {
+  background: url(../img/spritesheet-block.png) no-repeat -20px -21px;
+  width: 10px;
+  height: 35px;
+  left: -9px;
+  top: 9px; }
 
 .out {
   position: absolute;

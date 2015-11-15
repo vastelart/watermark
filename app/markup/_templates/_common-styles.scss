@@ -8,7 +8,7 @@ body {
     background-size: cover;
 }
 
-body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; transition: .3s;}
 
 .left {float: left;}
 .right {float: right;}
@@ -21,7 +21,7 @@ body {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
     clear: both;
 }
 .watermark-wrapper {width: 960px; margin: 0 auto;}
-.disabled {opacity: .5; pointer-events: none;}
+.disabled {opacity: .5; pointer-events: none; transition: .3s;}
 .danger {
 	position: fixed;
 	left: 0;

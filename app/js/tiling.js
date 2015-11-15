@@ -25,10 +25,6 @@ var tilingModule = (function () {
 
 	//Устанавливаем замощение
 	function _setTileMode () {
-
-		//Меняем логику поведения стрелок-контроллеров
-		//controlPosition.init('destroy');
-		//controlMargin.init();
 		
 		var waterWrapperWidth = waterWrapper.width(),
 			waterWrapperHeight = waterWrapper.height(),
@@ -38,7 +34,7 @@ var tilingModule = (function () {
 		//Отменяем драггабл режима сингл
 		waterWrapper.draggable('destroy');
 
-		//Мне не очень понравился подход к математике Сергея из модного видео, поэтому просто умножаем все на три
+		//Удваиваем высоту и ширину контейнера вотермарка
 		waterWrapper.width(mainImageWrapper.width() * 2);
 		waterWrapper.height(mainImageWrapper.height() * 2);
 
@@ -59,8 +55,8 @@ var tilingModule = (function () {
 	            var position = $(this).position();
 	            var posX = position.left;
 	            var posY = position.top;
-	            Math.round(_inputY.val(posY));
-	            Math.round(_inputX.val(posX));
+	            _inputY.val(Math.round(posY));
+	            _inputX.val(Math.round(posX));
         	}
 		});
 

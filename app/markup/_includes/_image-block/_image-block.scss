@@ -30,9 +30,13 @@
   max-width: 652px;
   max-height: 535px;
   display: none;
-
-  img {max-width: 652px; max-height: 535px;}
 }
+
+.main-img-inserted{
+  max-width: 652px;
+  max-height: 535px;
+}
+
 .watermark-insert {
   position: absolute;
   left: 0;
