@@ -39,8 +39,8 @@ var tilingModule = (function () {
 		waterWrapper.draggable('destroy');
 
 		//Мне не очень понравился подход к математике Сергея из модного видео, поэтому просто умножаем все на три
-		waterWrapper.width(mainImageWrapper.width() * 3);
-		waterWrapper.height(mainImageWrapper.height() * 3);
+		waterWrapper.width(mainImageWrapper.width() * 2);
+		waterWrapper.height(mainImageWrapper.height() * 2);
 
 		//А вот это вычисление ратио клонирования можно оставить
 		var countX = Math.round(waterWrapperWidth / waterMarkWidth);

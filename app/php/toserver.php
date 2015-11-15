@@ -56,7 +56,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 	//======================================================================
 
-	$im = imagecreatetruecolor($srcWidth*3, $srcHeight*3);
+	$im = imagecreatetruecolor($srcWidth*2, $srcHeight*2);
 	$black = imagecolorallocate($im, 0, 0, 0);
     imagecolortransparent($im, $black);
 
@@ -65,8 +65,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	//Замостить
 	if(isset($pattern) && $placeaction == 'tile') {
 		if($patternWidth<$srcWidth || $patternHeight<$srcHeight){
-        for($patternX=0;$patternX<$srcWidth*3;$patternX+=$patternWidth){
-            for($patternY=0;$patternY<$srcHeight*3;$patternY+=$patternHeight){
+        for($patternX=0;$patternX<$srcWidth*2;$patternX+=$patternWidth){
+            for($patternY=0;$patternY<$srcHeight*2;$patternY+=$patternHeight){
                 	imagecopy($im,$pattern,$patternX,$patternY,0,0,$patternWidth,$patternHeight);
             	}
         	}

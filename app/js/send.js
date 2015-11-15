@@ -49,17 +49,15 @@ var uploadModule = (function () {
 			maxFileSize: 1572864,
 			minFileSize: 1,
 			maxNumberOfFiles: 1
-		}).on('fileuploadadd', function (e, data) {
-			$.each(data.files, function (index, file) {
-				
-				data.submit();
-
-			});
 		}).on('fileuploadprocessalways', function (e, data) {
 	        var index = data.index,
 	            file = data.files[index];
 	        if (file.error) {
 	            _abortUpload(file.error);
+	        }
+	        else {
+	        	data.submit();
+	        	danger.fadeOut(300);
 	        }
 	    }).on('fileuploaddone', function (e, data) {
 			$.each(data.files, function (index, file) {

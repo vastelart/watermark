@@ -74,9 +74,13 @@
 				var fileNameToSave = extractHeaderResponseArray[1];
 
 				//Ошибка загрузки
-				if(!fileNameToSave) {
+				if(fileNameToSave === 'error') {
 					console.log('ERROR DETECTED ', Error);
 					return false;
+				}
+
+				reliz.onerror = function () {
+					reliz.abort();
 				}
 				
 				//Отладочное сообщение имени файла в консоль
