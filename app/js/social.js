@@ -7,7 +7,7 @@ var shareSocial = (function () {
 
 
 	function _setUpListners () {
-		$('.like__link').on('click', _socialInit);
+		$('.like__link').not('.like__link__like').on('click', _socialInit);
 	}
 
 	function _socialInit() {
