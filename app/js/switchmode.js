@@ -35,17 +35,29 @@ var switchModeCatcher = (function () {
 		//Инициализируем нужное состояние модуля позишена, меняем CSS-стили у элементов
 		switch(serve) {
 			case 'tile':
+				//Устанавливаем состояние блока позиционирования
 				position.init('tile');
+				//Включаем нужный режим управления с помощью ввода значений в инпуты
+				inputPosition.init('tile');
+				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
+				//Добавляем нужные CSS-стили
 				labelX.addClass('label-x_tile');
 				labelY.addClass('label-y_tile');
+				//Эти красные линии поверх радиобаттонов - показываем
 				_linePositions.fadeIn(300);
 				break;
 			case 'single':
+				//Состояние модуля позиционирования ставим в режим СИНГЛ
 				position.init('single');
+				//Включаем нужный режим управления с помощью ввода значений в инпуты
+				inputPosition.init('single');
+				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
+				//Убираем ненужные CSS-стили
 				labelX.removeClass('label-x_tile');
 				labelY.removeClass('label-y_tile');
+				//Эти красные линии поверх радиобаттонов - скрываем
 				_linePositions.fadeOut(300);
 				break;
 			}

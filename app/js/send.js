@@ -15,6 +15,9 @@ var uploadModule = (function () {
 		dangerText = $('.danger__text'),
 		dangerClose = $('.danger__close');
 
+	//Положение СИНГЛ
+	var singleMode = $('.form__view-link_single');
+
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
 
@@ -87,6 +90,9 @@ var uploadModule = (function () {
 
 				//Инсерты были скрыты. Показываем
 				insert.parent().fadeIn(500);
+
+				//Устанавливаем режим СИНГЛ
+				singleMode.click();
 
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {

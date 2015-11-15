@@ -9,10 +9,15 @@ var inputPosition = (function () {
 	var watermarkWrapper = $('#watermarkInsert');
 
 	//Слушатель
-	function _setListeners () {
-		_inputY.on('keyup', _setCoordsY);
-		_inputX.on('keyup', _setCoordsX);
-		//console.log('INPUT SET POSITION READY');
+	function _setListeners (destroy) {
+		if(destroy === 'tile') {
+			console.log('INPUT MARGINS CONTROL');
+		}
+		else {
+			_inputY.on('keyup', _setCoordsY);
+			_inputX.on('keyup', _setCoordsX);
+			console.log('INPUT SET POSITION READY');
+		}
 	}
 
 	function _setCoordsY () {
@@ -33,8 +38,4 @@ var inputPosition = (function () {
 		init: init
 	}
 })();
-
-//Вызывается в модуле position.js
-//Инициализируем модуль ввода координат для вотермарка
-inputPosition.init();
 
