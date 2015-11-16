@@ -1,5 +1,6 @@
-# WATERMARK
-Это учебный проект команды №3 в школе онлайн образования Loftschool 
+![WATERMARK](http://watermark.javascriptum.ru/img/logo.png)
+
+Учебный проект команды №3 в школе онлайн образования Loftschool 
 ## Участники команды
 * Назмутдинов Роман - тимлид, PHP, JavaScript, JADE, SCSS, Gulp Build, тестирование
 * Баев Дмитрий - тестовый JavaScript, тестирование
