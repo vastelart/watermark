@@ -1,0 +1,24 @@
+[
+	{
+		"maintitle" : "Генератор водяных знаков",
+		"settings" : "Настройки",
+		"srcimg" : "Исходное изображение",
+		"watermark" : "Водяной знак",
+		"position" : "Положение",
+		"transparency" : "Прозрачность",
+		"reset" : "Сброс",
+		"download" : "Скачать",
+		"copyright" : "©2015. Это сайт команды студентов Loftschool. Пожалуйста, не копируйте и не воруйте его."
+	},
+	{
+		"maintitle" : "Watermark generator",
+		"settings" : "Settings",
+		"srcimg" : "Original image",
+		"watermark" : "Watermark",
+		"position" : "Place",
+		"transparency" : "Transparency",
+		"reset" : "Reset",
+		"download" : "Download",
+		"copyright" : "©2015. Loftschool students team site. Please do not copy/steal the content."
+	}
+]

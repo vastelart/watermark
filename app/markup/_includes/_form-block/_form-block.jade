@@ -1,2 +1,60 @@
 .watermark-right.right
-	h2 Настройки
+	h2.settings__title.settings Настройки
+	form(action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform").settings
+		.form-input.delimiter
+			.form-input-box
+				label(for="").form__title.srcimg Исходное изображение
+				.form-input__origin.form-input-style
+					input(name="files[]" type="file"  id="baseImg").form-input__origin-file
+					.form-input__fake.form-input__fake-base-img(qtip-content="Вы не выбрали изображение", qtip-position="left")
+					label(for="baseImg").form-input__origin-icon
+			.form-input-box
+				label(for="").form__title.watermark.disabled Водяной знак
+				.form-input__origin.form-input-style.disabled
+					input(name="files[]" type="file" id="watermark" disabled).form-input__origin-file
+					.form-input__fake.form-input__fake-watermark(qtip-content="Вы не выбрали изображение", qtip-position="left")
+					label(for="watermark").form-input__origin-icon.disabled
+		.form-position.delimiter.disabled(id="form-position")
+			h5.form__title
+				span.position Положение
+				//- блок для изменения видов
+				.form-block
+					label(for="placeSingle").form__view-item.disabled.form__view-link.form__view-link_single.active
+						input(type="radio", id="placeSingle" name="placeaction", value="single", disabled, checked).form__view-button_placeaction.disabled.out
+					label(for="placeTile").form__view-item.disabled.form__view-link.form__view-link_tile
+						input(type="radio", id="placeTile" name="placeaction", disabled, value="tile").form__view-button_placeaction.disabled.out
+			.position__adjust.clearfix
+				.position__adjust-radio.left
+					- var items = ["topLeft", "topCenter", "topRight", "centerLeft", "centerCenter", "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]
+					each item in items
+						label(class="label-position position__box-label label-position_" + item )
+							span.out #{item}
+							input(type="radio" name="position" value="#{item}").radio-position.position__box-input
+				.linePositions
+					.linePosition-gorizont
+					.linePosition-vertical
+				.position__adjust-sett.right
+					.position__adjust__sett-x
+						label.label-x.number__input-label X
+						input(type="text" value="0" id="inputX").sett-x.left.number__input-x
+						.sett-x__box.right
+							button.sett-up(id="XUp")
+								span.out Вверх
+							button.sett-down(id="XDown")
+								span.out Вниз
+					.position__adjust__sett-y
+						label.label-y.number__input-label Y
+						input(type="text" value="0" id="inputY").sett-y.left.number__input-y
+						.sett-y__box.right
+							button.sett-up(id="YUp")
+								span.out Вверх
+							button.sett-down(id="YDown")
+								span.out Вниз
+		.form-opacity.delimiter.disabled
+			label(for="", ).form__title.form__title-opacity.transparency.disabled Прозрачность
+			.slider(id="slider", data-value="100").disabled
+		.buttons.clearfix
+			.button__left.left
+				button(id="restBtn").button__reset.reset.disabled Сброс
+			.button__right.right
+				button(id="submitBtn", data-server="php/tiletest.php", type="submit").button__submit.download.disabled Скачать

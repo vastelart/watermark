@@ -1,6 +1,11 @@
+/examples
+.idea
 node_modules
 bower_components
 app/bower
 .gulp-scss-cache
 .sass-cache
 dist
+/.idea
+.DS_Store
+app/tests
