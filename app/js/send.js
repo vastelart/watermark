@@ -17,6 +17,7 @@ var uploadModule = (function () {
 
 	//Положение СИНГЛ
 	var singleMode = $('.form__view-link_single');
+	var tileMode = $('.form__view-link_tile');
 
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
@@ -91,17 +92,12 @@ var uploadModule = (function () {
 				//Инсерты были скрыты. Показываем
 				insert.parent().fadeIn(500);
 
-				//Устанавливаем режим СИНГЛ
-				singleMode.click();
-
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {
 					insert.parent().css({
 						display: 'inline-block'
 					});
 
-					//Масштабируем вотермарк
-					_resizeIt();
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -114,7 +110,11 @@ var uploadModule = (function () {
 						for(var im = 1; im < imgs.length; im++ ) {
 							imgs[im].remove();
 						}
+						
 					}
+
+					//Устанавливаем режим СИНГЛ
+					switchModeForcer.init('single');
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
@@ -152,17 +152,17 @@ var uploadModule = (function () {
 		console.log(widthRatio);
 		console.log(heightRatio);
 
-		//water.width(water.width() * widthRatio);
-		//water.height(water.height() * heightRatio);
-
 		watermarkInsert.css({
-			//'height' : nativeWaterHeight,
-			//'width' : nativeWaterWidth,
 			'max-width': imgParentWidth,
-			'max-height': imgParentHeight,
+			'max-height': imgParentHeight - 4,
 			'left' : 0,
 			'top' : 0
 		});
+
+		//mainImgInsert.parent().height(imgParentHeight - 4);
+
+		//watermarkInsert.parent().width($(this).width());
+		//watermarkInsert.parent().height($(this).height());
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
 	}

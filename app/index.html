@@ -79,7 +79,7 @@
 							</div>
 							<div class="form-input-box">
 								<label for="" class="form__title watermark disabled">Водяной знак</label>
-								<div class="form-input__origin form-input-style disabled">
+								<div class="form-input__origin form-input-style form-input__watermark disabled">
 									<input name="files[]" type="file" id="watermark" disabled class="form-input__origin-file">
 									<div qtip-content="Вы не выбрали изображение" qtip-position="left" class="form-input__fake form-input__fake-watermark"></div>
 									<label for="watermark" class="form-input__origin-icon disabled"></label>
@@ -197,14 +197,15 @@
 		<script src="bower/file-saver.js/FileSaver.js" defer></script>
 		<!--endbuild-->
 		<!--build:js js/main.js-->
+		<script src="js/errorcatch.js" defer></script>
 		<script src="js/send.js" defer></script>
 		<script src="js/opacity.js" defer></script>
 		<script src="js/position.js" defer></script>
 		<script src="js/input-set-position.js" defer></script>
 		<script src="js/toserver.js" defer></script>
 		<script src="js/switchmode.js" defer></script>
+		<script src="js/switchmodeforcer.js" defer></script>
 		<script src="js/lang.js" defer></script>
-		<script src="js/errorcatch.js" defer></script>
 		<script src="js/tiling.js" defer></script>
 		<script src="js/resetform.js" defer></script>
 		<script src="js/control-margin.js" defer></script>

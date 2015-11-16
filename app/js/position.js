@@ -101,7 +101,7 @@ var position = (function () {
 			newX = _watermark.position().left;
 
 			_inputY.val(Math.round(newY));
-  			_inputX.val(Math.round(newX));
+  			_inputX.val(Math.round(newX) - 1);
 	}
 
 

@@ -11,14 +11,16 @@ var switchModeCatcher = (function () {
 	var labelX = $('.label-x', '.position__adjust-sett');
 	var labelY = $('.label-y', '.position__adjust-sett');
 	var _linePositions = $('.linePositions', '.watermark-right');
+	var watermarkInput = $('.form-input__watermark');
 
 	function _listener(actionplace) {
 		singleMode.on('click', _setServerData);
 		tileMode.on('click', _setServerData);
+		tileMode.one('click', _showWarning);
 		if(actionplace === 'single') {
 			console.log('SINGLE MODE');
 		}
-		else {
+		else if(actionplace === 'tile') {
 			console.log('TILE MODE OR FIRST INIT');
 		}
 	}
@@ -46,6 +48,7 @@ var switchModeCatcher = (function () {
 				labelY.addClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - показываем
 				_linePositions.fadeIn(300);
+				watermarkInput.addClass('disabled');
 				break;
 			case 'single':
 				//Состояние модуля позиционирования ставим в режим СИНГЛ
@@ -59,8 +62,13 @@ var switchModeCatcher = (function () {
 				labelY.removeClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - скрываем
 				_linePositions.fadeOut(300);
+				watermarkInput.removeClass('disabled');
 				break;
 			}
+	}
+
+	function _showWarning () {
+		errorCatch.init('Для добавления другого водяного знака смените режим с замощения на один водяной знак');
 	}
 
 	return {
