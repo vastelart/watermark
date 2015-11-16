@@ -13,7 +13,8 @@ var
 	gutil = require("gulp-util"),
 	RS_CONF = require('./rs-conf.js'),
 	concatCss = require("gulp-concat-css"),
-	plumber = require('gulp-plumber');
+	plumber = require('gulp-plumber'),
+	php = require('gulp-connect-php');
 
 var realFavicon = require ('gulp-real-favicon');
 var fs = require('fs');
@@ -65,12 +66,21 @@ gulp.task('scss', function() {
 
 /* --------- browser sync --------- */
 
-gulp.task('sync', function() {
+gulp.task('serve', ['php-serve'], function() {
 	browserSync.init({
-		server: {
-			baseDir: paths.browserSync.baseDir
-		}
-	});
+        proxy: '127.0.0.1:9000',
+        port: 9090,
+        open: true,
+        notify: false,
+    });
+});
+
+gulp.task('php-serve', function() {
+	php.server({
+        base: 'app',
+        port: 9000,
+        keepalive: true
+    });
 });
 
 /* --------- watch --------- */
