@@ -154,7 +154,7 @@ var uploadModule = (function () {
 
 		watermarkInsert.css({
 			'max-width': imgParentWidth,
-			'max-height': imgParentHeight - 4,
+			'max-height': imgParentHeight,
 			'left' : 0,
 			'top' : 0
 		});

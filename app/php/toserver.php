@@ -40,10 +40,15 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg_src = imagecreatefrompng($imname);
+		imagealphablending($srcimg_src, false);
+    	imagesavealpha($srcimg_src, true);
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+    	imagealphablending($srcimg, false);
+    	imagesavealpha($srcimg, true);
 		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+    	//imagepng($srcimg, 'mim.png');
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
@@ -66,10 +71,17 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
 		$pattern_src = imagecreatefrompng($patternname);
+		imagealphablending($pattern_src, false);
+    	imagesavealpha($pattern_src, true);
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagealphablending($pattern, false);
+    	imagesavealpha($pattern, true);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagealphablending($pattern, false);
+    	imagesavealpha($pattern, true);
+		imagepng($pattern, 'mum.png');
 		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
@@ -90,11 +102,17 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$patternWidth = imagesx($pattern);
 	$patternHeight = imagesy($pattern);
 
+
 	//======================================================================
 
+	//Пустое увеличенное изображение под будущий мерж
 	$im = imagecreatetruecolor($srcWidth*2, $srcHeight*2);
 	$black = imagecolorallocate($im, 0, 0, 0);
     imagecolortransparent($im, $black);
+	imagealphablending($im, false);
+    imagesavealpha($im, true);
+    //imagepng($im, 'smim.png');
+    //ОК
 
 	//======================================================================
 	
@@ -115,27 +133,31 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 		//Просто склеить картинки - пустую и не пустую
 		imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
+    	imagepng($im, 'mumim.png');
+    	//Здесь фон черный, изображения склеены
 	}    
  
     // Сохранение замощенного прозрачного (пустого) изображения с размерами основного
-    imagepng($im, 'smell.png');
+    //imagepng($im, 'smell.png');
 
-    $tomerge = imagecreatefrompng('smell.png');
+    $tomerge = imagecreatefrompng('mumim.png');
     imagealphablending($tomerge, false);
     imagesavealpha($tomerge, true);
+    $blackd = imagecolorallocate($tomerge, 0, 0, 0);
+    imagecolortransparent($tomerge, $blackd);
+    imagepng($tomerge, 'simimimi.png');
 
     $mergeWidth = imagesx($tomerge);
     $mergeHeight = imagesy($tomerge);
 
     //Основной мерж картинок
     imagecopymerge($srcimg, $tomerge, intval($indentX), intval($indentY), 0, 0, $mergeWidth, $mergeHeight, $opacity);
-    imagealphablending($srcimg, false);
-    imagesavealpha($srcimg, true);
+    
 
     //Сохранение файла
     $tofilename = $pathtosave.'/'.date('Ymd_his');
-    $tobrowser = $tofilename.'_spazm_tiled.jpg';
-    imagejpeg($srcimg, $tobrowser, 90);
+    $tobrowser = $tofilename.'_spazm_tiled.png';
+    imagepng($srcimg, $tobrowser);
 
     //=====================================================================
 
@@ -148,7 +170,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 		// Возвращаем файл и заголовки. XMLHttpResponse на клиенте выполнит сохранение файла
 		header('Content-Description: File Transfer');
-		header('Content-Type: image/jpeg');
+		header('Content-Type: image/png');
 		header('Content-Disposition: attachment; filename=' . basename($file));
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
