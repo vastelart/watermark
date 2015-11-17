@@ -101,13 +101,8 @@ class UploadHandler
             // Use exif_imagetype on all files to correct file extensions:
             'correct_image_extensions' => false,
             // Image resolution restrictions:
-<<<<<<< HEAD
-            'max_width' => 200000,
-            'max_height' => 200000,
-=======
             'max_width' => 20000,
             'max_height' => 20000,
->>>>>>> fixxxer
             'min_width' => 1,
             'min_height' => 1,
             // Set the following option to false to enable resumable uploads:
