@@ -17,9 +17,11 @@ var uploadModule = (function () {
 
 	//Положение СИНГЛ
 	var singleMode = $('.form__view-link_single');
+	var tileMode = $('.form__view-link_tile');
 
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
+	var fname = /[^A-Z-a-z-0-9]/g;
 
 	//Слушаем страницу 
 	function _listener() {
@@ -85,14 +87,11 @@ var uploadModule = (function () {
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
 
-				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
+				//Плэйс файла в нужный контейнер на странице. Мы передавали в _loadImage второй параметр
 				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
 				insert.parent().fadeIn(500);
-
-				//Устанавливаем режим СИНГЛ
-				singleMode.click();
 
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {
@@ -100,24 +99,36 @@ var uploadModule = (function () {
 						display: 'inline-block'
 					});
 
-					//Масштабируем вотермарк
-					_resizeIt();
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
 
-					//Очищаем контейнер перед вставкой изображения
-					var imgs = $('.watermark-insert').find('img');
-					if(imgs.length > 1) {
-						var rememberHtml = imgs[0];
+					//Чистка контейнера и переключение на СИНГ вместо режима ТАЙЛ
+					var imgs = $('#watermarkInsert').find('img');
 
-						for(var im = 1; im < imgs.length; im++ ) {
-							imgs[im].remove();
+					if(imgs.length > 1) {
+						for(var i = 1; i < imgs.length; i++) {
+							imgs[i].remove();
 						}
+						singleMode.click();
 					}
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
+
+					var waterWrapper = $('.watermark-insert');
+					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+
+					//Включаем драг-эн-дроп
+					waterWrapper.draggable({
+						containment: mainImageWrapper
+					});
+
+					//Сбрасываем позишен
+					waterWrapper.css({
+						'left': 0,
+						'top': 0
+					});
 
 					//Масштабируем вотермарк
 					_resizeIt();
@@ -141,10 +152,14 @@ var uploadModule = (function () {
 		var watermarkInsert = $('.water-img-inserted', '.watermark-left');
 		var imgParentWidth = mainImgInsert.width();
 		var imgParentHeight = mainImgInsert.height();
-		var nativeWidth = document.querySelector('.main-img-inserted').naturalWidth;
-		var nativeHeight = document.querySelector('.main-img-inserted').naturalHeight;
-		var nativeWaterWidth = document.querySelector('.water-img-inserted').naturalWidth;
-		var nativeWaterHeight = document.querySelector('.water-img-inserted').naturalHeight;
+
+		var w = document.querySelector('.water-img-inserted');
+		var m = document.querySelector('.main-img-inserted');
+
+		var nativeWidth = m.naturalWidth;
+		var nativeHeight = m.naturalHeight;
+		var nativeWaterWidth = w.naturalWidth;
+		var nativeWaterHeight = w.naturalHeight;
 
 		var widthRatio = nativeWidth / imgParentWidth;
 		var heightRatio = nativeHeight / imgParentHeight;
@@ -152,19 +167,28 @@ var uploadModule = (function () {
 		console.log(widthRatio);
 		console.log(heightRatio);
 
-		//water.width(water.width() * widthRatio);
-		//water.height(water.height() * heightRatio);
-
 		watermarkInsert.css({
-			//'height' : nativeWaterHeight,
-			//'width' : nativeWaterWidth,
 			'max-width': imgParentWidth,
 			'max-height': imgParentHeight,
 			'left' : 0,
 			'top' : 0
 		});
 
-		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+		watermarkInsert.parent().css({
+			'width': w.width,
+			'height': w.height
+		});
+
+		//console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+
+	}
+
+	function _resizeWaterWrapper () {
+		var waterWrapper = $('.watermark-insert');
+
+		waterWrapper.width($(this).find('img').width());
+		waterWrapper.height($(this).find('img').height());
+		waterWrapper.css({ left: 0, top: 0 });
 	}
 
 	//Функция прерывания берем... загрузки файла

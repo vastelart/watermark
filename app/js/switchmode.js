@@ -11,6 +11,15 @@ var switchModeCatcher = (function () {
 	var labelX = $('.label-x', '.position__adjust-sett');
 	var labelY = $('.label-y', '.position__adjust-sett');
 	var _linePositions = $('.linePositions', '.watermark-right');
+	var watermarkInput = $('.form-input__watermark');
+
+	//+++
+	var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+	var clone = null,
+		waterMark = $('.water-img-inserted'),
+		waterWrapper = $('.watermark-insert');
+	var _inputY = $('.number__input-y'),
+		_inputX = $('.number__input-x');
 
 	function _listener(actionplace) {
 		singleMode.on('click', _setServerData);
@@ -18,7 +27,7 @@ var switchModeCatcher = (function () {
 		if(actionplace === 'single') {
 			console.log('SINGLE MODE');
 		}
-		else {
+		else if(actionplace === 'tile') {
 			console.log('TILE MODE OR FIRST INIT');
 		}
 	}
@@ -36,9 +45,9 @@ var switchModeCatcher = (function () {
 		switch(serve) {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
-				position.init('tile');
-				//Включаем нужный режим управления с помощью ввода значений в инпуты
-				inputPosition.init('tile');
+				//position.init('tile');
+				//Марджины
+				controlMargin.init('tile');
 				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
 				//Добавляем нужные CSS-стили
@@ -46,12 +55,13 @@ var switchModeCatcher = (function () {
 				labelY.addClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - показываем
 				_linePositions.fadeIn(300);
+				_setTileMode();
 				break;
 			case 'single':
 				//Состояние модуля позиционирования ставим в режим СИНГЛ
-				position.init('single');
-				//Включаем нужный режим управления с помощью ввода значений в инпуты
-				inputPosition.init('single');
+				//position.init('single');
+				//Лефт/топ
+				controlMargin.init('single');
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
 				//Убираем ненужные CSS-стили
@@ -59,8 +69,94 @@ var switchModeCatcher = (function () {
 				labelY.removeClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - скрываем
 				_linePositions.fadeOut(300);
+				_setSingleMode();
 				break;
 			}
+	}
+
+	//Устанавливаем замощение
+	function _setTileMode () {
+		
+		var waterWrapperWidth = waterWrapper.width(),
+			waterWrapperHeight = waterWrapper.height(),
+			waterMarkWidth = waterMark.width(),
+			waterMarkHeight = waterMark.height();
+
+		//Отменяем драггабл режима сингл
+		waterWrapper.draggable('destroy');
+
+		//Удваиваем высоту и ширину контейнера вотермарка
+		waterWrapper.width(mainImageWrapper.width() * 2);
+		waterWrapper.height(mainImageWrapper.height() * 2);
+
+		//А вот это вычисление ратио клонирования можно оставить
+		var countX = Math.round(waterWrapperWidth / waterMarkWidth);
+		var countY = Math.round(waterWrapperHeight / waterMarkHeight);
+
+		for (var i = 0, l = countY * countX; i < l; i++) {
+			clone = waterMark.clone();
+
+			//Плэйсим клонов в увеличенный контейнер вотермарка
+			waterWrapper.append(clone);
+		}
+
+		//Устанавливаем новый драггаббл на контейнер с замощением
+		waterWrapper.draggable({
+			drag: function(){
+	            var position = $(this).position();
+	            var posX = position.left;
+	            var posY = position.top;
+	            _inputY.val(Math.round(posY));
+	            _inputX.val(Math.round(posX));
+        	}
+		});
+
+		//Сбрасываем позишен контейнера вотермарков
+		waterWrapper.css({
+			'left': 0,
+			'top': 0
+		});
+
+		waterMark.css({
+			'left': 0,
+			'top': 0,
+			'margin-right': 0,
+			'margin-bottom': 0
+		});
+
+		//Сбрасываем форму
+		resetForm.init(true);
+
+	}
+
+	function _setSingleMode () {
+
+		//Меняем логику поведения стрелок-контроллеров
+		//controlPosition.init();
+		//controlMargin.init('destroy');
+
+		var tiledImages = waterWrapper.find('img');
+
+		waterWrapper.width(waterWrapper.find('img').width());
+		waterWrapper.height(waterWrapper.find('img').height());
+		waterWrapper.css({ left: 0, top: 0 });
+
+		if(tiledImages.length > 1) {
+			var rememberHtml = tiledImages[0];
+
+			for(var im = 1; im < tiledImages.length; im++ ) {
+				tiledImages[im].remove();
+			}
+
+			//waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
+			waterWrapper.draggable({
+				containment: mainImageWrapper
+			});
+		}
+
+		_inputY.val(0);
+		_inputX.val(0);
+		
 	}
 
 	return {

@@ -23,6 +23,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$tomainwidth = intval($_POST['tomainwidth']);
 	$tomainheight = intval($_POST['tomainheight']);
 
+	$tofilename = $pathtosave.'/'.date('Ymd_his');
+
 	//==========================================
 
 	//...Function
@@ -40,9 +42,13 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg_src = imagecreatefrompng($imname);
+		imagealphablending($srcimg_src, false);
+    	imagesavealpha($srcimg_src, true);
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+    	imagealphablending($srcimg, false);
+    	imagesavealpha($srcimg, true);
 		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
 		imagedestroy($srcimg_src);
 	}
@@ -66,9 +72,13 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
 		$pattern_src = imagecreatefrompng($patternname);
+		imagealphablending($pattern_src, false);
+    	imagesavealpha($pattern_src, true);
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagealphablending($pattern, false);
+    	imagesavealpha($pattern, true);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
 		imagedestroy($pattern_src);
 	}
@@ -78,6 +88,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagealphablending($pattern, false);
 		imagedestroy($pattern_src);
 	}
 
@@ -90,11 +101,17 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$patternWidth = imagesx($pattern);
 	$patternHeight = imagesy($pattern);
 
+
 	//======================================================================
 
+	//Пустое увеличенное изображение под будущий мерж
 	$im = imagecreatetruecolor($srcWidth*2, $srcHeight*2);
-	$black = imagecolorallocate($im, 0, 0, 0);
-    imagecolortransparent($im, $black);
+	//$black = imagecolorallocate($im, 0, 0, 0);
+    //imagecolortransparent($im, $black);
+	//imagealphablending($im, false);
+    //imagesavealpha($im, true);
+    //imagepng($im, 'smim.png');
+    //ОК
 
 	//======================================================================
 	
@@ -115,27 +132,29 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 		//Просто склеить картинки - пустую и не пустую
 		imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
+    	//Здесь фон черный, изображения склеены
 	}    
  
     // Сохранение замощенного прозрачного (пустого) изображения с размерами основного
-    imagepng($im, 'smell.png');
+    imagepng($im, $tofilename . '_smell.png');
 
-    $tomerge = imagecreatefrompng('smell.png');
+    $tomerge = imagecreatefrompng($tofilename . '_smell.png');
     imagealphablending($tomerge, false);
     imagesavealpha($tomerge, true);
+    $blackd = imagecolorallocate($tomerge, 0, 0, 0);
+    imagecolortransparent($tomerge, $blackd);
 
     $mergeWidth = imagesx($tomerge);
     $mergeHeight = imagesy($tomerge);
 
     //Основной мерж картинок
     imagecopymerge($srcimg, $tomerge, intval($indentX), intval($indentY), 0, 0, $mergeWidth, $mergeHeight, $opacity);
-    imagealphablending($srcimg, false);
-    imagesavealpha($srcimg, true);
+    
 
     //Сохранение файла
-    $tofilename = $pathtosave.'/'.date('Ymd_his');
-    $tobrowser = $tofilename.'_spazm_tiled.jpg';
-    imagejpeg($srcimg, $tobrowser, 90);
+    
+    $tobrowser = $tofilename.'_spazm_tiled.png';
+    imagepng($srcimg, $tobrowser);
 
     //=====================================================================
 
@@ -148,7 +167,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 		// Возвращаем файл и заголовки. XMLHttpResponse на клиенте выполнит сохранение файла
 		header('Content-Description: File Transfer');
-		header('Content-Type: image/jpeg');
+		header('Content-Type: image/png');
 		header('Content-Disposition: attachment; filename=' . basename($file));
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
