@@ -21,6 +21,7 @@ var uploadModule = (function () {
 
 	//Реджексп разрешенных файлов. Аплоадовский, из коробки, не работает. Разобраться.
 	var imgregexp = /\.(gif|jpg|jpeg|png)$/i;
+	var fname = /[^A-Z-a-z-0-9]/g;
 
 	//Слушаем страницу 
 	function _listener() {
@@ -86,7 +87,7 @@ var uploadModule = (function () {
 				//Добавляем название файла в 'ложные инпуты'
 				nameInsert.text(file.name);
 
-				//Плэйс файла в нужный контейнер на странице. Помнишь, мы передавали в _loadImage второй параметр?
+				//Плэйс файла в нужный контейнер на странице. Мы передавали в _loadImage второй параметр
 				insert.attr('src', '/php/files/' + file.name);
 
 				//Инсерты были скрыты. Показываем
@@ -102,16 +103,28 @@ var uploadModule = (function () {
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
 
+					//Чистка контейнера и переключение на СИНГ вместо режима ТАЙЛ
+					var imgs = $('#watermarkInsert').find('img');
+
+					if(imgs.length > 1) {
+						for(var i = 1; i < imgs.length; i++) {
+							imgs[i].remove();
+						}
+						singleMode.click();
+					}
+
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
 					var waterWrapper = $('.watermark-insert');
 					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
 
+					//Включаем драг-эн-дроп
 					waterWrapper.draggable({
 						containment: mainImageWrapper
 					});
 
+					//Сбрасываем позишен
 					waterWrapper.css({
 						'left': 0,
 						'top': 0
@@ -159,6 +172,11 @@ var uploadModule = (function () {
 			'max-height': imgParentHeight,
 			'left' : 0,
 			'top' : 0
+		});
+
+		watermarkInsert.parent().css({
+			'width': w.width,
+			'height': w.height
 		});
 
 		//console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);

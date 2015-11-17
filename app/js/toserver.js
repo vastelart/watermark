@@ -30,8 +30,7 @@
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
 		var watermark = document.querySelector('.form-input__fake-watermark').textContent;
 		var opacity = document.getElementById('slider').getAttribute('data-value');
-		var indentX = waterimg.style.left;
-		var indentY = waterimg.style.top;
+		
 		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
 		var waterimage = document.querySelector('.water-img-inserted');
 		var mainimagewrapper = document.querySelector('.main-img-inserted');
@@ -50,6 +49,17 @@
 			if(placemethod[key].checked) {
 				var placeaction = placemethod[key].value;
 			}
+		}
+
+		if(placeaction === 'single') {
+			var indentX = waterimage.style.left;
+			var indentY = waterimage.style.top;
+			console.log(indentX + ' SINGLE ' + indentY);
+		}
+		else {
+			var indentX = mainimagewrapper.left;
+			var indentY = mainimagewrapper.top;
+			console.log(indentX + ' TILE ' + indentY);
 		}
 
 		//Пилим форм-дату

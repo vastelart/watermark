@@ -23,6 +23,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	$tomainwidth = intval($_POST['tomainwidth']);
 	$tomainheight = intval($_POST['tomainheight']);
 
+	$tofilename = $pathtosave.'/'.date('Ymd_his');
+
 	//==========================================
 
 	//...Function
@@ -48,7 +50,6 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     	imagealphablending($srcimg, false);
     	imagesavealpha($srcimg, true);
 		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
-    	//imagepng($srcimg, 'mim.png');
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
@@ -131,19 +132,17 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 		//Просто склеить картинки - пустую и не пустую
 		imagecopy($im,$pattern,0,0,0,0,$patternWidth,$patternHeight);
-    	imagepng($im, 'mumim.png');
     	//Здесь фон черный, изображения склеены
 	}    
  
     // Сохранение замощенного прозрачного (пустого) изображения с размерами основного
-    imagepng($im, 'smell.png');
+    imagepng($im, $tofilename . '_smell.png');
 
-    $tomerge = imagecreatefrompng('smell.png');
+    $tomerge = imagecreatefrompng($tofilename . '_smell.png');
     imagealphablending($tomerge, false);
     imagesavealpha($tomerge, true);
     $blackd = imagecolorallocate($tomerge, 0, 0, 0);
     imagecolortransparent($tomerge, $blackd);
-    imagepng($tomerge, 'simimimi.png');
 
     $mergeWidth = imagesx($tomerge);
     $mergeHeight = imagesy($tomerge);
@@ -153,7 +152,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
     
 
     //Сохранение файла
-    $tofilename = $pathtosave.'/'.date('Ymd_his');
+    
     $tobrowser = $tofilename.'_spazm_tiled.png';
     imagepng($srcimg, $tobrowser);
 
