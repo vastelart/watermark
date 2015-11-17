@@ -45,7 +45,7 @@ var switchModeCatcher = (function () {
 		switch(serve) {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
-				position.init('tile');
+				//position.init('tile');
 				
 				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
@@ -58,7 +58,7 @@ var switchModeCatcher = (function () {
 				break;
 			case 'single':
 				//Состояние модуля позиционирования ставим в режим СИНГЛ
-				position.init('single');
+				//position.init('single');
 				
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
@@ -111,8 +111,13 @@ var switchModeCatcher = (function () {
 
 		//Сбрасываем позишен контейнера вотермарков
 		waterWrapper.css({
-			left: 0,
-			top: 0
+			'left': 0,
+			'top': 0
+		});
+
+		waterMark.css({
+			'left': 0,
+			'top': 0
 		});
 
 		//Сбрасываем форму
