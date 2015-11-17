@@ -15,7 +15,8 @@ var controlMargin = (function () {
 		_btnYUp = $('#YUp'),
 		_btnYDown = $('#YDown'),
 		_posBtns = $('.sett-up, .sett-down'),
-		_watermark = $('#watermarkInsert');
+		_watermark = $('#watermarkInsert'),
+		_watermarkImage = $('#waterMarkImageId');
 
 	//Слушатель
 	function _setListener(destroy) {
@@ -41,10 +42,10 @@ var controlMargin = (function () {
 	function _setPositionByButton(destroy) {
 
 		if(destroy === 'single') {
-			_btnXUp.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates(); });
-			_btnXDown.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates(); });
-			_btnYUp.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates(); });
-			_btnYDown.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates(); });
+			_btnXUp.on('click', function() {_watermarkImage.css({ left: _watermarkImage.position().left + 2 }); _getNewCoordinates(); });
+			_btnXDown.on('click', function() {_watermarkImage.css({ left: _watermarkImage.position().left - 2 }); _getNewCoordinates(); });
+			_btnYUp.on('click', function() {_watermarkImage.css({ top: _watermarkImage.position().top + 2 }); _getNewCoordinates(); });
+			_btnYDown.on('click', function() {_watermarkImage.css({ top: _watermarkImage.position().top - 2 }); _getNewCoordinates(); });
 			console.log('CHECKED TO SINGLE');
 		}
 		else if(destroy === 'tile') {
@@ -116,8 +117,8 @@ var controlMargin = (function () {
 	//Установка координат в инпуты
 	function _getNewCoordinates(){
 		var
-			newY = _watermark.position().top,
-			newX = _watermark.position().left;
+			newY = _watermarkImage.position().top,
+			newX = _watermarkImage.position().left;
 
 			_inputY.val(Math.round(newY));
   			_inputX.val(Math.round(newX));

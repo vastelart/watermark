@@ -46,7 +46,8 @@ var switchModeCatcher = (function () {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
 				//position.init('tile');
-				
+				//Марджины
+				controlMargin.init('tile');
 				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
 				//Добавляем нужные CSS-стили
@@ -59,7 +60,8 @@ var switchModeCatcher = (function () {
 			case 'single':
 				//Состояние модуля позиционирования ставим в режим СИНГЛ
 				//position.init('single');
-				
+				//Лефт/топ
+				controlMargin.init('single');
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
 				//Убираем ненужные CSS-стили
@@ -117,7 +119,9 @@ var switchModeCatcher = (function () {
 
 		waterMark.css({
 			'left': 0,
-			'top': 0
+			'top': 0,
+			'margin-right': 0,
+			'margin-bottom': 0
 		});
 
 		//Сбрасываем форму
@@ -149,6 +153,9 @@ var switchModeCatcher = (function () {
 				containment: mainImageWrapper
 			});
 		}
+
+		_inputY.val(0);
+		_inputX.val(0);
 		
 	}
 

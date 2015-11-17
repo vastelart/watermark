@@ -48,7 +48,9 @@ var resetForm = (function () {
 		$.each(watermarkImages, function () {
 			$(this).css({
 				'margin-right' : 0,
-				'margin-bottom' : 0
+				'margin-bottom' : 0,
+				'left': 0,
+				'top': 0
 			});
 		});
 
