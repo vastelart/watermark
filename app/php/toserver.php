@@ -40,15 +40,14 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg_src = imagecreatefrompng($imname);
-		imageAlphaBlending($srcimg_src, false);
-    	imageSaveAlpha($srcimg_src, true);
+		imagealphablending($srcimg_src, false);
+    	imagesavealpha($srcimg_src, true);
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
-		imageAlphaBlending($srcimg, false);
-    	imageSaveAlpha($srcimg, true);
+    	imagealphablending($srcimg, false);
+    	imagesavealpha($srcimg, true);
 		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
-		imagepng($srcimg_src, 'mum.png');
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
@@ -71,10 +70,15 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
 		$pattern_src = imagecreatefrompng($patternname);
+		imagealphablending($pattern_src, false);
+    	imagesavealpha($pattern_src, true);
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
+		imagealphablending($pattern, false);
+    	imagesavealpha($pattern, true);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagepng($pattern, 'mmm.png');
 		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
@@ -83,6 +87,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagealphablending($pattern, false);
 		imagedestroy($pattern_src);
 	}
 
@@ -139,8 +144,8 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
     //Сохранение файла
     $tofilename = $pathtosave.'/'.date('Ymd_his');
-    $tobrowser = $tofilename.'_spazm_tiled.jpg';
-    imagejpeg($srcimg, $tobrowser, 90);
+    $tobrowser = $tofilename.'_spazm_tiled.png';
+    imagepng($srcimg, $tobrowser);
 
     //=====================================================================
 
@@ -153,7 +158,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 		// Возвращаем файл и заголовки. XMLHttpResponse на клиенте выполнит сохранение файла
 		header('Content-Description: File Transfer');
-		header('Content-Type: image/jpeg');
+		header('Content-Type: image/png');
 		header('Content-Disposition: attachment; filename=' . basename($file));
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
