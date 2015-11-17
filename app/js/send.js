@@ -102,9 +102,6 @@ var uploadModule = (function () {
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
 
-					//Устанавливаем режим СИНГЛ
-					//switchModeForcer.init('single');
-
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
@@ -164,9 +161,7 @@ var uploadModule = (function () {
 			'top' : 0
 		});
 
-		console.log('RESIZED!');
-
-		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+		//console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
 
 	}
 

@@ -90,7 +90,6 @@ var position = (function () {
   				collision: "fit"
 			});
 			_getNewCoordinates();
-			_doSmthSerious();
 		});
 	}
 
@@ -103,10 +102,6 @@ var position = (function () {
 
 			_inputY.val(Math.round(newY));
   			_inputX.val(Math.round(newX) - 1);
-	}
-
-	function _doSmthSerious () {
-		// body...
 	}
 
 

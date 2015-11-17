@@ -39,3 +39,7 @@ var inputPosition = (function () {
 	}
 })();
 
+if($('#inputY').length > 0) {
+	inputPosition.init('single');
+}
+

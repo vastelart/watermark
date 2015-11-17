@@ -24,7 +24,6 @@ var switchModeCatcher = (function () {
 	function _listener(actionplace) {
 		singleMode.on('click', _setServerData);
 		tileMode.on('click', _setServerData);
-		tileMode.one('click', _showWarning);
 		if(actionplace === 'single') {
 			console.log('SINGLE MODE');
 		}
@@ -47,8 +46,7 @@ var switchModeCatcher = (function () {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
 				position.init('tile');
-				//Включаем нужный режим управления с помощью ввода значений в инпуты
-				inputPosition.init('tile');
+				
 				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
 				//Добавляем нужные CSS-стили
@@ -61,8 +59,7 @@ var switchModeCatcher = (function () {
 			case 'single':
 				//Состояние модуля позиционирования ставим в режим СИНГЛ
 				position.init('single');
-				//Включаем нужный режим управления с помощью ввода значений в инпуты
-				inputPosition.init('single');
+				
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
 				//Убираем ненужные CSS-стили
