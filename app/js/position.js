@@ -2,7 +2,7 @@ var position = (function () {
 		//определение переменных
 		var
 			_container = $('.main-img-inserted'),
-			_watermark = $('#watermarkInsert'),
+			_watermark = $('.water-img-inserted'),
 			_inputY = $('.number__input-y'),
 			_inputX = $('.number__input-x'),
 			_defY = $('.number__input-y').val(0),
@@ -58,7 +58,7 @@ var position = (function () {
 			leftBottom = boxLabel.eq(6),
 			middleBottom = boxLabel.eq(7),
 			rightBottom = boxLabel.eq(8),
-			contain = $(".main-image-insert");
+			contain = $(".main-img-inserted");
 
 	//Устанавливаем листенеры на радиобаттоны именно здесь
 	//верхний левый
@@ -90,6 +90,7 @@ var position = (function () {
   				collision: "fit"
 			});
 			_getNewCoordinates();
+			_doSmthSerious();
 		});
 	}
 
@@ -102,6 +103,10 @@ var position = (function () {
 
 			_inputY.val(Math.round(newY));
   			_inputX.val(Math.round(newX) - 1);
+	}
+
+	function _doSmthSerious () {
+		// body...
 	}
 
 

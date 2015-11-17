@@ -102,22 +102,23 @@ var uploadModule = (function () {
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
 
-					//Очищаем контейнер перед вставкой изображения
-					var imgs = $('.watermark-insert').find('img');
-					if(imgs.length > 1) {
-						var rememberHtml = imgs[0];
-
-						for(var im = 1; im < imgs.length; im++ ) {
-							imgs[im].remove();
-						}
-						
-					}
-
 					//Устанавливаем режим СИНГЛ
-					switchModeForcer.init('single');
+					//switchModeForcer.init('single');
 
 					//Первый инит модуля position с позицией single
 					position.init('single');
+
+					var waterWrapper = $('.watermark-insert');
+					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+
+					waterWrapper.draggable({
+						containment: mainImageWrapper
+					});
+
+					waterWrapper.css({
+						'left': 0,
+						'top': 0
+					});
 
 					//Масштабируем вотермарк
 					_resizeIt();
@@ -159,10 +160,7 @@ var uploadModule = (function () {
 			'top' : 0
 		});
 
-		//mainImgInsert.parent().height(imgParentHeight - 4);
-
-		//watermarkInsert.parent().width($(this).width());
-		//watermarkInsert.parent().height($(this).height());
+		console.log('RESIZED!');
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
 	}

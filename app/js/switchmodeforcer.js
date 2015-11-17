@@ -26,7 +26,7 @@ var switchModeForcer = (function () {
 	function _setSingleMode() {
 
 		//Состояние модуля позиционирования ставим в режим СИНГЛ
-		position.init('single');
+		//position.init('single');
 		//Включаем нужный режим управления с помощью ввода значений в инпуты
 		inputPosition.init('single');
 		//Разблокировка позишена вотермарка по радиобаттонам
@@ -37,6 +37,7 @@ var switchModeForcer = (function () {
 		//Эти красные линии поверх радиобаттонов - скрываем
 		_linePositions.fadeOut(300);
 
+		controlMargin.init('single');
 	}
 
 	function _setTileMode () {

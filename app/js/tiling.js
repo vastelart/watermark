@@ -9,9 +9,7 @@ var tilingModule = (function () {
 
 	var mainImageWrapper = $('.main-image-insert', '.watermark-left');
 
-	var clone = null,
-		waterMark = $('.water-img-inserted'),
-		waterWrapper = $('.watermark-insert');
+	var clone = null;
 
 	var _inputY = $('.number__input-y'),
 		_inputX = $('.number__input-x');
@@ -25,6 +23,9 @@ var tilingModule = (function () {
 
 	//Устанавливаем замощение
 	function _setTileMode () {
+
+		var waterMark = $('.water-img-inserted'),
+			waterWrapper = $('.watermark-insert');
 		
 		var waterWrapperWidth = waterWrapper.width(),
 			waterWrapperHeight = waterWrapper.height(),
@@ -62,8 +63,8 @@ var tilingModule = (function () {
 
 		//Сбрасываем позишен контейнера вотермарков
 		waterWrapper.css({
-			left: 0,
-			top: 0
+			'left': 0,
+			'top': 0
 		});
 
 		//Сбрасываем форму
@@ -76,6 +77,9 @@ var tilingModule = (function () {
 		//Меняем логику поведения стрелок-контроллеров
 		//controlPosition.init();
 		//controlMargin.init('destroy');
+
+		var waterMark = $('.water-img-inserted'),
+			waterWrapper = $('.watermark-insert');
 
 		var tiledImages = waterWrapper.find('img');
 
@@ -90,7 +94,6 @@ var tilingModule = (function () {
 				tiledImages[im].remove();
 			}
 
-			//waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
 			waterWrapper.draggable({
 				containment: mainImageWrapper
 			});

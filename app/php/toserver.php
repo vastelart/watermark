@@ -107,10 +107,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 	//Пустое увеличенное изображение под будущий мерж
 	$im = imagecreatetruecolor($srcWidth*2, $srcHeight*2);
-	$black = imagecolorallocate($im, 0, 0, 0);
-    imagecolortransparent($im, $black);
-	imagealphablending($im, false);
-    imagesavealpha($im, true);
+	//$black = imagecolorallocate($im, 0, 0, 0);
+    //imagecolortransparent($im, $black);
+	//imagealphablending($im, false);
+    //imagesavealpha($im, true);
     //imagepng($im, 'smim.png');
     //ОК
 
@@ -138,9 +138,9 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}    
  
     // Сохранение замощенного прозрачного (пустого) изображения с размерами основного
-    //imagepng($im, 'smell.png');
+    imagepng($im, 'smell.png');
 
-    $tomerge = imagecreatefrompng('mumim.png');
+    $tomerge = imagecreatefrompng('smell.png');
     imagealphablending($tomerge, false);
     imagesavealpha($tomerge, true);
     $blackd = imagecolorallocate($tomerge, 0, 0, 0);
