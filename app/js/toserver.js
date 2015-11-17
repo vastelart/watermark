@@ -3,7 +3,6 @@
 	//Переменные среды
 	var form = document.getElementById('theForm');
 	var submit = document.getElementById('submitBtn');
-	var waterimg = document.getElementById('watermarkInsert');
 	var toserver = 'php/toserver.php';
 
 	//Модуль вызова диалога сохранения файла - новый экземпляр
@@ -30,7 +29,7 @@
 		var mainimage = document.querySelector('.form-input__fake-base-img').textContent;
 		var watermark = document.querySelector('.form-input__fake-watermark').textContent;
 		var opacity = document.getElementById('slider').getAttribute('data-value');
-		
+		var waterimg = document.getElementById('watermarkInsert');
 		var placemethod = document.querySelectorAll('.form__view-button_placeaction');
 		var waterimage = document.querySelector('.water-img-inserted');
 		var mainimagewrapper = document.querySelector('.main-img-inserted');
@@ -57,8 +56,8 @@
 			console.log(indentX + ' SINGLE ' + indentY);
 		}
 		else {
-			var indentX = mainimagewrapper.left;
-			var indentY = mainimagewrapper.top;
+			var indentX = waterimg.style.left;
+			var indentY = waterimg.style.top;
 			console.log(indentX + ' TILE ' + indentY);
 		}
 
