@@ -91,9 +91,6 @@ var uploadModule = (function () {
 				//Инсерты были скрыты. Показываем
 				insert.parent().fadeIn(500);
 
-				//Устанавливаем режим СИНГЛ
-				singleMode.click();
-
 				//Если это - основное изображение, возвращаем ему свойство инлайн-блок
 				if(insert.parent().attr('id') === 'mainImageInsert') {
 					insert.parent().css({
@@ -101,7 +98,7 @@ var uploadModule = (function () {
 					});
 
 					//Масштабируем вотермарк
-					_resizeIt();
+					//_resizeIt();
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -141,10 +138,14 @@ var uploadModule = (function () {
 		var watermarkInsert = $('.water-img-inserted', '.watermark-left');
 		var imgParentWidth = mainImgInsert.width();
 		var imgParentHeight = mainImgInsert.height();
-		var nativeWidth = document.querySelector('.main-img-inserted').naturalWidth;
-		var nativeHeight = document.querySelector('.main-img-inserted').naturalHeight;
-		var nativeWaterWidth = document.querySelector('.water-img-inserted').naturalWidth;
-		var nativeWaterHeight = document.querySelector('.water-img-inserted').naturalHeight;
+
+		var w = document.querySelector('.water-img-inserted');
+		var m = document.querySelector('.main-img-inserted');
+
+		var nativeWidth = m.naturalWidth;
+		var nativeHeight = m.naturalHeight;
+		var nativeWaterWidth = w.naturalWidth;
+		var nativeWaterHeight = w.naturalHeight;
 
 		var widthRatio = nativeWidth / imgParentWidth;
 		var heightRatio = nativeHeight / imgParentHeight;
@@ -165,6 +166,15 @@ var uploadModule = (function () {
 		});
 
 		console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
+
+	}
+
+	function _resizeWaterWrapper () {
+		var waterWrapper = $('.watermark-insert');
+
+		waterWrapper.width($(this).find('img').width());
+		waterWrapper.height($(this).find('img').height());
+		waterWrapper.css({ left: 0, top: 0 });
 	}
 
 	//Функция прерывания берем... загрузки файла

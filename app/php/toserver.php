@@ -40,10 +40,15 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
 		$srcimg_src = imagecreatefrompng($imname);
+		imageAlphaBlending($srcimg_src, false);
+    	imageSaveAlpha($srcimg_src, true);
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
+		imageAlphaBlending($srcimg, false);
+    	imageSaveAlpha($srcimg, true);
 		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagepng($srcimg_src, 'mum.png');
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
