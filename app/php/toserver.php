@@ -79,9 +79,6 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		imagealphablending($pattern, false);
     	imagesavealpha($pattern, true);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
-		imagealphablending($pattern, false);
-    	imagesavealpha($pattern, true);
-		imagepng($pattern, 'mum.png');
 		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
@@ -90,6 +87,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
 		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagealphablending($pattern, false);
 		imagedestroy($pattern_src);
 	}
 
