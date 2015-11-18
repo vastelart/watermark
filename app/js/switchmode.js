@@ -13,7 +13,6 @@ var switchModeCatcher = (function () {
 	var labelX = $('.label-x', '.position__adjust-sett');
 	var labelY = $('.label-y', '.position__adjust-sett');
 	var _linePositions = $('.linePositions', '.watermark-right');
-	var watermarkInput = $('.form-input__watermark');
 
 	//Для переключения функций кнопок (позишен/марджин)
 	var
@@ -34,8 +33,15 @@ var switchModeCatcher = (function () {
 	var clone = null,
 		waterMark = $('.water-img-inserted'),
 		waterWrapper = $('.watermark-insert');
-	var _inputY = $('.number__input-y'),
-		_inputX = $('.number__input-x');
+
+	//Для вкл/выкл нужных инпутов
+	var _inputY = $('#inputY'),
+		_inputX = $('#inputX');
+	var _inputYMargin = $('#inputYMargin'),
+		_inputXMargin = $('#inputXMargin');
+
+	var inputMargins = [_inputYMargin,_inputXMargin];
+	var inputPositions = [_inputY,_inputX];
 
 	//Слушатель
 	function _listener(actionplace) {
@@ -64,7 +70,10 @@ var switchModeCatcher = (function () {
 			case 'tile':
 				//Скрываем кнопки позишена, показываем кнопки марджинов
 				$.each(positions, function() {$(this).hide();});
-				$.each(margins, function() {$(this).show(); $(this).css({'display':'block'});})
+				$.each(margins, function() {$(this).show(); $(this).css({'display':'block'});});
+				//Скрываем инпуты позишена, показываем инпуты марджинов
+				$.each(inputPositions, function() {$(this).hide();});
+				$.each(inputMargins, function() {$(this).show();});
 				//Устанавливаем состояние блока позиционирования
 				position.init('tile');
 				//Отменяем драггабл режима сингл
@@ -85,6 +94,9 @@ var switchModeCatcher = (function () {
 				//Скрываем кнопки марджинов, показываем кнопки позишена
 				$.each(positions, function() {$(this).show();});
 				$.each(margins, function() {$(this).hide();})
+				//Скрываем инпуты марджинов, показываем инпуты позишена
+				$.each(inputPositions, function() {$(this).show();});
+				$.each(inputMargins, function() {$(this).hide();});
 				//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
 				waterWrapper.width(waterWrapper.find('img').width());
 				waterWrapper.height(waterWrapper.find('img').height());

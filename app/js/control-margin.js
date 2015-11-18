@@ -42,10 +42,10 @@ var controlMargin = (function () {
 	//Смещение по клику на кнопки
 	function _setPositionByButton() {
 
-		_btnXUp_position.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); });
-		_btnXDown_position.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); });
-		_btnYUp_position.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); });
-		_btnYDown_position.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); });
+		_btnXUp_position.on('click', function() {_watermark.css({ left: _watermark.position().left + 2 }); _getNewCoordinates('posit'); });
+		_btnXDown_position.on('click', function() {_watermark.css({ left: _watermark.position().left - 2 }); _getNewCoordinates('posit'); });
+		_btnYUp_position.on('click', function() {_watermark.css({ top: _watermark.position().top + 2 }); _getNewCoordinates('posit'); });
+		_btnYDown_position.on('click', function() {_watermark.css({ top: _watermark.position().top - 2 }); _getNewCoordinates('posit'); });
 
 		_btnXUp.on('click', function() { _setMarginsToWatermark('right plus'); _getNewCoordinates('marg'); });
 		_btnXDown.on('click', function() { _setMarginsToWatermark('right minus'); _getNewCoordinates('marg'); });

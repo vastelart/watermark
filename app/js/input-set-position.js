@@ -1,4 +1,3 @@
-
 var inputPosition = (function () {
 	// Рычаг
 	var init = _setListeners;
@@ -42,4 +41,3 @@ var inputPosition = (function () {
 if($('#inputY').length > 0) {
 	inputPosition.init('single');
 }
-
