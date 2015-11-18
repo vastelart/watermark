@@ -10,8 +10,7 @@ var position = (function () {
 			_btnXUp = $('#XUp'),
 			_btnXDown = $('#XDown'),
 			_btnYUp = $('#YUp'),
-			_btnYDown = $('#YDown'),
-			_posBtns = $('.sett-up, .sett-down');
+			_btnYDown = $('#YDown');
 			
 	//Рычаг
 	var init = _setUpListners;
@@ -21,14 +20,6 @@ var position = (function () {
 	function _setUpListners (actionplace) {
 		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
 		console.log('POSITION IS ' + actionplace);
-
-		//Клик на кнопки позиционирования
-		actionplace === 'single' ? controlMargin.init('single') : controlMargin.init('tile');
-
-		//Отменяем событие бай дефолт при клике по button
-		_posBtns.on('click', function (event) {
-			event.preventDefault();
-		});
 	}
 
 	//определение radio buttons
@@ -101,3 +92,5 @@ var position = (function () {
 	};
 
 })();
+
+position.init('single');

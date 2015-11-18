@@ -1,8 +1,10 @@
 var switchModeCatcher = (function () {
 	console.log('SWICTH MODE CATCHER');
 
+	//Рычаг
 	var init = _listener;
 
+	//Переменные среды
 	var submit = $('#submitBtn', '.watermark-right');
 	var singleMode = $('.form__view-link_single');
 	var tileMode = $('.form__view-link_tile');
@@ -13,7 +15,21 @@ var switchModeCatcher = (function () {
 	var _linePositions = $('.linePositions', '.watermark-right');
 	var watermarkInput = $('.form-input__watermark');
 
-	//+++
+	//Для переключения функций кнопок (позишен/марджин)
+	var
+		_btnXUp = $('#XMarginPlus'),
+		_btnXDown = $('#XMarginMinus'),
+		_btnYUp = $('#YMarginPlus'),
+		_btnYDown = $('#YMarginMinus'),
+		_btnXUp_position = $('#XUp'),
+		_btnXDown_position = $('#XDown'),
+		_btnYUp_position = $('#YUp'),
+		_btnYDown_position = $('#YDown');
+
+	var margins = [_btnXUp,_btnXDown,_btnYUp,_btnYDown];
+	var positions = [_btnXUp_position,_btnXDown_position,_btnYUp_position,_btnYDown_position];
+
+	//Переменные для операций с вотермарком
 	var mainImageWrapper = $('.main-image-insert', '.watermark-left');
 	var clone = null,
 		waterMark = $('.water-img-inserted'),
@@ -21,6 +37,7 @@ var switchModeCatcher = (function () {
 	var _inputY = $('.number__input-y'),
 		_inputX = $('.number__input-x');
 
+	//Слушатель
 	function _listener(actionplace) {
 		singleMode.on('click', _setModeOptions);
 		tileMode.on('click', _setModeOptions);
@@ -32,25 +49,28 @@ var switchModeCatcher = (function () {
 		}
 	}
 
+	//Подготавливаем воркплейс к переключению режима
 	function _setModeOptions() {
 		var serve = $(this).find('input[type=radio]').val();
 		
+		//Меняем стили у кнопок режимов
 		$.each(viewMode, function (index, value) {
 			$(value).removeClass('active');
 		});
-
 		$(this).addClass('active');
 
 		//Инициализируем нужное состояние модуля позишена, меняем CSS-стили у элементов
 		switch(serve) {
 			case 'tile':
+				//Скрываем кнопки позишена, показываем кнопки марджинов
+				$.each(positions, function() {$(this).hide();});
+				$.each(margins, function() {$(this).show(); $(this).css({'display':'block'});})
 				//Устанавливаем состояние блока позиционирования
 				position.init('tile');
-
 				//Отменяем драггабл режима сингл
 				waterWrapper.draggable('destroy');
 				//Марджины
-				controlMargin.init('tile');
+				inputPosition.init('tile');
 				//Блокируем позишен по радиобаттонам
 				positionRadios.addClass('disabled');
 				//Добавляем нужные CSS-стили
@@ -58,14 +78,19 @@ var switchModeCatcher = (function () {
 				labelY.addClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - показываем
 				_linePositions.fadeIn(300);
+				//Устанавливаем режим ТАЙЛ - замощение
 				_setTileMode();
 				break;
 			case 'single':
+				//Скрываем кнопки марджинов, показываем кнопки позишена
+				$.each(positions, function() {$(this).show();});
+				$.each(margins, function() {$(this).hide();})
 				//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
 				waterWrapper.width(waterWrapper.find('img').width());
 				waterWrapper.height(waterWrapper.find('img').height());
+				//
+				_btnXUp.removeClass('margin_left-plus');
 				//Лефт/топ позишен
-				controlMargin.init('single');
 				inputPosition.init('single');
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
@@ -74,6 +99,7 @@ var switchModeCatcher = (function () {
 				labelY.removeClass('label-y_tile');
 				//Эти красные линии поверх радиобаттонов - скрываем
 				_linePositions.fadeOut(300);
+				//Устанавливаем режим СИНГЛ - один вотермарк
 				_setSingleMode();
 				break;
 			}
@@ -112,12 +138,11 @@ var switchModeCatcher = (function () {
 			'top': 0
 		});
 
-		waterMark.css({
-			'left': 0,
-			'top': 0,
-			'margin-right': 0,
-			'margin-bottom': 0
-		});
+		//Переключаем ввод значений в инпуты на марджины
+		inputPosition.init('tile');
+
+		//Сбрасываем марджины и позишен у самого вотермарка
+		_waterCSSReset();
 
 		//Сбрасываем форму
 		resetForm.init(true);
@@ -129,11 +154,13 @@ var switchModeCatcher = (function () {
 		//Определяем количество изображений в контейнере вотермарка
 		var tiledImages = waterWrapper.find('img');
 
-		//Масштабируем контейнер
-		//waterWrapper.width(waterWrapper.find('img').width());
-		//waterWrapper.height(waterWrapper.find('img').height());
+		//Сбрасываем позишен у контейнера вотермарка
 		waterWrapper.css({ left: 0, top: 0 });
 
+		//Сбрасываем марджины и позишен у самого вотермарка
+		_waterCSSReset();
+
+		//Чистим контейнер от лишних вотермарков
 		if(tiledImages.length > 1) {
 			var rememberHtml = tiledImages[0];
 
@@ -141,7 +168,7 @@ var switchModeCatcher = (function () {
 				tiledImages[im].remove();
 			}
 
-			
+			//Подключаем дрэггабл на вотермарк
 			waterWrapper.draggable({
 				containment: mainImageWrapper,
 				//Передаем значение координат в инпуты
@@ -155,9 +182,19 @@ var switchModeCatcher = (function () {
 			});
 		}
 
+		//Сбрасываем значения инпутов
 		_inputY.val(0);
 		_inputX.val(0);
 		
+	}
+
+	function _waterCSSReset() {
+		waterMark.css({
+			'left': 0,
+			'top': 0,
+			'margin-right': 0,
+			'margin-bottom': 0
+		});
 	}
 
 	return {

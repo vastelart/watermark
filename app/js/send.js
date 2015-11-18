@@ -110,9 +110,6 @@ var uploadModule = (function () {
 						singleMode.click();
 					}
 
-					//Первый инит модуля position с позицией single
-					position.init('single');
-
 					//Цепляем текущее состояние контейнеров вотермарка и основного изображения, а так же инпутов со значениями
 					var waterWrapper = $('.watermark-insert');
 					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
@@ -148,6 +145,9 @@ var uploadModule = (function () {
 					var disabled = $('.disabled', '.watermark-right');
 					disabled.removeClass('disabled').removeAttr('disabled');
 					console.log('WATER IS HERE');
+
+					//Сбрасываем форму
+					resetForm.init(true);
 				}
 			});
 		}).on('fileuploadfail', function (e, data) {
@@ -163,20 +163,6 @@ var uploadModule = (function () {
 		var watermarkInsert = $('.water-img-inserted', '.watermark-left');
 		var imgParentWidth = mainImgInsert.width();
 		var imgParentHeight = mainImgInsert.height();
-
-		/*var w = document.querySelector('.water-img-inserted');
-		var m = document.querySelector('.main-img-inserted');
-
-		var nativeWidth = m.naturalWidth;
-		var nativeHeight = m.naturalHeight;
-		var nativeWaterWidth = w.naturalWidth;
-		var nativeWaterHeight = w.naturalHeight;
-
-		var widthRatio = nativeWidth / imgParentWidth;
-		var heightRatio = nativeHeight / imgParentHeight;
-
-		console.log(widthRatio);
-		console.log(heightRatio);*/
 
 		watermarkInsert.css({
 			'max-width': imgParentWidth / 2,
