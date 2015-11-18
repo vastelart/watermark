@@ -46,6 +46,9 @@ var switchModeCatcher = (function () {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
 				//position.init('tile');
+
+				//Отменяем драггабл режима сингл
+				waterWrapper.draggable('destroy');
 				//Марджины
 				controlMargin.init('tile');
 				//Блокируем позишен по радиобаттонам
@@ -77,13 +80,11 @@ var switchModeCatcher = (function () {
 	//Устанавливаем замощение
 	function _setTileMode () {
 		
+		//Цепляем нужные значения для того, чтобы замостить вотермарк
 		var waterWrapperWidth = waterWrapper.width(),
 			waterWrapperHeight = waterWrapper.height(),
 			waterMarkWidth = waterMark.width(),
 			waterMarkHeight = waterMark.height();
-
-		//Отменяем драггабл режима сингл
-		waterWrapper.draggable('destroy');
 
 		//Удваиваем высоту и ширину контейнера вотермарка
 		waterWrapper.width(mainImageWrapper.width() * 2);
@@ -96,20 +97,12 @@ var switchModeCatcher = (function () {
 		for (var i = 0, l = countY * countX; i < l; i++) {
 			clone = waterMark.clone();
 
-			//Плэйсим клонов в увеличенный контейнер вотермарка
+			//Плэйсим клоны в увеличенный контейнер вотермарка
 			waterWrapper.append(clone);
 		}
 
 		//Устанавливаем новый драггаббл на контейнер с замощением
-		waterWrapper.draggable({
-			drag: function(){
-	            var position = $(this).position();
-	            var posX = position.left;
-	            var posY = position.top;
-	            _inputY.val(Math.round(posY));
-	            _inputX.val(Math.round(posX));
-        	}
-		});
+		waterWrapper.draggable();
 
 		//Сбрасываем позишен контейнера вотермарков
 		waterWrapper.css({
@@ -131,9 +124,7 @@ var switchModeCatcher = (function () {
 
 	function _setSingleMode () {
 
-		//Меняем логику поведения стрелок-контроллеров
-		//controlPosition.init();
-		//controlMargin.init('destroy');
+		
 
 		var tiledImages = waterWrapper.find('img');
 
@@ -148,7 +139,7 @@ var switchModeCatcher = (function () {
 				tiledImages[im].remove();
 			}
 
-			//waterWrapper.html('<img src="' + rememberHtml.src + '" class="' + rememberHtml.class + '">');
+			
 			waterWrapper.draggable({
 				containment: mainImageWrapper
 			});

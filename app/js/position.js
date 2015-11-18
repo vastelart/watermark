@@ -2,7 +2,7 @@ var position = (function () {
 		//определение переменных
 		var
 			_container = $('.main-img-inserted'),
-			_watermark = $('.water-img-inserted'),
+			_watermark = $('.watermark-insert'),
 			_inputY = $('.number__input-y'),
 			_inputX = $('.number__input-x'),
 			_defY = $('.number__input-y').val(0),
@@ -19,7 +19,6 @@ var position = (function () {
 	 //слушатели событий
 
 	function _setUpListners (actionplace) {
-		$(document).ready(_Drag);
 		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
 		console.log('POSITION IS ' + actionplace);
 
@@ -31,34 +30,20 @@ var position = (function () {
 			event.preventDefault();
 		});
 	}
-	//инициализация драг метода и передача координат в инпуты
-	function _Drag(){
 
-		_watermark.draggable({
-			containment: _container,
-
-				drag: function(){
-	            var position = $(this).position();
-	            var posX = position.left;
-	            var posY = position.top;
-	            _inputY.val(Math.round(posY));
-	            _inputX.val(Math.round(posX));
-        	}
-		});
-		};
-		//определение radio buttons
-		var
-			boxLabel = $('.position__box-label'),
-			leftTop = boxLabel.eq(0);
-			middleTop = boxLabel.eq(1),
-			rightTop = boxLabel.eq(2),
-			leftMiddle = boxLabel.eq(3),
-			middleMiddle = boxLabel.eq(4),
-			rightMiddle = boxLabel.eq(5),
-			leftBottom = boxLabel.eq(6),
-			middleBottom = boxLabel.eq(7),
-			rightBottom = boxLabel.eq(8),
-			contain = $(".main-img-inserted");
+	//определение radio buttons
+	var
+		boxLabel = $('.position__box-label'),
+		leftTop = boxLabel.eq(0);
+		middleTop = boxLabel.eq(1),
+		rightTop = boxLabel.eq(2),
+		leftMiddle = boxLabel.eq(3),
+		middleMiddle = boxLabel.eq(4),
+		rightMiddle = boxLabel.eq(5),
+		leftBottom = boxLabel.eq(6),
+		middleBottom = boxLabel.eq(7),
+		rightBottom = boxLabel.eq(8),
+		contain = $(".main-img-inserted");
 
 	//Устанавливаем листенеры на радиобаттоны именно здесь
 	//верхний левый
@@ -83,11 +68,14 @@ var position = (function () {
 	//Функция для позиционирования по радиобаттонам
 	function _setPositionRadio(button, my, at, contain) {
 		button.on('click', function() {
+			_watermark.width(_watermark.find('img').width());
+			_watermark.height(_watermark.find('img').height());
+
 			_watermark.position({
 				my: my,
-  				at: at,
-  				of: contain,
-  				collision: "fit"
+				at: at,
+				of: contain,
+				collision: "fit"
 			});
 			_getNewCoordinates();
 		});

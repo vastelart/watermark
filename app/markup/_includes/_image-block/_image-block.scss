@@ -45,6 +45,7 @@
   cursor: move;
   display: none;
   z-index: 99;
+  transition: .5s;
 }
 
 .water-img-inserted {

@@ -39,6 +39,8 @@
 		var toheight = waterimage.height;
 		var tomainwidth = mainimagewrapper.width;
 		var tomainheight = mainimagewrapper.height;
+		var indentX = waterimg.style.left;
+		var indentY = waterimg.style.top;
 		//var toserver = submit.getAttribute('data-server');
 
 		console.log(tomainheight + ' ЗДЕСЬ ' + tomainwidth);
@@ -48,17 +50,6 @@
 			if(placemethod[key].checked) {
 				var placeaction = placemethod[key].value;
 			}
-		}
-
-		if(placeaction === 'single') {
-			var indentX = waterimage.style.left;
-			var indentY = waterimage.style.top;
-			console.log(indentX + ' SINGLE ' + indentY);
-		}
-		else {
-			var indentX = waterimg.style.left;
-			var indentY = waterimg.style.top;
-			console.log(indentX + ' TILE ' + indentY);
 		}
 
 		//Пилим форм-дату

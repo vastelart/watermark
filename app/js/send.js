@@ -67,9 +67,7 @@ var uploadModule = (function () {
 	    }).on('fileuploaddone', function (e, data) {
 			$.each(data.files, function (index, file) {
 
-				//Файл загружен
-				//console.log(file);
-
+				//При ошибке файла - вернуть false
 				if(file.error ) {
 					console.log(file.error);
 					return false;
@@ -98,7 +96,10 @@ var uploadModule = (function () {
 					insert.parent().css({
 						display: 'inline-block'
 					});
-
+					//А самой картинке бокс-шедоу, чтобы были видны границы на белом фоне
+					insert.css({
+						'box-shadow': '2px 2px 5px rgba(0,0,0,.2)'
+					});
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -116,12 +117,22 @@ var uploadModule = (function () {
 					//Первый инит модуля position с позицией single
 					position.init('single');
 
+					//Цепляем текущее состояние контейнеров вотермарка и основного изображения, а так же инпутов со значениями
 					var waterWrapper = $('.watermark-insert');
 					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+					var _inputY = $('.number__input-y');
+					var _inputX = $('.number__input-x');
 
-					//Включаем драг-эн-дроп
+					//Включаем драг-эн-дроп на вотермарке
 					waterWrapper.draggable({
-						containment: mainImageWrapper
+						containment: mainImageWrapper,
+						drag: function(){
+				            var position = $(this).position();
+				            var posX = position.left;
+				            var posY = position.top;
+				            _inputY.val(Math.round(posY));
+				            _inputX.val(Math.round(posX));
+			        	}
 					});
 
 					//Сбрасываем позишен
@@ -173,13 +184,6 @@ var uploadModule = (function () {
 			'left' : 0,
 			'top' : 0
 		});
-
-		watermarkInsert.parent().css({
-			'width': w.width,
-			'height': w.height
-		});
-
-		//console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
 
 	}
 
