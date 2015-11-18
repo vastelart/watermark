@@ -22,8 +22,8 @@ var switchModeCatcher = (function () {
 		_inputX = $('.number__input-x');
 
 	function _listener(actionplace) {
-		singleMode.on('click', _setServerData);
-		tileMode.on('click', _setServerData);
+		singleMode.on('click', _setModeOptions);
+		tileMode.on('click', _setModeOptions);
 		if(actionplace === 'single') {
 			console.log('SINGLE MODE');
 		}
@@ -32,7 +32,7 @@ var switchModeCatcher = (function () {
 		}
 	}
 
-	function _setServerData() {
+	function _setModeOptions() {
 		var serve = $(this).find('input[type=radio]').val();
 		
 		$.each(viewMode, function (index, value) {
@@ -45,7 +45,7 @@ var switchModeCatcher = (function () {
 		switch(serve) {
 			case 'tile':
 				//Устанавливаем состояние блока позиционирования
-				//position.init('tile');
+				position.init('tile');
 
 				//Отменяем драггабл режима сингл
 				waterWrapper.draggable('destroy');
@@ -61,10 +61,12 @@ var switchModeCatcher = (function () {
 				_setTileMode();
 				break;
 			case 'single':
-				//Состояние модуля позиционирования ставим в режим СИНГЛ
-				//position.init('single');
-				//Лефт/топ
+				//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
+				waterWrapper.width(waterWrapper.find('img').width());
+				waterWrapper.height(waterWrapper.find('img').height());
+				//Лефт/топ позишен
 				controlMargin.init('single');
+				inputPosition.init('single');
 				//Разблокировка позишена вотермарка по радиобаттонам
 				positionRadios.removeClass('disabled');
 				//Убираем ненужные CSS-стили
@@ -124,12 +126,12 @@ var switchModeCatcher = (function () {
 
 	function _setSingleMode () {
 
-		
-
+		//Определяем количество изображений в контейнере вотермарка
 		var tiledImages = waterWrapper.find('img');
 
-		waterWrapper.width(waterWrapper.find('img').width());
-		waterWrapper.height(waterWrapper.find('img').height());
+		//Масштабируем контейнер
+		//waterWrapper.width(waterWrapper.find('img').width());
+		//waterWrapper.height(waterWrapper.find('img').height());
 		waterWrapper.css({ left: 0, top: 0 });
 
 		if(tiledImages.length > 1) {
@@ -141,7 +143,15 @@ var switchModeCatcher = (function () {
 
 			
 			waterWrapper.draggable({
-				containment: mainImageWrapper
+				containment: mainImageWrapper,
+				//Передаем значение координат в инпуты
+				drag: function() {
+					var position = $(this).position();
+					var posX = position.left;
+					var posY = position.top;
+					_inputY.val(Math.round(posY));
+					_inputX.val(Math.round(posX));
+				}
 			});
 		}
 

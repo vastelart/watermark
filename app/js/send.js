@@ -96,10 +96,6 @@ var uploadModule = (function () {
 					insert.parent().css({
 						display: 'inline-block'
 					});
-					//А самой картинке бокс-шедоу, чтобы были видны границы на белом фоне
-					insert.css({
-						'box-shadow': '2px 2px 5px rgba(0,0,0,.2)'
-					});
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -127,6 +123,10 @@ var uploadModule = (function () {
 					waterWrapper.draggable({
 						containment: mainImageWrapper,
 						drag: function(){
+							//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
+							waterWrapper.width(waterWrapper.find('img').width());
+							waterWrapper.height(waterWrapper.find('img').height());
+							//Передаем значение координат в инпуты
 				            var position = $(this).position();
 				            var posX = position.left;
 				            var posY = position.top;
@@ -164,7 +164,7 @@ var uploadModule = (function () {
 		var imgParentWidth = mainImgInsert.width();
 		var imgParentHeight = mainImgInsert.height();
 
-		var w = document.querySelector('.water-img-inserted');
+		/*var w = document.querySelector('.water-img-inserted');
 		var m = document.querySelector('.main-img-inserted');
 
 		var nativeWidth = m.naturalWidth;
@@ -176,23 +176,15 @@ var uploadModule = (function () {
 		var heightRatio = nativeHeight / imgParentHeight;
 
 		console.log(widthRatio);
-		console.log(heightRatio);
+		console.log(heightRatio);*/
 
 		watermarkInsert.css({
-			'max-width': imgParentWidth,
-			'max-height': imgParentHeight,
+			'max-width': imgParentWidth / 2,
+			'max-height': imgParentHeight / 2,
 			'left' : 0,
 			'top' : 0
 		});
 
-	}
-
-	function _resizeWaterWrapper () {
-		var waterWrapper = $('.watermark-insert');
-
-		waterWrapper.width($(this).find('img').width());
-		waterWrapper.height($(this).find('img').height());
-		waterWrapper.css({ left: 0, top: 0 });
 	}
 
 	//Функция прерывания берем... загрузки файла

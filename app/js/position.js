@@ -68,9 +68,12 @@ var position = (function () {
 	//Функция для позиционирования по радиобаттонам
 	function _setPositionRadio(button, my, at, contain) {
 		button.on('click', function() {
+
+			//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
 			_watermark.width(_watermark.find('img').width());
 			_watermark.height(_watermark.find('img').height());
 
+			//Позиционируем по клику на радиобаттон
 			_watermark.position({
 				my: my,
 				at: at,
