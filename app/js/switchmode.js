@@ -29,7 +29,7 @@ var switchModeCatcher = (function () {
 	var positions = [_btnXUp_position,_btnXDown_position,_btnYUp_position,_btnYDown_position];
 
 	//Переменные для операций с вотермарком
-	var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+	var mainImageWrapper = $('.main-image-insert');
 	var clone = null,
 		waterMark = $('.water-img-inserted'),
 		waterWrapper = $('.watermark-insert');
@@ -139,6 +139,8 @@ var switchModeCatcher = (function () {
 
 			//Плэйсим клоны в увеличенный контейнер вотермарка
 			waterWrapper.append(clone);
+			//Устанавливаем контроль марджинов через инпуты
+			inputMargin.init();
 		}
 
 		//Устанавливаем новый драггаббл на контейнер с замощением

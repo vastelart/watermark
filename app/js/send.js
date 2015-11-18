@@ -13,7 +13,9 @@ var uploadModule = (function () {
 		resetBtn = $('#restBtn', '.settings'),
 		danger = $('.danger'),
 		dangerText = $('.danger__text'),
-		dangerClose = $('.danger__close');
+		dangerClose = $('.danger__close'),
+		noSubmit = $('#noSubmit', '.watermark-right'),
+		theForm = $('#theForm', '.watermark-right');
 
 	//Положение СИНГЛ
 	var singleMode = $('.form__view-link_single');
@@ -41,6 +43,16 @@ var uploadModule = (function () {
 			_loadImage(mainImg, mainImgInsert, mainImgName);
 			_loadImage(waterMark, watermarkInsert, waterMarkName);
 
+			//Запрещаем отправку формы
+			theForm.submit(function (event) {
+				event.preventDefault();
+				return false;
+			});
+
+			noSubmit.on('click', function (event) {
+				event.preventDefault();
+				return false;
+			});
 
 		});
 	}
@@ -171,6 +183,8 @@ var uploadModule = (function () {
 			'top' : 0
 		});
 
+		//Запускаем модуль позиционирования через ввод значений в инпуты
+		inputPosition.init();
 	}
 
 	//Функция прерывания берем... загрузки файла

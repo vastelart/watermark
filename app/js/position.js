@@ -3,10 +3,8 @@ var position = (function () {
 		var
 			_container = $('.main-img-inserted'),
 			_watermark = $('.watermark-insert'),
-			_inputY = $('.number__input-y'),
-			_inputX = $('.number__input-x'),
-			_defY = $('.number__input-y').val(0),
-			_defX = $('.number__input-x').val(0),
+			_inputY = $('#inputY'),
+			_inputX = $('#inputX'),
 			_btnXUp = $('#XUp'),
 			_btnXDown = $('#XDown'),
 			_btnYUp = $('#YUp'),
@@ -25,7 +23,7 @@ var position = (function () {
 	//определение radio buttons
 	var
 		boxLabel = $('.position__box-label'),
-		leftTop = boxLabel.eq(0);
+		leftTop = boxLabel.eq(0),
 		middleTop = boxLabel.eq(1),
 		rightTop = boxLabel.eq(2),
 		leftMiddle = boxLabel.eq(3),

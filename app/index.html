@@ -68,6 +68,7 @@
 				<div class="watermark-right right">
 					<h2 class="settings__title settings">Настройки</h2>
 					<form action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform" class="settings">
+						<button id="noSubmit" class="hidden disabled"></button>
 						<div class="form-input delimiter">
 							<div class="form-input-box">
 								<label for="" class="form__title srcimg">Исходное изображение</label>
@@ -133,7 +134,7 @@
 								</div>
 								<div class="position__adjust-sett right">
 									<div class="position__adjust__sett-x">
-										<label class="label-x number__input-label">X</label>
+										<div class="label-x number__input-label">X</div>
 										<input type="text" value="0" id="inputX" class="sett-x left number__input-x">
 										<input type="text" value="0" id="inputXMargin" class="sett-x left number__input-x hidden">
 										<div class="sett-x__box right">
@@ -144,7 +145,7 @@
 										</div>
 									</div>
 									<div class="position__adjust__sett-y">
-										<label class="label-y number__input-label">Y</label>
+										<div class="label-y number__input-label">Y</div>
 										<input type="text" value="0" id="inputY" class="sett-y left number__input-y">
 										<input type="text" value="0" id="inputYMargin" class="sett-y left number__input-y hidden">
 										<div class="sett-y__box right">

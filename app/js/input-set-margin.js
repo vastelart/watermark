@@ -1,47 +1,39 @@
-var inputPosition = (function () {
+var inputMargin = (function () {
 	// Рычаг
 	var init = _setListeners;
+	var watermarks = null;
 
 	//Переменные среды
 	var _inputY = $('#inputYMargin');
 	var _inputX = $('#inputXMargin');
-	var watermarks = $('#watermarkInsert').find('img');
 
 	//Слушатель
 	function _setListeners (destroy) {
 		_inputY.on('keyup', _setMargY);
 		_inputX.on('keyup', _setMargX);
 		console.log('INPUT SET MARGIN READY');
+
+		watermarks = $('#watermarkInsert').find('img');
+		return watermarks;
 	}
 
 	//Вертикальные (снизу) марджины - инит и установка
 	function _setMargY () {
 		var margY = _inputY.val();
-		_setMargs('bottom', margY);
-
+		$.each(watermarks, function () {
+			$(this).css({
+				'margin-bottom': margY +'px'
+			});
+		});
 	}
 
 	//Горизонтальные (справа) марджины - инит и установка
 	function _setMargX () {
 		var margX = _inputX.val();
-		_setMargs('right', margX);
-	}
-
-	//Функция для перебора ичем по переданным элементам
-	function _setMargs (styleName, val) {
-		$.each(watermarks, function (styleName, val) {
-			if(styleName === 'bottom' && val >= 0) {
-				$(this).css({
-					'margin-bottom': val +'px'
-				});
-			} else if(styleName === 'right' && val >= 0) {
-				$(this).css({
-					'margin-right': val +'px'
-				});
-			}
-			else {
-				return false;
-			}
+		$.each(watermarks, function () {
+			$(this).css({
+				'margin-right': margX +'px'
+			});
 		});
 	}
 
@@ -49,8 +41,3 @@ var inputPosition = (function () {
 		init: init
 	}
 })();
-
-//Запускаем рычаг, если есть, зачем
-if($('#inputYMargin').length > 0) {
-	inputPosition.init('single');
-}
