@@ -2,16 +2,13 @@ var position = (function () {
 		//определение переменных
 		var
 			_container = $('.main-img-inserted'),
-			_watermark = $('.water-img-inserted'),
-			_inputY = $('.number__input-y'),
-			_inputX = $('.number__input-x'),
-			_defY = $('.number__input-y').val(0),
-			_defX = $('.number__input-x').val(0),
+			_watermark = $('.watermark-insert'),
+			_inputY = $('#inputY'),
+			_inputX = $('#inputX'),
 			_btnXUp = $('#XUp'),
 			_btnXDown = $('#XDown'),
 			_btnYUp = $('#YUp'),
-			_btnYDown = $('#YDown'),
-			_posBtns = $('.sett-up, .sett-down');
+			_btnYDown = $('#YDown');
 			
 	//Рычаг
 	var init = _setUpListners;
@@ -19,46 +16,23 @@ var position = (function () {
 	 //слушатели событий
 
 	function _setUpListners (actionplace) {
-		$(document).ready(_Drag);
 		//Сообщаем любителям смотреть в консоль, какой сейчас режим - сингл или тайл
 		console.log('POSITION IS ' + actionplace);
-
-		//Клик на кнопки позиционирования
-		actionplace === 'single' ? controlMargin.init('single') : controlMargin.init('tile');
-
-		//Отменяем событие бай дефолт при клике по button
-		_posBtns.on('click', function (event) {
-			event.preventDefault();
-		});
 	}
-	//инициализация драг метода и передача координат в инпуты
-	function _Drag(){
 
-		_watermark.draggable({
-			containment: _container,
-
-				drag: function(){
-	            var position = $(this).position();
-	            var posX = position.left;
-	            var posY = position.top;
-	            _inputY.val(Math.round(posY));
-	            _inputX.val(Math.round(posX));
-        	}
-		});
-		};
-		//определение radio buttons
-		var
-			boxLabel = $('.position__box-label'),
-			leftTop = boxLabel.eq(0);
-			middleTop = boxLabel.eq(1),
-			rightTop = boxLabel.eq(2),
-			leftMiddle = boxLabel.eq(3),
-			middleMiddle = boxLabel.eq(4),
-			rightMiddle = boxLabel.eq(5),
-			leftBottom = boxLabel.eq(6),
-			middleBottom = boxLabel.eq(7),
-			rightBottom = boxLabel.eq(8),
-			contain = $(".main-img-inserted");
+	//определение radio buttons
+	var
+		boxLabel = $('.position__box-label'),
+		leftTop = boxLabel.eq(0),
+		middleTop = boxLabel.eq(1),
+		rightTop = boxLabel.eq(2),
+		leftMiddle = boxLabel.eq(3),
+		middleMiddle = boxLabel.eq(4),
+		rightMiddle = boxLabel.eq(5),
+		leftBottom = boxLabel.eq(6),
+		middleBottom = boxLabel.eq(7),
+		rightBottom = boxLabel.eq(8),
+		contain = $(".main-img-inserted");
 
 	//Устанавливаем листенеры на радиобаттоны именно здесь
 	//верхний левый
@@ -83,11 +57,17 @@ var position = (function () {
 	//Функция для позиционирования по радиобаттонам
 	function _setPositionRadio(button, my, at, contain) {
 		button.on('click', function() {
+
+			//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
+			_watermark.width(_watermark.find('img').width());
+			_watermark.height(_watermark.find('img').height());
+
+			//Позиционируем по клику на радиобаттон
 			_watermark.position({
 				my: my,
-  				at: at,
-  				of: contain,
-  				collision: "fit"
+				at: at,
+				of: contain,
+				collision: "fit"
 			});
 			_getNewCoordinates();
 		});
@@ -110,3 +90,5 @@ var position = (function () {
 	};
 
 })();
+
+position.init('single');

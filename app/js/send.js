@@ -13,7 +13,9 @@ var uploadModule = (function () {
 		resetBtn = $('#restBtn', '.settings'),
 		danger = $('.danger'),
 		dangerText = $('.danger__text'),
-		dangerClose = $('.danger__close');
+		dangerClose = $('.danger__close'),
+		noSubmit = $('#noSubmit', '.watermark-right'),
+		theForm = $('#theForm', '.watermark-right');
 
 	//Положение СИНГЛ
 	var singleMode = $('.form__view-link_single');
@@ -41,6 +43,16 @@ var uploadModule = (function () {
 			_loadImage(mainImg, mainImgInsert, mainImgName);
 			_loadImage(waterMark, watermarkInsert, waterMarkName);
 
+			//Запрещаем отправку формы
+			theForm.submit(function (event) {
+				event.preventDefault();
+				return false;
+			});
+
+			noSubmit.on('click', function (event) {
+				event.preventDefault();
+				return false;
+			});
 
 		});
 	}
@@ -67,9 +79,7 @@ var uploadModule = (function () {
 	    }).on('fileuploaddone', function (e, data) {
 			$.each(data.files, function (index, file) {
 
-				//Файл загружен
-				//console.log(file);
-
+				//При ошибке файла - вернуть false
 				if(file.error ) {
 					console.log(file.error);
 					return false;
@@ -98,7 +108,6 @@ var uploadModule = (function () {
 					insert.parent().css({
 						display: 'inline-block'
 					});
-
 				}
 				//Здесь будет происходить масштабирование вотермарка
 				if(insert.parent().attr('id') === 'watermarkInsert') {
@@ -113,15 +122,26 @@ var uploadModule = (function () {
 						singleMode.click();
 					}
 
-					//Первый инит модуля position с позицией single
-					position.init('single');
-
+					//Цепляем текущее состояние контейнеров вотермарка и основного изображения, а так же инпутов со значениями
 					var waterWrapper = $('.watermark-insert');
 					var mainImageWrapper = $('.main-image-insert', '.watermark-left');
+					var _inputY = $('.number__input-y');
+					var _inputX = $('.number__input-x');
 
-					//Включаем драг-эн-дроп
+					//Включаем драг-эн-дроп на вотермарке
 					waterWrapper.draggable({
-						containment: mainImageWrapper
+						containment: mainImageWrapper,
+						drag: function(){
+							//Подгоняем контейнер под размер вотермарка, чтобы избежать багов при переключении режимов с ТАЙЛ на СИНГЛ
+							waterWrapper.width(waterWrapper.find('img').width());
+							waterWrapper.height(waterWrapper.find('img').height());
+							//Передаем значение координат в инпуты
+				            var position = $(this).position();
+				            var posX = position.left;
+				            var posY = position.top;
+				            _inputY.val(Math.round(posY));
+				            _inputX.val(Math.round(posX));
+			        	}
 					});
 
 					//Сбрасываем позишен
@@ -137,6 +157,9 @@ var uploadModule = (function () {
 					var disabled = $('.disabled', '.watermark-right');
 					disabled.removeClass('disabled').removeAttr('disabled');
 					console.log('WATER IS HERE');
+
+					//Сбрасываем форму
+					resetForm.init(true);
 				}
 			});
 		}).on('fileuploadfail', function (e, data) {
@@ -153,42 +176,15 @@ var uploadModule = (function () {
 		var imgParentWidth = mainImgInsert.width();
 		var imgParentHeight = mainImgInsert.height();
 
-		var w = document.querySelector('.water-img-inserted');
-		var m = document.querySelector('.main-img-inserted');
-
-		var nativeWidth = m.naturalWidth;
-		var nativeHeight = m.naturalHeight;
-		var nativeWaterWidth = w.naturalWidth;
-		var nativeWaterHeight = w.naturalHeight;
-
-		var widthRatio = nativeWidth / imgParentWidth;
-		var heightRatio = nativeHeight / imgParentHeight;
-
-		console.log(widthRatio);
-		console.log(heightRatio);
-
 		watermarkInsert.css({
-			'max-width': imgParentWidth,
-			'max-height': imgParentHeight,
+			'max-width': imgParentWidth / 2,
+			'max-height': imgParentHeight / 2,
 			'left' : 0,
 			'top' : 0
 		});
 
-		watermarkInsert.parent().css({
-			'width': w.width,
-			'height': w.height
-		});
-
-		//console.log(nativeHeight + ' jdcJNDJNKDJC ' + nativeWidth);
-
-	}
-
-	function _resizeWaterWrapper () {
-		var waterWrapper = $('.watermark-insert');
-
-		waterWrapper.width($(this).find('img').width());
-		waterWrapper.height($(this).find('img').height());
-		waterWrapper.css({ left: 0, top: 0 });
+		//Запускаем модуль позиционирования через ввод значений в инпуты
+		inputPosition.init();
 	}
 
 	//Функция прерывания берем... загрузки файла

@@ -68,6 +68,7 @@
 				<div class="watermark-right right">
 					<h2 class="settings__title settings">Настройки</h2>
 					<form action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform" class="settings">
+						<button id="noSubmit" class="hidden disabled"></button>
 						<div class="form-input delimiter">
 							<div class="form-input-box">
 								<label for="" class="form__title srcimg">Исходное изображение</label>
@@ -133,19 +134,25 @@
 								</div>
 								<div class="position__adjust-sett right">
 									<div class="position__adjust__sett-x">
-										<label class="label-x number__input-label">X</label>
+										<div class="label-x number__input-label">X</div>
 										<input type="text" value="0" id="inputX" class="sett-x left number__input-x">
+										<input type="text" value="0" id="inputXMargin" class="sett-x left number__input-x hidden">
 										<div class="sett-x__box right">
 											<button id="XUp" class="sett-up"><span class="out">Вверх</span></button>
 											<button id="XDown" class="sett-down"><span class="out">Вниз</span></button>
+											<button id="XMarginPlus" class="sett-up hidden"><span class="out">Увеличить отступ</span></button>
+											<button id="XMarginMinus" class="sett-down hidden"><span class="out">Уменьшить отступ</span></button>
 										</div>
 									</div>
 									<div class="position__adjust__sett-y">
-										<label class="label-y number__input-label">Y</label>
+										<div class="label-y number__input-label">Y</div>
 										<input type="text" value="0" id="inputY" class="sett-y left number__input-y">
+										<input type="text" value="0" id="inputYMargin" class="sett-y left number__input-y hidden">
 										<div class="sett-y__box right">
 											<button id="YUp" class="sett-up"><span class="out">Вверх</span></button>
 											<button id="YDown" class="sett-down"><span class="out">Вниз</span></button>
+											<button id="YMarginPlus" class="sett-up hidden"><span class="out">Вверх</span></button>
+											<button id="YMarginMinus" class="sett-down hidden"><span class="out">Вниз</span></button>
 										</div>
 									</div>
 								</div>
@@ -202,16 +209,14 @@
 		<script src="js/opacity.js" defer></script>
 		<script src="js/position.js" defer></script>
 		<script src="js/input-set-position.js" defer></script>
+		<script src="js/input-set-margin.js" defer></script>
 		<script src="js/toserver.js" defer></script>
 		<script src="js/switchmode.js" defer></script>
-		<script src="js/switchmodeforcer.js" defer></script>
 		<script src="js/lang.js" defer></script>
 		<script src="js/errorcatch.js" defer></script>
-		<!--script(src="js/tiling.js", defer)-->
 		<script src="js/resetform.js" defer></script>
 		<script src="js/control-margin.js" defer></script>
 		<script src="js/social.js" defer></script>
-		<!--script(src="js/uploadresizer.js", defer)-->
 		<!--endbuild-->
 	</body>
 </html>

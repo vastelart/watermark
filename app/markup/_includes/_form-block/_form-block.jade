@@ -1,6 +1,7 @@
 .watermark-right.right
 	h2.settings__title.settings Настройки
 	form(action="php/toserver.php" enctype="multipart/form-data" method="POST" id="theForm" name="theform").settings
+		button(id="noSubmit").hidden.disabled
 		.form-input.delimiter
 			.form-input-box
 				label(for="").form__title.srcimg Исходное изображение
@@ -35,20 +36,30 @@
 					.linePosition-vertical
 				.position__adjust-sett.right
 					.position__adjust__sett-x
-						label.label-x.number__input-label X
+						.label-x.number__input-label X
 						input(type="text" value="0" id="inputX").sett-x.left.number__input-x
+						input(type="text" value="0" id="inputXMargin").sett-x.left.number__input-x.hidden
 						.sett-x__box.right
 							button.sett-up(id="XUp")
 								span.out Вверх
 							button.sett-down(id="XDown")
 								span.out Вниз
+							button.sett-up.hidden(id="XMarginPlus")
+								span.out Увеличить отступ
+							button.sett-down.hidden(id="XMarginMinus")
+								span.out Уменьшить отступ
 					.position__adjust__sett-y
-						label.label-y.number__input-label Y
+						.label-y.number__input-label Y
 						input(type="text" value="0" id="inputY").sett-y.left.number__input-y
+						input(type="text" value="0" id="inputYMargin").sett-y.left.number__input-y.hidden
 						.sett-y__box.right
 							button.sett-up(id="YUp")
 								span.out Вверх
 							button.sett-down(id="YDown")
+								span.out Вниз
+							button.sett-up.hidden(id="YMarginPlus")
+								span.out Вверх
+							button.sett-down.hidden(id="YMarginMinus")
 								span.out Вниз
 		.form-opacity.delimiter.disabled
 			label(for="", ).form__title.form__title-opacity.transparency.disabled Прозрачность
