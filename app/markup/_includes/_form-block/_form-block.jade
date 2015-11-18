@@ -42,6 +42,10 @@
 								span.out Вверх
 							button.sett-down(id="XDown")
 								span.out Вниз
+							button.sett-up.hidden(id="XMarginPlus")
+								span.out Увеличить отступ
+							button.sett-down.hidden(id="XMarginMinus")
+								span.out Уменьшить отступ
 					.position__adjust__sett-y
 						label.label-y.number__input-label Y
 						input(type="text" value="0" id="inputY").sett-y.left.number__input-y
@@ -49,6 +53,10 @@
 							button.sett-up(id="YUp")
 								span.out Вверх
 							button.sett-down(id="YDown")
+								span.out Вниз
+							button.sett-up.hidden(id="YMarginPlus")
+								span.out Вверх
+							button.sett-down.hidden(id="YMarginMinus")
 								span.out Вниз
 		.form-opacity.delimiter.disabled
 			label(for="", ).form__title.form__title-opacity.transparency.disabled Прозрачность

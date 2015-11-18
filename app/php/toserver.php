@@ -37,7 +37,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
-		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagecopyresampled($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $imname)) {
@@ -49,7 +49,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
     	imagealphablending($srcimg, false);
     	imagesavealpha($srcimg, true);
-		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagecopyresampled($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
 		imagedestroy($srcimg_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $imname)) {
@@ -57,7 +57,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$width = imagesx($srcimg_src);
 		$height = imagesy($srcimg_src);
 		$srcimg = imagecreatetruecolor($tomainwidth, $tomainheight);
-		imagecopyresized($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
+		imagecopyresampled($srcimg, $srcimg_src, 0, 0, 0, 0, $tomainwidth, $tomainheight, $width, $height);
 		imagedestroy($srcimg_src);
 	}
 
@@ -67,7 +67,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
-		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagecopyresampled($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
 		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](PNG)|(png)$/', $patternname)) {
@@ -77,9 +77,9 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
-		imagealphablending($pattern, false);
+		imagealphablending($pattern, true);
     	imagesavealpha($pattern, true);
-		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagecopyresampled($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
 		imagedestroy($pattern_src);
 	}
 	else if (preg_match('/[.](JPG)|(jpg)|(jpeg)|(JPEG)$/', $patternname)) {
@@ -87,7 +87,7 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 		$width = imagesx($pattern_src);
 		$height = imagesy($pattern_src);
 		$pattern = imagecreatetruecolor($towidth, $toheight);
-		imagecopyresized($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
+		imagecopyresampled($pattern, $pattern_src, 0, 0, 0, 0, $towidth, $toheight, $width, $height);
 		imagealphablending($pattern, false);
 		imagedestroy($pattern_src);
 	}
@@ -106,10 +106,10 @@ if (isset($_POST['image']) && isset($_POST['watermark'])) {
 
 	//Пустое увеличенное изображение под будущий мерж
 	$im = imagecreatetruecolor($srcWidth*2, $srcHeight*2);
-	//$black = imagecolorallocate($im, 0, 0, 0);
-    //imagecolortransparent($im, $black);
-	//imagealphablending($im, false);
-    //imagesavealpha($im, true);
+	$black = imagecolorallocate($im, 0, 0, 0);
+    imagecolortransparent($im, $black);
+	imagealphablending($im, true);
+    imagesavealpha($im, false);
     //imagepng($im, 'smim.png');
     //ОК
 
