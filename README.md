@@ -21,7 +21,7 @@
 
 ## Демо  
 Убедитесь в работоспособности нашего проекта по ссылке  
-<http://watermark.javascriptum.ru/>
+<http://watermark.vastelart.ru/>
 
 ## Развернуть проект у себя
 1. Клонировать репозиторий `git clone https://github.com/vastelart/watermark.git`
